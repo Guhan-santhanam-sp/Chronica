@@ -12,23 +12,17 @@ import java.util.List;
 
 public class User {
 
-    private String userId;
+    private int userId;
     private String username;
     private String email;
     private List<Role> roles;
+    private int count = 0;
 
     public User(String userId, String username, String email) {
-        this.userId = userId;
+        count++;
+        this.userId = count;
         this.username = username;
         this.email = email;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     public String getUsername() {
