@@ -2,28 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package chronica.model;
+package chronica.model.business;
 
 /**
  *
- * @author Gooqe
+ * @author arvindranganathraghuraman
  */
-public class Role {
-
-    private String roleId;
+class SecurityAgency {
+    private String agencyId;
     private String name;
 
-    public Role(String roleId, String name) {
-        this.roleId = roleId;
+    public SecurityAgency(String agencyId, String name) {
+        this.agencyId = agencyId;
         this.name = name;
     }
 
-    public String getRoleId() {
-        return roleId;
+    public String getAgencyId() {
+        return agencyId;
     }
 
-    public void setRoleId(String roleId) {
-        this.roleId = roleId;
+    public void setAgencyId(String agencyId) {
+        this.agencyId = agencyId;
     }
 
     public String getName() {
@@ -32,6 +31,7 @@ public class Role {
 
     public void setName(String name) {
         this.name = name;
-
     }
 }
+    
+
