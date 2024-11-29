@@ -2,27 +2,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package chronica.model;
+package chronica.model.business.User;
 
 /**
  *
  * @author Gooqe
  */
-import java.util.List;
+import chronica.model.business.role.Role;
 
 public class User {
 
     private int userId;
     private String username;
     private String email;
-    private List<Role> roles;
+    private String password;
+    private Role role;
     private int count = 0;
 
-    public User(String userId, String username, String email) {
+    public User(String username, String pwd, String email, Role role) {
         count++;
         this.userId = count;
         this.username = username;
+        this.password = pwd;
         this.email = email;
+        this.role = role;
     }
 
     public String getUsername() {
@@ -41,12 +44,25 @@ public class User {
         this.email = email;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-
+    public void setRole(Role role) {
+        this.role = role;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "userId=" + userId + ", username=" + username + ", email=" + email + ", password=" + password + ", role=" + role + ", count=" + count + '}';
+    }
+
 }

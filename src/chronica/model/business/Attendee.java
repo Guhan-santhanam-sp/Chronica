@@ -1,4 +1,4 @@
-package chronica.model;
+package chronica.model.business;
 
 public class Attendee {
 
