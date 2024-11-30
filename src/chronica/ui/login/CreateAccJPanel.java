@@ -192,7 +192,6 @@ public class CreateAccJPanel extends javax.swing.JPanel {
     private void populateRoles(RoleDirectory roleDirectory) {
         cmbRoles.removeAllItems();
 
-        System.out.println("Available roles ---> " + roleDirectory.toString());
         for (Role r : roleDirectory.getRolelist()) {
             cmbRoles.addItem(r.getName());
         }

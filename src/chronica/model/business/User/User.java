@@ -18,6 +18,8 @@ public class User {
     private String password;
     private Role role;
     private int count = 0;
+    
+    
 
     public User(String username, String pwd, String email, Role role) {
         count++;
