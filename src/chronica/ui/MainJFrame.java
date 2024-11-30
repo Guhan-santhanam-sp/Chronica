@@ -4,6 +4,9 @@
  */
 package chronica.ui;
 
+import chronica.model.business.User.UserDirectory;
+import chronica.model.business.event.EventDirectory;
+import chronica.model.business.role.RoleDirectory;
 import chronica.ui.login.StartPanel;
 import java.awt.CardLayout;
 
@@ -13,6 +16,10 @@ import java.awt.CardLayout;
  */
 public class MainJFrame extends javax.swing.JFrame {
 
+    RoleDirectory roleDirectory = new RoleDirectory();
+    UserDirectory userDirectory = new UserDirectory();
+    EventDirectory eventDirectory = new EventDirectory();
+
     /**
      * Creates new form MainJFrame
      */
@@ -20,7 +27,7 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         setSize(1177, 980);
         setTitle("Chronica");
-        StartPanel panel = new StartPanel(PanelContainer);
+        StartPanel panel = new StartPanel(PanelContainer, roleDirectory, userDirectory,eventDirectory);
         PanelContainer.add("StartPanel", panel);
         CardLayout layout = (CardLayout) PanelContainer.getLayout();
         layout.next(PanelContainer);

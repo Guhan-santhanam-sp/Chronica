@@ -4,10 +4,13 @@
  */
 package chronica.ui.login;
 
+import chronica.model.business.Task.TaskDirectory;
 import chronica.model.business.User.User;
 import chronica.model.business.User.UserDirectory;
+import chronica.model.business.event.EventDirectory;
 import chronica.model.business.role.RoleDirectory;
 import chronica.model.config.ReadProp;
+import chronica.ui.customer.CustomerMainPage;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,18 +21,26 @@ import javax.swing.JPanel;
  */
 public class LoginJPanel extends javax.swing.JPanel {
 
-    JPanel PanelContainer;
-    RoleDirectory roleDirectory = new RoleDirectory();
-    UserDirectory userDirectory = new UserDirectory();
+    JPanel panelContainer;
+    RoleDirectory roleDirectory;
+    UserDirectory userDirectory;
+    EventDirectory eventDirectory;
 
     /**
      * Creates new form LoginJPanel
      *
-     * @param PanelContainer
+     * @param panelContainer
+     * @param roleDirectory
+     * @param userDirectory
+     * @param taskDirectory
      */
-    public LoginJPanel(JPanel PanelContainer) {
+    public LoginJPanel(JPanel panelContainer, RoleDirectory roleDirectory, UserDirectory userDirectory, EventDirectory eventDirectory) {
         initComponents();
-        this.PanelContainer = PanelContainer;
+        this.panelContainer = panelContainer;
+        this.roleDirectory = roleDirectory;
+        this.userDirectory = userDirectory;
+        this.eventDirectory = eventDirectory;
+
         ReadProp rp = new ReadProp();
         rp.readprop(roleDirectory);
 
@@ -127,22 +138,39 @@ public class LoginJPanel extends javax.swing.JPanel {
 
     private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
         // TODO add your handling code here:
-        CreateAccJPanel panel = new CreateAccJPanel(PanelContainer, userDirectory, roleDirectory);
-        PanelContainer.add("CreateAccJPanel", panel);
-        CardLayout layout = (CardLayout) PanelContainer.getLayout();
-        layout.next(PanelContainer);
+        CreateAccJPanel panel = new CreateAccJPanel(panelContainer, userDirectory, roleDirectory);
+        panelContainer.add("CreateAccJPanel", panel);
+        CardLayout layout = (CardLayout) panelContainer.getLayout();
+        layout.next(panelContainer);
     }//GEN-LAST:event_btnSignupActionPerformed
 
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
         // TODO add your handling code here:
-        PanelContainer.remove(this);
-        CardLayout layout = (CardLayout) PanelContainer.getLayout();
-        layout.previous(PanelContainer);
+        panelContainer.remove(this);
+        CardLayout layout = (CardLayout) panelContainer.getLayout();
+        layout.previous(panelContainer);
     }//GEN-LAST:event_btnbackActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        isAuth();
+        User authUser = isAuth();
+
+        if (authUser != null) {
+            if (authUser.getRole().getName().equalsIgnoreCase("customer")) {
+                JOptionPane.showMessageDialog(this, "Login Successful - Welcome " + authUser.getUsername() + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
+                CustomerMainPage panel = new CustomerMainPage(panelContainer, authUser, roleDirectory, userDirectory, eventDirectory);
+                panelContainer.add("CustomerMainPage", panel);
+                CardLayout layout = (CardLayout) panelContainer.getLayout();
+                layout.next(panelContainer);
+            }
+            /// Complete here
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Dev Busy", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+
+        }
+
 
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -160,24 +188,26 @@ public class LoginJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel txtTitle;
     // End of variables declaration//GEN-END:variables
 
-    private void isAuth() {
+    private User isAuth() {
         if (txtEmail.getText().isEmpty() || txtPassword.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "One of the field is empty", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
+            return null;
         }
         User user = userDirectory.findUserEmail(txtEmail.getText());
         if (user != null) {
             if (user.getPassword().equalsIgnoreCase(txtPassword.getText())) {
-                JOptionPane.showMessageDialog(this, "Login Successful - Welcome " + user.getUsername() + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
+
+                return user;
             } else {
                 JOptionPane.showMessageDialog(this, "Incorrect Password", "Warning", JOptionPane.WARNING_MESSAGE);
                 txtPassword.setText("");
-                return;
+                return null;
             }
 
         } else {
             JOptionPane.showMessageDialog(this, "User not found", "Warning", JOptionPane.WARNING_MESSAGE);
         }
+        return null;
 
     }
 

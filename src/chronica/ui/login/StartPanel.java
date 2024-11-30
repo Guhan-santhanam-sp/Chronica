@@ -4,6 +4,10 @@
  */
 package chronica.ui.login;
 
+import chronica.model.business.Task.TaskDirectory;
+import chronica.model.business.User.UserDirectory;
+import chronica.model.business.event.EventDirectory;
+import chronica.model.business.role.RoleDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -14,14 +18,21 @@ import javax.swing.JPanel;
 public class StartPanel extends javax.swing.JPanel {
 
     JPanel PanelContainer;
+    RoleDirectory roleDirectory;
+    UserDirectory userDirectory;
+    EventDirectory eventDirectory;
 
     /**
      * Creates new form LoginJPanel
+     *
      * @param PanelContainer
      */
-    public StartPanel(JPanel PanelContainer) {
+    public StartPanel(JPanel PanelContainer, RoleDirectory roleDirectory, UserDirectory userDirectory, EventDirectory eventDirectory) {
         initComponents();
         this.PanelContainer = PanelContainer;
+        this.roleDirectory = roleDirectory;
+        this.userDirectory = userDirectory;
+        this.eventDirectory = eventDirectory;
 
     }
 
@@ -55,7 +66,7 @@ public class StartPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        LoginJPanel panel = new LoginJPanel(PanelContainer);
+        LoginJPanel panel = new LoginJPanel(PanelContainer, roleDirectory, userDirectory, eventDirectory);
         PanelContainer.add("LoginJPanel", panel);
         CardLayout layout = (CardLayout) PanelContainer.getLayout();
         layout.next(PanelContainer);
