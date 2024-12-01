@@ -4,17 +4,34 @@
  */
 package chronica.ui;
 
+import chronica.model.business.User.UserDirectory;
+import chronica.model.business.event.EventDirectory;
+import chronica.model.business.role.RoleDirectory;
+import chronica.ui.login.StartPanel;
+import java.awt.CardLayout;
+
 /**
  *
  * @author Gooqe
  */
 public class MainJFrame extends javax.swing.JFrame {
 
+    RoleDirectory roleDirectory = new RoleDirectory();
+    UserDirectory userDirectory = new UserDirectory();
+    EventDirectory eventDirectory = new EventDirectory();
+
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
+        setSize(1177, 980);
+        setTitle("Chronica");
+        StartPanel panel = new StartPanel(PanelContainer, roleDirectory, userDirectory,eventDirectory);
+        PanelContainer.add("StartPanel", panel);
+        CardLayout layout = (CardLayout) PanelContainer.getLayout();
+        layout.next(PanelContainer);
+
     }
 
     /**
@@ -26,21 +43,34 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        PanelContainer = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
+
+        PanelContainer.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1100, Short.MAX_VALUE)
+            .addComponent(PanelContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
+            .addComponent(PanelContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
@@ -78,5 +108,6 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PanelContainer;
     // End of variables declaration//GEN-END:variables
 }

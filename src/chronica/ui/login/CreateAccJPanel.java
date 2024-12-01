@@ -4,17 +4,37 @@
  */
 package chronica.ui.login;
 
+import chronica.model.business.User.User;
+import chronica.model.business.User.UserDirectory;
+import chronica.model.business.role.Role;
+import chronica.model.business.role.RoleDirectory;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Gooqe
  */
 public class CreateAccJPanel extends javax.swing.JPanel {
 
+    JPanel PanelContainer;
+    RoleDirectory roleDirectory;
+    UserDirectory userDirectory;
+
     /**
      * Creates new form CreateAccJPanel
+     *
+     * @param PanelContainer
+     * @param userDirectory
+     * @param roleDirectory
      */
-    public CreateAccJPanel() {
+    public CreateAccJPanel(JPanel PanelContainer, UserDirectory userDirectory, RoleDirectory roleDirectory) {
         initComponents();
+        this.PanelContainer = PanelContainer;
+        this.roleDirectory = roleDirectory;
+        this.userDirectory = userDirectory;
+        populateRoles(roleDirectory);
     }
 
     /**
@@ -26,19 +46,155 @@ public class CreateAccJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        Title = new javax.swing.JLabel();
+        lblRoles = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
+        lblPassword = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        cmbRoles = new javax.swing.JComboBox<>();
+        btnback = new javax.swing.JButton();
+        btnSignup1 = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
+        backGround = new javax.swing.JLabel();
+
+        setLayout(null);
+
+        Title.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chronica/resources/title.jpg"))); // NOI18N
+        add(Title);
+        Title.setBounds(160, 80, 879, 145);
+
+        lblRoles.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        lblRoles.setForeground(new java.awt.Color(255, 255, 255));
+        lblRoles.setText("Role");
+        add(lblRoles);
+        lblRoles.setBounds(350, 560, 90, 20);
+
+        lblUsername.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        lblUsername.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsername.setText("Username");
+        add(lblUsername);
+        lblUsername.setBounds(350, 410, 90, 20);
+
+        lblPassword.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        lblPassword.setForeground(new java.awt.Color(255, 255, 255));
+        lblPassword.setText("Password");
+        add(lblPassword);
+        lblPassword.setBounds(350, 460, 90, 20);
+
+        lblEmail.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        lblEmail.setForeground(new java.awt.Color(255, 255, 255));
+        lblEmail.setText("Email");
+        add(lblEmail);
+        lblEmail.setBounds(350, 510, 90, 20);
+        add(txtUsername);
+        txtUsername.setBounds(450, 410, 240, 30);
+
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
+        add(txtEmail);
+        txtEmail.setBounds(450, 510, 240, 30);
+
+        cmbRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        add(cmbRoles);
+        cmbRoles.setBounds(450, 560, 240, 30);
+
+        btnback.setText("<");
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
+        add(btnback);
+        btnback.setBounds(330, 360, 40, 23);
+
+        btnSignup1.setText("Sign up");
+        btnSignup1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignup1ActionPerformed(evt);
+            }
+        });
+        add(btnSignup1);
+        btnSignup1.setBounds(490, 620, 140, 30);
+        add(txtPassword);
+        txtPassword.setBounds(450, 460, 240, 30);
+
+        backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chronica/resources/gradient.jpeg"))); // NOI18N
+        add(backGround);
+        backGround.setBounds(0, 0, 1176, 950);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        // TODO add your handling code here:
+        PanelContainer.remove(this);
+        CardLayout layout = (CardLayout) PanelContainer.getLayout();
+        layout.previous(PanelContainer);
+    }//GEN-LAST:event_btnbackActionPerformed
+
+    private void btnSignup1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignup1ActionPerformed
+        // TODO add your handling code here:
+        String userName = txtUsername.getText();
+        String pwd = txtPassword.getText();
+        String email = txtEmail.getText();
+        String rolename = (String) cmbRoles.getSelectedItem();
+        Role role = null;
+        User existUser = null;
+        if (userName.isEmpty() || pwd.isEmpty() || email.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "One of the fields is incorrect", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+
+        } else {
+            for (Role r : roleDirectory.getRolelist()) {
+                if (rolename.equalsIgnoreCase(r.getName())) {
+                    role = r;
+
+                }
+            }
+
+            existUser = userDirectory.findUserEmail(email);
+            if (existUser == null) {
+                userDirectory.newUser(userName, pwd, email, role);
+                JOptionPane.showMessageDialog(this, "User has been added", "Information", JOptionPane.INFORMATION_MESSAGE);
+
+            } else {
+                JOptionPane.showMessageDialog(this, "User Already Exists", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+        }
+
+    }//GEN-LAST:event_btnSignup1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Title;
+    private javax.swing.JLabel backGround;
+    private javax.swing.JButton btnSignup1;
+    private javax.swing.JButton btnback;
+    private javax.swing.JComboBox<String> cmbRoles;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblRoles;
+    private javax.swing.JLabel lblUsername;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+
+    private void populateRoles(RoleDirectory roleDirectory) {
+        cmbRoles.removeAllItems();
+
+        for (Role r : roleDirectory.getRolelist()) {
+            cmbRoles.addItem(r.getName());
+        }
+
+    }
 }

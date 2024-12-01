@@ -4,17 +4,36 @@
  */
 package chronica.ui.login;
 
+import chronica.model.business.Task.TaskDirectory;
+import chronica.model.business.User.UserDirectory;
+import chronica.model.business.event.EventDirectory;
+import chronica.model.business.role.RoleDirectory;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Gooqe
  */
 public class StartPanel extends javax.swing.JPanel {
 
+    JPanel PanelContainer;
+    RoleDirectory roleDirectory;
+    UserDirectory userDirectory;
+    EventDirectory eventDirectory;
+
     /**
      * Creates new form LoginJPanel
+     *
+     * @param PanelContainer
      */
-    public StartPanel() {
+    public StartPanel(JPanel PanelContainer, RoleDirectory roleDirectory, UserDirectory userDirectory, EventDirectory eventDirectory) {
         initComponents();
+        this.PanelContainer = PanelContainer;
+        this.roleDirectory = roleDirectory;
+        this.userDirectory = userDirectory;
+        this.eventDirectory = eventDirectory;
+
     }
 
     /**
@@ -32,13 +51,26 @@ public class StartPanel extends javax.swing.JPanel {
         setLayout(null);
 
         jButton1.setText("Start");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         add(jButton1);
-        jButton1.setBounds(1030, 860, 100, 50);
+        jButton1.setBounds(1020, 850, 100, 50);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chronica/resources/bg.jpg"))); // NOI18N
         add(jLabel1);
-        jLabel1.setBounds(0, 0, 1180, 960);
+        jLabel1.setBounds(0, 0, 1180, 950);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        LoginJPanel panel = new LoginJPanel(PanelContainer, roleDirectory, userDirectory, eventDirectory);
+        PanelContainer.add("LoginJPanel", panel);
+        CardLayout layout = (CardLayout) PanelContainer.getLayout();
+        layout.next(PanelContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
