@@ -346,7 +346,7 @@ public class CustomerPanel extends javax.swing.JPanel {
                     return;
 
                 } else {
-                    eventDirectory.newEvent(eventName, Date, location, eventBudget, attendee, customer);
+                    eventDirectory.newEvent(eventName, Date, location, eventBudget, attendee, customer, 100);
                     JOptionPane.showMessageDialog(this, "Event Created ! Thank you for choosing Chronica ", "Information", JOptionPane.INFORMATION_MESSAGE);
                 }
 

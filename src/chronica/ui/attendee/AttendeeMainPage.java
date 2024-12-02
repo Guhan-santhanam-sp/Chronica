@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package chronica.ui.customer;
+package chronica.ui.attendee;
 
-import chronica.model.business.Task.TaskDirectory;
 import chronica.model.business.User.User;
 import chronica.model.business.User.UserDirectory;
 import chronica.model.business.event.EventDirectory;
 import chronica.model.business.role.RoleDirectory;
+import chronica.ui.customer.CustomerPanel;
 import chronica.ui.nav.NavBar;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -17,31 +17,26 @@ import javax.swing.JPanel;
  *
  * @author Gooqe
  */
-public class CustomerMainPage extends javax.swing.JPanel {
+public class AttendeeMainPage extends javax.swing.JPanel {
 
-    JPanel PanelContainer;
-    User customer;
+    JPanel panelContainer;
     RoleDirectory roleDirectory;
     UserDirectory userDirectory;
-    TaskDirectory taskDirectory = new TaskDirectory();
     EventDirectory eventDirectory;
+    User attendee;
 
     /**
-     * Creates new form CustomerMainPage
-     *
-     * @param PanelContainer
-     * @param authUser
+     * Creates new form AttendeeMainPanel
      */
-    public CustomerMainPage(JPanel PanelContainer, User authUser, RoleDirectory roleDirectory, UserDirectory userDirectory, EventDirectory eventDirectory) {
+    public AttendeeMainPage(JPanel panelContainer, User authUser, RoleDirectory roleDirectory, UserDirectory userDirectory, EventDirectory eventDirectory) {
         initComponents();
-        this.PanelContainer = PanelContainer;
-        this.customer = authUser;
+        this.panelContainer = panelContainer;
+        this.attendee = authUser;
         this.roleDirectory = roleDirectory;
         this.userDirectory = userDirectory;
         this.eventDirectory = eventDirectory;
 
         render();
-
     }
 
     /**
@@ -55,15 +50,15 @@ public class CustomerMainPage extends javax.swing.JPanel {
 
         jSplitPane2 = new javax.swing.JSplitPane();
         navBar = new javax.swing.JPanel();
-        customerPanel = new javax.swing.JPanel();
+        attendeePanel = new javax.swing.JPanel();
 
         jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         navBar.setLayout(new java.awt.CardLayout());
         jSplitPane2.setTopComponent(navBar);
 
-        customerPanel.setLayout(new java.awt.CardLayout());
-        jSplitPane2.setRightComponent(customerPanel);
+        attendeePanel.setLayout(new java.awt.CardLayout());
+        jSplitPane2.setRightComponent(attendeePanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -79,20 +74,21 @@ public class CustomerMainPage extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel customerPanel;
+    private javax.swing.JPanel attendeePanel;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JPanel navBar;
     // End of variables declaration//GEN-END:variables
 
     private void render() {
-        NavBar panel = new NavBar(PanelContainer, navBar, customer, roleDirectory, userDirectory, eventDirectory);
-        navBar.add("NavBar", panel);
-        CardLayout layout = (CardLayout) PanelContainer.getLayout();
-        layout.next(PanelContainer);
 
-        CustomerPanel panel1 = new CustomerPanel(customerPanel, customer, roleDirectory, taskDirectory, eventDirectory);
-        customerPanel.add("customerPanel", panel1);       
-        layout.next(PanelContainer);
+        NavBar panel = new NavBar(panelContainer, navBar, attendee, roleDirectory, userDirectory, eventDirectory);
+        navBar.add("NavBar", panel);
+        CardLayout layout = (CardLayout) panelContainer.getLayout();
+        layout.next(panelContainer);
+
+        AttendeePanel panel1 = new AttendeePanel(attendeePanel, attendee, roleDirectory, eventDirectory);
+        attendeePanel.add("customerPanel", panel1);
+        layout.next(panelContainer);
 
     }
 }

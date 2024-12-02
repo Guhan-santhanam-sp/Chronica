@@ -11,8 +11,8 @@ public class EventDirectory {
         event = new ArrayList<>();
     }
 
-    public Event newEvent(String eventName, String eventDate, String eventLocation, double budget, int attendees, User currentUser) {
-        Event newEvent = new Event(eventName, eventDate, eventLocation, budget, attendees, currentUser);
+    public Event newEvent(String eventName, String eventDate, String eventLocation, double budget, int attendees, User currentUser,double ticketPrice) {
+        Event newEvent = new Event(eventName, eventDate, eventLocation, budget, attendees, currentUser,ticketPrice);
         this.event.add(newEvent);
         return newEvent;
     }
@@ -35,6 +35,16 @@ public class EventDirectory {
             }
         }
         return userEvents;
+    }
+
+    public ArrayList<Event> getEventsRegisteredByUser(User user) {
+        ArrayList<Event> registeredEvents = new ArrayList<>();
+        for (Event e : event) {
+            if (e.getRegisteredUsers().contains(user)) {
+                registeredEvents.add(e);
+            }
+        }
+        return registeredEvents;
     }
 
     /**
@@ -71,7 +81,7 @@ public class EventDirectory {
                 e.setDate(newDate);
                 e.setLocation(newLocation);
                 e.setBudget(newBudget);
-                e.setAttendees(newAttendees);
+                e.setTotalattendees(newAttendees);
                 return true;
             }
         }
