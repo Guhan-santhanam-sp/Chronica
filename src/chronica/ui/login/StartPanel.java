@@ -26,6 +26,9 @@ public class StartPanel extends javax.swing.JPanel {
      * Creates new form LoginJPanel
      *
      * @param PanelContainer
+     * @param roleDirectory
+     * @param userDirectory
+     * @param eventDirectory
      */
     public StartPanel(JPanel PanelContainer, RoleDirectory roleDirectory, UserDirectory userDirectory, EventDirectory eventDirectory) {
         initComponents();

@@ -10,6 +10,7 @@ import chronica.model.business.User.UserDirectory;
 import chronica.model.business.event.EventDirectory;
 import chronica.model.business.role.RoleDirectory;
 import chronica.model.config.ReadProp;
+import chronica.ui.attendee.AttendeeMainPage;
 import chronica.ui.customer.CustomerMainPage;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -41,9 +42,7 @@ public class LoginJPanel extends javax.swing.JPanel {
         this.userDirectory = userDirectory;
         this.eventDirectory = eventDirectory;
 
-        ReadProp rp = new ReadProp();
-        rp.readprop(roleDirectory);
-
+        
     }
 
     /**
@@ -162,10 +161,14 @@ public class LoginJPanel extends javax.swing.JPanel {
                 panelContainer.add("CustomerMainPage", panel);
                 CardLayout layout = (CardLayout) panelContainer.getLayout();
                 layout.next(panelContainer);
-            }
-            /// Complete here
-            else
-            {
+            } else if (authUser.getRole().getName().equalsIgnoreCase("attendee")) {
+                JOptionPane.showMessageDialog(this, "Login Successful - Welcome " + authUser.getUsername() + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
+                AttendeeMainPage panel = new AttendeeMainPage(panelContainer, authUser, roleDirectory, userDirectory, eventDirectory);
+                panelContainer.add("AttendeeMainPage", panel);
+                CardLayout layout = (CardLayout) panelContainer.getLayout();
+                layout.next(panelContainer);
+
+            } else {
                 JOptionPane.showMessageDialog(this, "Dev Busy", "Warning", JOptionPane.WARNING_MESSAGE);
             }
 

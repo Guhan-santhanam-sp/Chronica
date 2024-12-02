@@ -7,6 +7,7 @@ package chronica.ui;
 import chronica.model.business.User.UserDirectory;
 import chronica.model.business.event.EventDirectory;
 import chronica.model.business.role.RoleDirectory;
+import chronica.model.config.ReadProp;
 import chronica.ui.login.StartPanel;
 import java.awt.CardLayout;
 
@@ -31,6 +32,9 @@ public class MainJFrame extends javax.swing.JFrame {
         PanelContainer.add("StartPanel", panel);
         CardLayout layout = (CardLayout) PanelContainer.getLayout();
         layout.next(PanelContainer);
+        ReadProp rp = new ReadProp();
+        rp.readprop(roleDirectory);
+
 
     }
 

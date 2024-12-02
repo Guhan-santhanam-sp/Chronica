@@ -30,8 +30,15 @@ public class NavBar extends javax.swing.JPanel {
 
     /**
      * Creates new form NavBar
+     *
+     * @param PanelContainer
+     * @param navBar
+     * @param user
+     * @param eventDirectory
+     * @param userDirectory
+     * @param roleDirectory
      */
-    public NavBar(JPanel PanelContainer, JPanel navBar, User user, RoleDirectory roleDirectory, UserDirectory userDirectory, EventDirectory eventDirectory1) {
+    public NavBar(JPanel PanelContainer, JPanel navBar, User user, RoleDirectory roleDirectory, UserDirectory userDirectory, EventDirectory eventDirectory) {
         initComponents();
         this.navBarContainer = navBar;
         this.panelContainer = PanelContainer;
