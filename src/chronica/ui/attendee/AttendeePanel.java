@@ -8,6 +8,8 @@ import chronica.model.business.User.User;
 import chronica.model.business.event.Event;
 import chronica.model.business.event.EventDirectory;
 import chronica.model.business.role.RoleDirectory;
+import chronica.ui.customer.TaskPanel;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -18,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AttendeePanel extends javax.swing.JPanel {
 
-    JPanel customerPanel;
+    JPanel attendeePanel;
     RoleDirectory roleDirectory;
     EventDirectory eventDirectory;
     User attendee;
@@ -31,9 +33,9 @@ public class AttendeePanel extends javax.swing.JPanel {
      * @param roleDirectory
      * @param eventDirectory
      */
-    public AttendeePanel(JPanel customerPanel, User attendee, RoleDirectory roleDirectory, EventDirectory eventDirectory) {
+    public AttendeePanel(JPanel attendeePanel, User attendee, RoleDirectory roleDirectory, EventDirectory eventDirectory) {
         initComponents();
-        this.customerPanel = customerPanel;
+        this.attendeePanel = attendeePanel;
         this.roleDirectory = roleDirectory;
         this.eventDirectory = eventDirectory;
         this.attendee = attendee;
@@ -127,7 +129,7 @@ public class AttendeePanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -167,6 +169,19 @@ public class AttendeePanel extends javax.swing.JPanel {
 
     private void btnFeedbacckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeedbacckActionPerformed
         // TODO add your handling code here:
+
+        int selectedRowIndex = tblOrderHistory.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please a select a Event to give Feedback !", "Warning", JOptionPane.WARNING_MESSAGE);
+
+            return;
+        }
+        Event e = (Event) tblEvents.getValueAt(selectedRowIndex, 0);
+         AttendeeFeedbackPanel panel = new AttendeeFeedbackPanel(attendeePanel, attendee,  roleDirectory,  eventDirectory, e);
+        attendeePanel.add("AttendeeFeedbackPanel", panel);
+        CardLayout layout = (CardLayout) attendeePanel.getLayout();
+        layout.next(attendeePanel);
+
     }//GEN-LAST:event_btnFeedbacckActionPerformed
 
     private void btnPlaceTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceTicketActionPerformed
