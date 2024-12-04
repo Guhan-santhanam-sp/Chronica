@@ -13,6 +13,7 @@ import chronica.model.config.ReadProp;
 import chronica.ui.admin.AdminMainPage;
 import chronica.ui.attendee.AttendeeMainPage;
 import chronica.ui.customer.CustomerMainPage;
+import chronica.ui.venuemanagement.VenueMainPage;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -172,6 +173,13 @@ public class LoginJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Login Successful - Welcome " + authUser.getUsername() + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
                 AdminMainPage panel = new AdminMainPage(panelContainer, authUser, eventDirectory);
                 panelContainer.add("AdminMainPage", panel);
+                CardLayout layout = (CardLayout) panelContainer.getLayout();
+                layout.next(panelContainer);
+
+            } else if (authUser.getRole().getName().equalsIgnoreCase("venue")) {
+                JOptionPane.showMessageDialog(this, "Login Successful - Welcome " + authUser.getUsername() + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
+                VenueMainPage panel = new VenueMainPage(panelContainer, authUser, roleDirectory, userDirectory, eventDirectory);
+                panelContainer.add("VenueMainPage", panel);
                 CardLayout layout = (CardLayout) panelContainer.getLayout();
                 layout.next(panelContainer);
 
