@@ -404,8 +404,8 @@ public class CustomerPanel extends javax.swing.JPanel {
                 status = "Completed";
             }
 
-            row[0] = task;
-            row[1] = task.getDescription();
+            row[0] = task.getTaskId();
+            row[1] = task;
             row[2] = status;
             row[3] = task.getCost();
             row[4] = task.getRole().getName();

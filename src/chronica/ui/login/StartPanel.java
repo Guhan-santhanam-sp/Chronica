@@ -60,7 +60,7 @@ public class StartPanel extends javax.swing.JPanel {
             }
         });
         add(jButton1);
-        jButton1.setBounds(1020, 850, 100, 50);
+        jButton1.setBounds(530, 410, 100, 50);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chronica/resources/bg.jpg"))); // NOI18N
         add(jLabel1);
