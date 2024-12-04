@@ -7,6 +7,7 @@ package chronica.ui.customer;
 import chronica.model.business.Task.Task;
 import chronica.model.business.Task.TaskDirectory;
 import chronica.model.business.User.User;
+import chronica.model.business.event.Event;
 import chronica.model.business.event.EventDirectory;
 import chronica.model.business.role.RoleDirectory;
 import java.awt.CardLayout;
@@ -346,7 +347,10 @@ public class CustomerPanel extends javax.swing.JPanel {
                     return;
 
                 } else {
-                    eventDirectory.newEvent(eventName, Date, location, eventBudget, attendee, customer, 100);
+                    Event createdEvent = eventDirectory.newEvent(eventName, Date, location, eventBudget, attendee, customer, 100);
+                    createdEvent.setTaskDirectory(taskDirectory);
+                    System.out.println(createdEvent);
+                    
                     JOptionPane.showMessageDialog(this, "Event Created ! Thank you for choosing Chronica ", "Information", JOptionPane.INFORMATION_MESSAGE);
                 }
 
@@ -406,6 +410,7 @@ public class CustomerPanel extends javax.swing.JPanel {
 
             row[0] = task;
             row[1] = task.getDescription();
+            row[2] = task.getRole();
             row[2] = status;
             row[3] = task.getCost();
             row[4] = task.getRole().getName();

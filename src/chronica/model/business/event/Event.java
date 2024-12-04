@@ -173,17 +173,6 @@ public class Event {
      * @return True if feedback is added successfully, false otherwise.
      */
     public boolean giveFeedback(User attendee, String role, String feedbackText) {
-        // Ensure the attendee is registered
-        if (!registeredUsers.contains(attendee)) {
-            System.out.println("Error: Attendee is not registered for this event.");
-            return false;
-        }
-
-        // Ensure the role exists in the event
-        if (!getRolesInEvent().contains(role)) {
-            System.out.println("Error: The role '" + role + "' is not involved in this event.");
-            return false;
-        }
 
         // Feedback map: If attendee doesn't exist in feedback yet, add them
         feedback.putIfAbsent(attendee, new HashMap<>());
@@ -203,6 +192,10 @@ public class Event {
         return feedback.getOrDefault(attendee, new HashMap<>());
     }
 
+    public void setTaskDirectory(TaskDirectory taskDirectory) {
+        this.taskDirectory = taskDirectory;
+    }
+
     /**
      * Retrieve all feedback for a specific role.
      *
@@ -219,6 +212,10 @@ public class Event {
         return roleFeedback;
     }
 
+//    @Override
+//    public String toString() {
+//        return getName();
+//    }
     @Override
     public String toString() {
         return getName();

@@ -4,7 +4,6 @@
  */
 package chronica.ui.login;
 
-import chronica.model.business.Task.TaskDirectory;
 import chronica.model.business.User.UserDirectory;
 import chronica.model.business.event.EventDirectory;
 import chronica.model.business.role.RoleDirectory;

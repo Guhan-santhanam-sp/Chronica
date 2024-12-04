@@ -20,7 +20,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="337" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="121" max="-2" attributes="0"/>
+                      <Component id="btnSubmitFeedback" min="-2" pref="121" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
@@ -36,7 +36,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="306" max="32767" attributes="0"/>
+              <EmptySpace pref="485" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -55,7 +55,7 @@
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="249" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" pref="37" max="-2" attributes="0"/>
+              <Component id="btnSubmitFeedback" min="-2" pref="37" max="-2" attributes="0"/>
               <EmptySpace pref="250" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -89,12 +89,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnSubmitFeedback">
       <Properties>
         <Property name="text" type="java.lang.String" value="Submit Feedback"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSubmitFeedbackActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnback">

@@ -177,7 +177,7 @@ public class AttendeePanel extends javax.swing.JPanel {
             return;
         }
         Event e = (Event) tblEvents.getValueAt(selectedRowIndex, 0);
-         AttendeeFeedbackPanel panel = new AttendeeFeedbackPanel(attendeePanel, attendee,  roleDirectory,  eventDirectory, e);
+        AttendeeFeedbackPanel panel = new AttendeeFeedbackPanel(attendeePanel, attendee, roleDirectory, eventDirectory, e);
         attendeePanel.add("AttendeeFeedbackPanel", panel);
         CardLayout layout = (CardLayout) attendeePanel.getLayout();
         layout.next(attendeePanel);
