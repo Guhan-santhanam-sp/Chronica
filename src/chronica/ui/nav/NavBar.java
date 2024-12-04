@@ -4,7 +4,6 @@
  */
 package chronica.ui.nav;
 
-import chronica.model.business.Task.TaskDirectory;
 import chronica.model.business.User.User;
 import chronica.model.business.User.UserDirectory;
 import chronica.model.business.event.EventDirectory;
