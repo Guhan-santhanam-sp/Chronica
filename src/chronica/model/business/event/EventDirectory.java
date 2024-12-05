@@ -1,7 +1,12 @@
 package chronica.model.business.event;
 
+import chronica.model.business.Task.Task;
 import chronica.model.business.User.User;
+import chronica.model.business.role.Role;
+
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class EventDirectory {
 
@@ -11,8 +16,8 @@ public class EventDirectory {
         event = new ArrayList<>();
     }
 
-    public Event newEvent(String eventName, String eventDate, String eventLocation, double budget, int attendees, User currentUser,double ticketPrice) {
-        Event newEvent = new Event(eventName, eventDate, eventLocation, budget, attendees, currentUser,ticketPrice);
+    public Event newEvent(String eventName, String eventDate, String eventLocation, double budget, int attendees, User currentUser, double ticketPrice) {
+        Event newEvent = new Event(eventName, eventDate, eventLocation, budget, attendees, currentUser, ticketPrice);
         this.event.add(newEvent);
         return newEvent;
     }
@@ -86,5 +91,75 @@ public class EventDirectory {
             }
         }
         return false;
+    }
+
+    /**
+     * Get the total number of events.
+     *
+     * @return Total number of events.
+     */
+    public int getTotalNumberOfEvents() {
+        return event.size();
+    }
+
+    /**
+     * Get the total number of tickets sold across all events.
+     *
+     * @return Total number of tickets sold.
+     */
+    public int getTotalNumberOfTicketsSold() {
+        int totalTicketsSold = 0;
+        for (Event e : event) {
+            totalTicketsSold += (e.getTotalattendees() - e.getAvailableTicket());
+        }
+        return totalTicketsSold;
+    }
+
+    /**
+     * Get the total number of attendees across all events.
+     *
+     * @return Total number of attendees.
+     */
+    public int getTotalNumberOfAttendees() {
+        int totalAttendees = 0;
+        for (Event e : event) {
+            totalAttendees += e.getRegisteredUsers().size();
+        }
+        return totalAttendees;
+    }
+
+    /**
+     * Get the total number of customers (unique registered users across all events).
+     *
+     * @return Total number of customers.
+     */
+
+
+    /**
+     * Get the total number of vendors involved in all events.
+     *
+     * @return Total number of vendors.
+     */
+    public int getTotalNumberOfVendors() {
+        Set<Role> uniqueVendors = new HashSet<>();
+        for (Event e : event) {
+            for (Task t : e.getTaskDirectory().getAllTasks()) {
+                uniqueVendors.add(t.getRole());
+            }
+        }
+        return uniqueVendors.size();
+    }
+
+    /**
+     * Get the total number of tasks across all events.
+     *
+     * @return Total number of tasks.
+     */
+    public int getTotalNumberOfTasks() {
+        int totalTasks = 0;
+        for (Event e : event) {
+            totalTasks += e.getTaskDirectory().getAllTasks().size();
+        }
+        return totalTasks;
     }
 }

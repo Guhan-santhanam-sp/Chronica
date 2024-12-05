@@ -6,10 +6,14 @@ package chronica.ui;
 
 import chronica.model.business.User.UserDirectory;
 import chronica.model.business.event.EventDirectory;
+import chronica.model.business.role.Role;
 import chronica.model.business.role.RoleDirectory;
 import chronica.model.config.ReadProp;
 import chronica.ui.login.StartPanel;
 import java.awt.CardLayout;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,13 +32,23 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         setSize(1177, 980);
         setTitle("Chronica");
-        StartPanel panel = new StartPanel(PanelContainer, roleDirectory, userDirectory,eventDirectory);
+        StartPanel panel = new StartPanel(PanelContainer, roleDirectory, userDirectory, eventDirectory);
         PanelContainer.add("StartPanel", panel);
         CardLayout layout = (CardLayout) PanelContainer.getLayout();
         layout.next(PanelContainer);
         ReadProp rp = new ReadProp();
         rp.readprop(roleDirectory);
-
+        Role adminRole = null;
+        for (Role r : roleDirectory.getRolelist()) {
+            if (r.getName().equalsIgnoreCase("admin")) {
+                adminRole = r;
+            }
+        }
+        try {
+            rp.readAdmin(userDirectory, adminRole);
+        } catch (IOException ex) {
+            Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
