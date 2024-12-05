@@ -5,7 +5,11 @@
 package chronica.ui.admin;
 
 import chronica.model.business.User.User;
+import chronica.model.business.User.UserDirectory;
 import chronica.model.business.event.EventDirectory;
+import chronica.model.business.role.RoleDirectory;
+import chronica.ui.nav.NavBar;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -17,15 +21,20 @@ public class AdminMainPage extends javax.swing.JPanel {
     JPanel panelContainer;
     User admin;
     EventDirectory eventDirectory;
+    RoleDirectory roleDirectory;
+    UserDirectory userDirectory;
 
     /**
      * Creates new form AdminMainPage
      */
-    public AdminMainPage(JPanel panelContainer, User authUser, EventDirectory eventDirectory) {
+    public AdminMainPage(JPanel panelContainer, User authUser, RoleDirectory roleDirectory, UserDirectory userDirectory, EventDirectory eventDirectory) {
         initComponents();
         this.panelContainer = panelContainer;
         this.admin = authUser;
         this.eventDirectory = eventDirectory;
+        this.roleDirectory = roleDirectory;
+        this.userDirectory = userDirectory;
+        render();
     }
 
     /**
@@ -39,15 +48,15 @@ public class AdminMainPage extends javax.swing.JPanel {
 
         jSplitPane2 = new javax.swing.JSplitPane();
         navBar = new javax.swing.JPanel();
-        attendeePanel = new javax.swing.JPanel();
+        adminPanel = new javax.swing.JPanel();
 
         jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         navBar.setLayout(new java.awt.CardLayout());
         jSplitPane2.setTopComponent(navBar);
 
-        attendeePanel.setLayout(new java.awt.CardLayout());
-        jSplitPane2.setRightComponent(attendeePanel);
+        adminPanel.setLayout(new java.awt.CardLayout());
+        jSplitPane2.setRightComponent(adminPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -63,8 +72,20 @@ public class AdminMainPage extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel attendeePanel;
+    private javax.swing.JPanel adminPanel;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JPanel navBar;
     // End of variables declaration//GEN-END:variables
+
+    private void render() {
+
+        NavBar panel = new NavBar(panelContainer, navBar, admin, roleDirectory, userDirectory, eventDirectory);
+        navBar.add("NavBar", panel);
+        CardLayout layout = (CardLayout) panelContainer.getLayout();
+        layout.next(panelContainer);
+        AdminPanel panel1 = new AdminPanel(panelContainer, admin, eventDirectory, userDirectory);
+        adminPanel.add("customerPanel", panel1);
+        layout.next(panelContainer);
+
+    }
 }

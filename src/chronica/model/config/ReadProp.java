@@ -12,6 +12,7 @@ package chronica.model.config;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+import chronica.model.business.User.UserDirectory;
 import chronica.model.business.role.Role;
 import chronica.model.business.role.RoleDirectory;
 import java.io.File;
@@ -35,12 +36,13 @@ public class ReadProp {
 
     Properties prop = new Properties();
 
-    public void readprop(RoleDirectory roleDirectory) {
+    public void readprop(RoleDirectory roleDirectory, UserDirectory userDirectory) {
 
         try {
 
             FileInputStream configFileReader = new FileInputStream(file);
             prop.load(configFileReader);
+          
             String[] rolesArray = null;
             String suppliers = prop.getProperty("roles");
 
@@ -53,9 +55,23 @@ public class ReadProp {
             } else {
                 System.out.println("No Roles property found.");
             }
+
+           
+
         } catch (IOException e) {
 
         }
+    }
+
+    public void readAdmin(UserDirectory userDirectory, Role adminRole) throws FileNotFoundException, IOException {
+
+        FileInputStream configFileReader = new FileInputStream(file);
+        prop.load(configFileReader);
+        String userName = prop.getProperty("usernameAdmin");
+        String password = prop.getProperty("passwordAdmin");
+        String email = prop.getProperty("emailAdmin");
+        userDirectory.newUser(userName, password, email, adminRole);
+
     }
 
 }
