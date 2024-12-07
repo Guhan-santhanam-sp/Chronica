@@ -52,6 +52,14 @@ public class EventDirectory {
         return registeredEvents;
     }
 
+    public double getTotalEventBudgetRevenue() {
+        double totalBudget = 0;
+        for (Event e : event) {
+            totalBudget = totalBudget + e.getBudget();
+        }
+        return totalBudget;
+    }
+
     /**
      * Remove an event by ID.
      *
@@ -129,12 +137,11 @@ public class EventDirectory {
     }
 
     /**
-     * Get the total number of customers (unique registered users across all events).
+     * Get the total number of customers (unique registered users across all
+     * events).
      *
      * @return Total number of customers.
      */
-
-
     /**
      * Get the total number of vendors involved in all events.
      *

@@ -60,18 +60,6 @@ public class UserDirectory {
 
     }
 
-    public int getTotalVendors() {
-        int count = 0;
-        for (User u : user) {
-            if (u.getRole().getName().equalsIgnoreCase("customer")) {
-                count = count + 1;
-
-            }
-        }
-        return count;
-
-    }
-
     public ArrayList<User> getUser() {
         return user;
     }

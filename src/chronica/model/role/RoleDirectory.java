@@ -38,6 +38,33 @@ public class RoleDirectory {
         return role;
     }
 
+    public int getTotalVendor() {
+        int count = 0;
+        for (Role r : role) {
+            if (r.getName().equalsIgnoreCase("customer") || r.getName().equalsIgnoreCase("attendee") || r.getName().equalsIgnoreCase("admin")) {
+
+            } else {
+                count = count + 1;
+
+            }
+        }
+        return count;
+    }
+
+    public ArrayList<Role> getVendorRoles() {
+        ArrayList<Role> vendorRoleList = new ArrayList();
+        for (Role r : role) {
+            if (r.getName().equalsIgnoreCase("customer") || r.getName().equalsIgnoreCase("attendee") || r.getName().equalsIgnoreCase("admin")) {
+
+            } else {
+                vendorRoleList.add(r);
+
+            }
+        }
+        return vendorRoleList;
+
+    }
+
     @Override
     public String toString() {
         return "RoleDirectory{" + "role=" + role + '}';
