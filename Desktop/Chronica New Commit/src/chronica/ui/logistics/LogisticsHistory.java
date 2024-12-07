@@ -4,18 +4,37 @@
  */
 package chronica.ui.logistics;
 
+import chronica.model.business.Task.Task;
+import chronica.model.business.Task.TaskDirectory;
+import chronica.model.business.User.User;
+import chronica.model.business.event.Event;
+import chronica.model.business.event.EventDirectory;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author arvindranganathraghuraman
  */
 public class LogisticsHistory extends javax.swing.JPanel {
+    JPanel logisticspanel;
+    EventDirectory eventDirectory;
+    User logisticsUser;
+    TaskDirectory taskDirectory;
+    private double totalCost;
+    private double eventCost;
     
 
     /**
      * Creates new form LogisticsHistory
      */
-    public LogisticsHistory() {
+    public LogisticsHistory(JPanel LogisticsPanel, EventDirectory eventDirectory, User logisticsUser) {
         initComponents();
+        this.logisticspanel = LogisticsPanel;
+        this.eventDirectory = eventDirectory;
+        this.logisticsUser = logisticsUser;
     }
 
     /**
@@ -27,10 +46,18 @@ public class LogisticsHistory extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblEvents = new javax.swing.JTable();
+        tblTask = new javax.swing.JTable();
 
-        tblEvents.setModel(new javax.swing.table.DefaultTableModel(
+        jButton1.setText("Cancel Event");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        tblTask.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -38,7 +65,7 @@ public class LogisticsHistory extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "LogistisId", "Description", "Cost", "Status", "Fragile"
+                "Task", "Description", "Budget", "Created By", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -49,29 +76,99 @@ public class LogisticsHistory extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblEvents);
+        jScrollPane1.setViewportView(tblTask);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(293, Short.MAX_VALUE))
+                .addGap(114, 114, 114)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(418, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(378, 378, 378))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(163, 163, 163)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addGap(111, 111, 111)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jButton1)
+                .addContainerGap(168, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int selectedrow = tblTask.getSelectedRow();
+        if (selectedrow >= 0) {
+            Event selectedEvent = (Event) tblTask.getValueAt(selectedrow, 0);
+            eventDirectory.removeEvent(selectedEvent.getEventId());
+            JOptionPane.showMessageDialog(this, "Event Deleted.", "Information", JOptionPane.INFORMATION_MESSAGE);
+            populateTable();
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Please a select a Task to delete from the list", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblEvents;
+    private javax.swing.JTable tblTask;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+      this.totalCost = 0.0;
+    this.eventCost = 0.0;
+    DefaultTableModel model = (DefaultTableModel) tblTask.getModel();
+    model.setRowCount(0); // Clear the table before populating
+
+    ArrayList<Task> tasks = taskDirectory.getAllTasks();
+    ArrayList<Event> events = eventDirectory.getEvents();
+
+    // Find the maximum size to interleave tasks and events
+    int maxSize = Math.max(tasks.size(), events.size());
+
+    for (int i = 0; i < maxSize; i++) {
+        // Add a task if the index is within bounds
+        if (i < tasks.size()) {
+            Task task = tasks.get(i);
+            Object[] taskRow = new Object[5];
+            String taskStatus = task.isStatus() ? "Completed" : "Pending";
+
+            taskRow[0] =  task; // Task identifier
+            taskRow[1] = task.getDescription();
+            taskRow[2] = task.getCost();
+            taskRow[3] = task.getRole() != null ? task.getRole().getName() : "No Role Assigned";
+            taskRow[4] = taskStatus;
+
+            model.addRow(taskRow);
+            this.totalCost += task.getCost();
+        }
+
+        // Add an event if the index is within bounds
+        if (i < events.size()) {
+            Event event = events.get(i);
+            Object[] eventRow = new Object[5];
+
+            eventRow[0] = "Event: " + event.getName(); // Event identifier
+            eventRow[1] = "Location: " + event.getLocation() + ", Date: " + event.getDate();
+            eventRow[2] = event.getBudget();
+            eventRow[3] = event.getCreatedBy() != null ? event.getCreatedBy().getUsername() : "No Creator";
+            eventRow[4] = "N/A"; // Placeholder for status
+
+            model.addRow(eventRow);
+            this.eventCost += event.getBudget();
+        }
+    }
+    }
+
+        
 }
+

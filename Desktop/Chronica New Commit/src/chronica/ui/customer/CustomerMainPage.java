@@ -85,14 +85,13 @@ public class CustomerMainPage extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void render() {
-        NavBar panel = new NavBar(PanelContainer, navBar, customer, roleDirectory, userDirectory,eventDirectory);
+        NavBar panel = new NavBar(PanelContainer, navBar, customer, roleDirectory, userDirectory, eventDirectory);
         navBar.add("NavBar", panel);
         CardLayout layout = (CardLayout) PanelContainer.getLayout();
         layout.next(PanelContainer);
 
         CustomerPanel panel1 = new CustomerPanel(customerPanel, customer, roleDirectory, taskDirectory, eventDirectory);
-        customerPanel.add("NavBar", panel1);
-        CardLayout layout1 = (CardLayout) customerPanel.getLayout();
+        customerPanel.add("customerPanel", panel1);       
         layout.next(PanelContainer);
 
     }

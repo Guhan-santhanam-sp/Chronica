@@ -158,9 +158,9 @@ public class CustomerBookingHistory extends javax.swing.JPanel {
             row[1] = e.getDate();
             row[2] = e.getLocation();
             row[3] = e.getBudget();
-            row[4] = e.getAttendees();
+            row[4] = e.getTotalattendees();
             for (Task t : e.getTaskDirectory().getTasksByUser(customer)) {
-                System.out.println("Task --- > " + t.getDescription() + "Status" + t.isStatus());
+              
                 if (!t.isStatus()) {
                     isComplete = false;
                 }

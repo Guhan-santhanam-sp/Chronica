@@ -10,7 +10,12 @@ import chronica.model.business.User.UserDirectory;
 import chronica.model.business.event.EventDirectory;
 import chronica.model.business.role.RoleDirectory;
 import chronica.model.config.ReadProp;
+import chronica.ui.admin.AdminMainPage;
+import chronica.ui.attendee.AttendeeMainPage;
 import chronica.ui.customer.CustomerMainPage;
+import chronica.ui.logistics.LogisticsMainPage;
+import chronica.ui.vendormanagement.VendorMainPage;
+import chronica.ui.venuemanagement.VenueMainPage;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -40,9 +45,6 @@ public class LoginJPanel extends javax.swing.JPanel {
         this.roleDirectory = roleDirectory;
         this.userDirectory = userDirectory;
         this.eventDirectory = eventDirectory;
-
-        ReadProp rp = new ReadProp();
-        rp.readprop(roleDirectory);
 
     }
 
@@ -162,10 +164,43 @@ public class LoginJPanel extends javax.swing.JPanel {
                 panelContainer.add("CustomerMainPage", panel);
                 CardLayout layout = (CardLayout) panelContainer.getLayout();
                 layout.next(panelContainer);
+            } else if (authUser.getRole().getName().equalsIgnoreCase("attendee")) {
+                JOptionPane.showMessageDialog(this, "Login Successful - Welcome " + authUser.getUsername() + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
+                AttendeeMainPage panel = new AttendeeMainPage(panelContainer, authUser, roleDirectory, userDirectory, eventDirectory);
+                panelContainer.add("AttendeeMainPage", panel);
+                CardLayout layout = (CardLayout) panelContainer.getLayout();
+                layout.next(panelContainer);
+
+            } else if (authUser.getRole().getName().equalsIgnoreCase("admin")) {
+               JOptionPane.showMessageDialog(this, "Login Successful - Welcome " + authUser.getUsername() + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
+                AdminMainPage panel = new AdminMainPage(panelContainer, authUser, roleDirectory, userDirectory, eventDirectory);
+                panelContainer.add("AdminMainPage", panel);
+                CardLayout layout = (CardLayout) panelContainer.getLayout();
+                layout.next(panelContainer);
+
+            } else if (authUser.getRole().getName().equalsIgnoreCase("venue")) {
+                JOptionPane.showMessageDialog(this, "Login Successful - Welcome " + authUser.getUsername() + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
+                VenueMainPage panel = new VenueMainPage(panelContainer, authUser, roleDirectory, userDirectory, eventDirectory);
+                panelContainer.add("VenueMainPage", panel);
+                CardLayout layout = (CardLayout) panelContainer.getLayout();
+                layout.next(panelContainer);
+
+            } else if (authUser.getRole().getName().equalsIgnoreCase("vendor")) {
+                JOptionPane.showMessageDialog(this, "Login Successful - Welcome " + authUser.getUsername() + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
+                VendorMainPage panel = new VendorMainPage(panelContainer, authUser, roleDirectory, userDirectory, eventDirectory);
+                panelContainer.add("VendorMainPage", panel);
+                CardLayout layout = (CardLayout) panelContainer.getLayout();
+                layout.next(panelContainer);
+
             }
-            /// Complete here
-            else
-            {
+            else if(authUser.getRole().getName().equalsIgnoreCase("Logistics")) {
+                JOptionPane.showMessageDialog(this, "Login Successful - Welcome " + authUser.getUsername() + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
+                LogisticsMainPage panel = new LogisticsMainPage(panelContainer, authUser, roleDirectory, userDirectory, eventDirectory);
+                panelContainer.add("LogisticsMainPage", panel);
+                CardLayout layout = (CardLayout) panelContainer.getLayout();
+                layout.next(panelContainer);
+                
+             }else {
                 JOptionPane.showMessageDialog(this, "Dev Busy", "Warning", JOptionPane.WARNING_MESSAGE);
             }
 

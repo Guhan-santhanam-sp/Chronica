@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package chronica.ui.customer;
+package chronica.ui.logistics;
 
 import chronica.model.business.Task.Task;
 import chronica.model.business.Task.TaskDirectory;
@@ -25,17 +25,17 @@ public class TaskPanel extends javax.swing.JPanel {
     JPanel customerPanel;
     RoleDirectory roleDirectory;
     Task editTask = null;
-    User customer;
+    User logisticsUser;
 
     /**
      * Creates new form TaskPanel
      */
-    public TaskPanel(JPanel customerPanel, TaskDirectory taskDirectory, RoleDirectory roleDirectory, User customer) {
+    public TaskPanel(JPanel customerPanel, TaskDirectory taskDirectory, RoleDirectory roleDirectory, User logisticsUser) {
         initComponents();
         this.taskDirectory = taskDirectory;
         this.customerPanel = customerPanel;
         this.roleDirectory = roleDirectory;
-        this.customer = customer;
+        this.logisticsUser = logisticsUser;
 
         populateRoles(roleDirectory);
     }
@@ -186,7 +186,7 @@ public class TaskPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "One of the fields is Missing", "Warning", JOptionPane.WARNING_MESSAGE);
             } else {
 
-                taskDirectory.addTask(desc, role, cost, customer);
+                taskDirectory.addTask(desc, role, cost, logisticsUser);
                 JOptionPane.showMessageDialog(this, "Task has been added", "Information", JOptionPane.INFORMATION_MESSAGE);
                 btnSave.setEnabled(false);
 
@@ -226,7 +226,7 @@ public class TaskPanel extends javax.swing.JPanel {
         customerPanel.remove(this);
         Component[] componentArray = customerPanel.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        CustomerPanel CustomerPaneljpanel = (CustomerPanel) component;
+        LogisticsPanel CustomerPaneljpanel = (LogisticsPanel) component;
         CustomerPaneljpanel.populateTable();
         CardLayout layout = (CardLayout) customerPanel.getLayout();
         layout.previous(customerPanel);

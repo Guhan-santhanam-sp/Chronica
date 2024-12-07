@@ -4,17 +4,41 @@
  */
 package chronica.ui.logistics;
 
+import chronica.model.business.Task.TaskDirectory;
+import chronica.model.business.User.User;
+import chronica.model.business.User.UserDirectory;
+import chronica.model.business.event.EventDirectory;
+import chronica.model.business.role.RoleDirectory;
+import chronica.ui.customer.CustomerPanel;
+import chronica.ui.nav.NavBar;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author arvindranganathraghuraman
  */
 public class LogisticsMainPage extends javax.swing.JPanel {
+    JPanel PanelContainer;
+    User logistics;
+    RoleDirectory roleDirectory;
+    UserDirectory userDirectory;
+    TaskDirectory taskDirectory = new TaskDirectory();
+    EventDirectory eventDirectory;
 
     /**
      * Creates new form LogisticsMainPage
      */
-    public LogisticsMainPage() {
+    public LogisticsMainPage(JPanel PanelContainer, User authUser, RoleDirectory roleDirectory, UserDirectory userDirectory, EventDirectory eventDirectory) {
         initComponents();
+        this.PanelContainer = PanelContainer;
+        this.logistics = authUser;
+        this.roleDirectory = roleDirectory;
+        this.userDirectory = userDirectory;
+        this.eventDirectory = eventDirectory;
+        render();
+        
+        
     }
 
     /**
@@ -28,13 +52,13 @@ public class LogisticsMainPage extends javax.swing.JPanel {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         navBar = new javax.swing.JPanel();
-        CustomerPanel = new javax.swing.JPanel();
+        LogisticsPanel = new javax.swing.JPanel();
 
         navBar.setLayout(new java.awt.CardLayout());
         jSplitPane1.setLeftComponent(navBar);
 
-        CustomerPanel.setLayout(new java.awt.CardLayout());
-        jSplitPane1.setRightComponent(CustomerPanel);
+        LogisticsPanel.setLayout(new java.awt.CardLayout());
+        jSplitPane1.setRightComponent(LogisticsPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -42,21 +66,33 @@ public class LogisticsMainPage extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE))
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane1)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel CustomerPanel;
+    private javax.swing.JPanel LogisticsPanel;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel navBar;
     // End of variables declaration//GEN-END:variables
+private void render() {
+        NavBar panel = new NavBar(PanelContainer, navBar, logistics, roleDirectory, userDirectory,eventDirectory);
+        navBar.add("NavBar", panel);
+        CardLayout layout = (CardLayout) PanelContainer.getLayout();
+        layout.next(PanelContainer);
+
+        LogisticsPanel panel1 = new LogisticsPanel(LogisticsPanel, logistics, roleDirectory, taskDirectory, eventDirectory);
+        LogisticsPanel.add("LogisticsPanel", panel1);
+        
+        layout.next(PanelContainer);
+
+    }
 }

@@ -256,7 +256,9 @@ public class TaskPanel extends javax.swing.JPanel {
         cmbRoles.removeAllItems();
 
         for (Role r : roleDirectory.getRolelist()) {
-            if (!r.getName().equalsIgnoreCase("customer")) {
+            if (r.getName().equalsIgnoreCase("customer") || r.getName().equalsIgnoreCase("admin") || r.getName().equalsIgnoreCase("Attendee")) {
+
+            } else {
                 cmbRoles.addItem(r.getName());
             }
         }

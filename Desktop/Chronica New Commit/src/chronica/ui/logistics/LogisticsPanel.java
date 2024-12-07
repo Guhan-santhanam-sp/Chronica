@@ -4,17 +4,44 @@
  */
 package chronica.ui.logistics;
 
+import chronica.model.business.Task.Task;
+import chronica.model.business.Task.TaskDirectory;
+import chronica.model.business.User.User;
+import chronica.model.business.event.Event;
+import chronica.model.business.event.EventDirectory;
+import chronica.model.business.role.RoleDirectory;
+import chronica.ui.attendee.AttendeeFeedbackPanel;
+import java.awt.CardLayout;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author arvindranganathraghuraman
  */
 public class LogisticsPanel extends javax.swing.JPanel {
+    JPanel LogisticsPanel;
+    RoleDirectory roleDirectory;
+    TaskDirectory taskDirectory;
+    EventDirectory eventDirectory;
+    User logisticsUser;
+    
 
     /**
      * Creates new form LogisticsPanel
      */
-    public LogisticsPanel() {
+    public LogisticsPanel(JPanel LogisticsPanel, User logisticsUser, RoleDirectory roleDirectory, TaskDirectory taskDirectory, EventDirectory eventDirectory) {
         initComponents();
+        this.LogisticsPanel = LogisticsPanel;
+        this.logisticsUser = logisticsUser;
+        this.roleDirectory = roleDirectory;
+        this.taskDirectory = taskDirectory;
+        this.eventDirectory = eventDirectory;
+        populateTable();
+        
+        
     }
 
     /**
@@ -26,82 +53,231 @@ public class LogisticsPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        txtEventName = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtLocation = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtDate = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        txtBudget = new javax.swing.JTextField();
+        btnBookingHistory = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblTask = new javax.swing.JTable();
+        btnEditTask = new javax.swing.JButton();
+        btnRemoveTask = new javax.swing.JButton();
+        jAssigntome = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblTask1 = new javax.swing.JTable();
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("LogisticsId");
+        btnBookingHistory.setText("Booking History");
+        btnBookingHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBookingHistoryActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("Cost");
+        tblTask.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Task", "Description", "Budget", "Created By", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true
+            };
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setText("Status");
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblTask);
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setText("Fragile");
+        btnEditTask.setText("Edit");
+        btnEditTask.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditTaskActionPerformed(evt);
+            }
+        });
+
+        btnRemoveTask.setText("Remove");
+        btnRemoveTask.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveTaskActionPerformed(evt);
+            }
+        });
+
+        jAssigntome.setText("Assign to Me");
+        jAssigntome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAssigntomeActionPerformed(evt);
+            }
+        });
+
+        tblTask1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Task", "Description", "Budget", "Created By", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblTask1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 735, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(334, 334, 334)
+                .addComponent(jAssigntome)
+                .addGap(102, 630, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnEditTask)
+                        .addGap(90, 90, 90)
+                        .addComponent(btnRemoveTask)
+                        .addGap(33, 33, 33))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnBookingHistory)
+                        .addGap(171, 171, 171))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(86, 86, 86)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtEventName, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtBudget, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(100, Short.MAX_VALUE)))
+                    .addGap(65, 65, 65)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(553, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 511, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(140, 140, 140)
+                .addComponent(btnBookingHistory)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addComponent(jAssigntome)
+                .addGap(107, 107, 107)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRemoveTask)
+                    .addComponent(btnEditTask))
+                .addContainerGap(65, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(91, 91, 91)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtEventName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtBudget, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(230, Short.MAX_VALUE)))
+                    .addGap(183, 183, 183)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(235, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBookingHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookingHistoryActionPerformed
+        // TODO add your handling code here:
+        LogisticsHistory panel = new LogisticsHistory(LogisticsPanel, eventDirectory,logisticsUser);
+        panel.add("LogisticsBookingHistory", panel);
+        CardLayout layout = (CardLayout) panel.getLayout();
+        layout.next(panel);
+    }//GEN-LAST:event_btnBookingHistoryActionPerformed
+
+    private void btnEditTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditTaskActionPerformed
+        // TODO add your handling code here:
+
+        int selectedRowIndex = tblTask.getSelectedRow();
+    if (selectedRowIndex < 0) {
+        JOptionPane.showMessageDialog(this, "Please select a Task to edit from the list", "Warning", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    Task selectedTask = (Task) tblTask.getValueAt(selectedRowIndex, 0);
+
+    // Create TaskPanel for editing
+    TaskPanel taskPanel = new TaskPanel(LogisticsPanel, taskDirectory, roleDirectory, selectedTask);
+
+    // Add TaskPanel to LogisticsPanel's CardLayout
+    LogisticsPanel.add("TaskPanel", taskPanel);
+
+    // Switch to TaskPanel
+    CardLayout layout = (CardLayout) LogisticsPanel.getLayout();
+    layout.show(LogisticsPanel, "TaskPanel");
+    }//GEN-LAST:event_btnEditTaskActionPerformed
+
+    private void btnRemoveTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveTaskActionPerformed
+        // TODO add your handling code here:
+        int selectedrow = tblTask.getSelectedRow();
+        if (selectedrow >= 0) {
+            Task selectedTask = (Task) tblTask.getValueAt(selectedrow, 0);
+            taskDirectory.removeTask(selectedTask.getTaskId());
+            JOptionPane.showMessageDialog(this, "Task Deleted.", "Information", JOptionPane.INFORMATION_MESSAGE);
+            populateTable();
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Please a select a Task to delete from the list", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRemoveTaskActionPerformed
+
+    private void jAssigntomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAssigntomeActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tblTask1.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a task to assign.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        Task task = (Task) tblTask1.getValueAt(selectedRowIndex, 0);
+        task.setAssignedUser(logisticsUser);
+        JOptionPane.showMessageDialog(this, "Task assigned to " + logisticsUser.getUsername() + ".", "Information", JOptionPane.INFORMATION_MESSAGE);
+        populateTable();
+        
+        
+    }//GEN-LAST:event_jAssigntomeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField txtBudget;
-    private javax.swing.JTextField txtDate;
-    private javax.swing.JTextField txtEventName;
-    private javax.swing.JTextField txtLocation;
+    private javax.swing.JButton btnBookingHistory;
+    private javax.swing.JButton btnEditTask;
+    private javax.swing.JButton btnRemoveTask;
+    private javax.swing.JButton jAssigntome;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tblTask;
+    private javax.swing.JTable tblTask1;
     // End of variables declaration//GEN-END:variables
+
+
+
+    public void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblTask1.getModel();
+        model.setRowCount(0);
+
+        for (Task task : taskDirectory.getAllTasks()) {
+            if (task.getRole().getName().equalsIgnoreCase("Logistics")) {
+                Object[] row = new Object[5];
+                row[0] = task.getTaskId();
+                row[1] = task.getDescription();
+                row[2] = task.getRole().getName(); 
+                row[3] = task.getCost();
+                row[4] = task.isStatus() ? "Completed" : "Pending";
+                model.addRow(row);
+            }
+        
+        
+        
+        }
+    }
 }
+
+    
+
+
+
