@@ -1,9 +1,8 @@
-package chronica.model.business.event;
+package chronica.model.event;
 
-import chronica.model.business.Task.Task;
-import chronica.model.business.User.User;
-import chronica.model.business.role.Role;
-import chronica.model.event.Event;
+import chronica.model.role.Role;
+import chronica.model.task.Task;
+import chronica.model.user.User;
 
 import java.util.ArrayList;
 import java.util.HashSet;
