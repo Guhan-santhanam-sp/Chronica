@@ -3,6 +3,7 @@ package chronica.model.business.event;
 import chronica.model.business.Task.Task;
 import chronica.model.business.User.User;
 import chronica.model.business.role.Role;
+import chronica.model.event.Event;
 
 import java.util.ArrayList;
 import java.util.HashSet;
