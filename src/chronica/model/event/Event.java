@@ -1,12 +1,13 @@
 package chronica.model.event;
 
-import chronica.model.business.Task.TaskDirectory;
-import chronica.model.business.Task.Task;
-import chronica.model.business.User.User;
-import chronica.model.business.role.Role;
+import chronica.model.role.Role;
+import chronica.model.task.Task;
+import chronica.model.task.TaskDirectory;
+import chronica.model.user.User;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import java.util.Map;
 
 public class Event {
@@ -22,7 +23,16 @@ public class Event {
     private double ticketPrice;
     private int availableTicket;
     private List<User> registeredUsers; // List to hold users registered for the event
-    private Map<User, Map<String, String>> feedback; // Feedback system: User -> Role -> Feedback
+    private Map<User, Map<String, String>> feedback;
+    private Boolean Status;// Feedback system: User -> Role -> Feedback
+
+    public Boolean getStatus() {
+        return Status;
+    }
+
+    public void setStatus(Boolean Status) {
+        this.Status = Status;
+    }
 
     private static int count = 0;
 
@@ -39,7 +49,21 @@ public class Event {
         this.ticketPrice = ticketPrice;
         this.availableTicket = totalattendees; // Initialize available tickets
         this.registeredUsers = new ArrayList<>(); // Initialize registered users list
-        this.feedback = new HashMap<>(); // Initialize feedback map
+        this.feedback = new HashMap<>();
+        this.Status = isAllTaskReady();// Initialize feedback map
+    }
+
+    public boolean isAllTaskReady() {
+        boolean status = true;
+        for (Task t : taskDirectory.getTasksByUser(createdBy)) {
+            if (t.isStatus() == false) {
+                status = false;
+                return status;
+
+            }
+
+        }
+        return status;
     }
 
     // Getter for ticket price

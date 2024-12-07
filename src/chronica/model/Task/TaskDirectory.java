@@ -1,7 +1,7 @@
-package chronica.model.business.Task;
+package chronica.model.task;
 
-import chronica.model.business.role.Role;
-import chronica.model.business.User.User;
+import chronica.model.role.Role;
+import chronica.model.user.User;
 import java.util.ArrayList;
 
 public class TaskDirectory {
@@ -59,7 +59,7 @@ public class TaskDirectory {
                 task.setDescription(newDescription);
                 task.setRole(newRole);
                 task.setCost(newCost);
-                task.setAssignedUser(newUser);
+                task.setAssignedby(newUser);
                 return true;
             }
         }
@@ -106,7 +106,7 @@ public class TaskDirectory {
     public ArrayList<Task> getTasksByUser(User user) {
         ArrayList<Task> userTasks = new ArrayList<>();
         for (Task task : tasks) {
-            if (task.getAssignedUser().equals(user)) {
+            if (task.getAssignedby().equals(user)) {
                 userTasks.add(task);
             }
         }
@@ -120,6 +120,20 @@ public class TaskDirectory {
      */
     public ArrayList<Task> getAllTasks() {
         return tasks;
+    }
+    
+    public ArrayList<Task> getTaskedbyAssignedto (User assignedto) {
+        ArrayList<Task> userTasks = new ArrayList<>();
+        
+       for(Task t : getAllTasks())
+       {
+          if(t.getAssignedto().getUsername().equalsIgnoreCase(assignedto.getUsername()))
+          {
+             userTasks.add(t);
+          }
+           
+       }
+       return userTasks;
     }
 
     @Override

@@ -1,7 +1,8 @@
-package chronica.model.business.Task;
+package chronica.model.task;
 
-import chronica.model.business.role.Role;
-import chronica.model.business.User.User;
+import chronica.model.role.Role;
+import chronica.model.user.User;
+
 
 public class Task {
 
@@ -11,7 +12,8 @@ public class Task {
     private double cost;
     private static int count = 0; // Use static to ensure task IDs are unique across all Task instances
     private Role role;
-    private User assignedUser; // New field to track the user responsible for the task
+    private User assignedby;
+    private User assignedto;// New field to track the user responsible for the task
 
     public Task(String description, Role role, double cost, User assignedUser) {
         this.taskId = ++count;
@@ -19,23 +21,34 @@ public class Task {
         this.status = false;
         this.cost = cost;
         this.role = role;
-        this.assignedUser = assignedUser;
+        this.assignedby = assignedUser;
+        this.assignedto = null;
     }
 
     public Role getRole() {
         return role;
     }
 
+    public User getAssignedto() {
+        return assignedto;
+    }
+
+    public void setAssignedto(User assignedto) {
+        this.assignedto = assignedto;
+    }
+    
+    
+
     public void setRole(Role role) {
         this.role = role;
     }
 
-    public User getAssignedUser() {
-        return assignedUser;
+    public User getAssignedby() {
+        return assignedby;
     }
 
-    public void setAssignedUser(User assignedUser) {
-        this.assignedUser = assignedUser;
+    public void setAssignedby(User assignedby) {
+        this.assignedby = assignedby;
     }
 
     public int getTaskId() {
@@ -72,6 +85,6 @@ public class Task {
 
     @Override
     public String toString() {
-       return getDescription();
+        return getDescription();
     }
 }

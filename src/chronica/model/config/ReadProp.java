@@ -12,13 +12,13 @@ package chronica.model.config;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-import chronica.model.business.Task.TaskDirectory;
-import chronica.model.business.User.User;
-import chronica.model.business.User.UserDirectory;
-import chronica.model.business.event.EventDirectory;
-import chronica.model.business.role.Role;
-import chronica.model.business.role.RoleDirectory;
 import chronica.model.event.Event;
+import chronica.model.event.EventDirectory;
+import chronica.model.role.Role;
+import chronica.model.role.RoleDirectory;
+import chronica.model.task.TaskDirectory;
+import chronica.model.user.User;
+import chronica.model.user.UserDirectory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

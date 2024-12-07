@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package chronica.model.business.User;
+package chronica.model.user;
 
 /**
  *
  * @author Gooqe
  */
-import chronica.model.business.role.Role;
+import chronica.model.role.Role;
 
 public class User {
 
