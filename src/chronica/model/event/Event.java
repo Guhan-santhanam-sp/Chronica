@@ -1,4 +1,4 @@
-package chronica.model.business.event;
+package chronica.model.event;
 
 import chronica.model.business.Task.TaskDirectory;
 import chronica.model.business.Task.Task;
@@ -210,6 +210,28 @@ public class Event {
             }
         }
         return roleFeedback;
+    }
+
+    public String getAllFeedback() {
+        StringBuilder allFeedback = new StringBuilder();
+        if (feedback.isEmpty()) {
+            return "No feedback available for this event.";
+        }
+
+        for (Map.Entry<User, Map<String, String>> attendeeEntry : feedback.entrySet()) {
+            User attendee = attendeeEntry.getKey();
+            Map<String, String> roleFeedbackMap = attendeeEntry.getValue();
+
+            allFeedback.append("Feedback from Attendee: ").append(attendee.getUsername()).append("\n");
+            for (Map.Entry<String, String> roleFeedback : roleFeedbackMap.entrySet()) {
+                String role = roleFeedback.getKey();
+                String feedbackText = roleFeedback.getValue();
+                allFeedback.append("  Role: ").append(role).append(" - ").append(feedbackText).append("\n");
+            }
+            allFeedback.append("\n");
+        }
+
+        return allFeedback.toString();
     }
 
 //    @Override

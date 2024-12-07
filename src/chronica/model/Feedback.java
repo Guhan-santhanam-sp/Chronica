@@ -53,6 +53,5 @@ public class Feedback {
 
     public void setRating(int rating) {
         this.rating = rating;
-
     }
 }
