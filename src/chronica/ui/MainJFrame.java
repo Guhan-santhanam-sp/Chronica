@@ -4,6 +4,8 @@
  */
 package chronica.ui;
 
+import chronica.model.business.Business;
+import chronica.model.business.ConfigureABusiness;
 import chronica.model.config.ReadProp;
 import chronica.model.event.EventDirectory;
 import chronica.model.role.Role;
@@ -14,6 +16,7 @@ import java.awt.CardLayout;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.commons.codec.DecoderException;
 
 /**
  *
@@ -21,17 +24,19 @@ import java.util.logging.Logger;
  */
 public class MainJFrame extends javax.swing.JFrame {
 
-    RoleDirectory roleDirectory = new RoleDirectory();
-    UserDirectory userDirectory = new UserDirectory();
-    EventDirectory eventDirectory = new EventDirectory();
+    Business business;
 
     /**
      * Creates new form MainJFrame
      */
-    public MainJFrame() {
-        initComponents();
+    public MainJFrame() throws DecoderException {
+        initComponents();        
         setSize(1177, 980);
         setTitle("Chronica");
+        CreateBusiness();
+        RoleDirectory roleDirectory = business.getRoleDirectory();
+        UserDirectory userDirectory = business.getUserDirectory();
+        EventDirectory eventDirectory = business.getEventDirectory();
         StartPanel panel = new StartPanel(PanelContainer, roleDirectory, userDirectory, eventDirectory);
         PanelContainer.add("StartPanel", panel);
         CardLayout layout = (CardLayout) PanelContainer.getLayout();
@@ -121,7 +126,11 @@ public class MainJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainJFrame().setVisible(true);
+                try {
+                    new MainJFrame().setVisible(true);
+                } catch (DecoderException ex) {
+                    Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -129,4 +138,9 @@ public class MainJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelContainer;
     // End of variables declaration//GEN-END:variables
+
+    private void CreateBusiness() {
+        business = new Business("Chronica");
+        this.business = ConfigureABusiness.initialize();
+    }
 }
