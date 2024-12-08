@@ -4,10 +4,10 @@
  */
 package chronica.ui.admin;
 
-import chronica.model.business.User.User;
-import chronica.model.business.User.UserDirectory;
-import chronica.model.business.event.Event;
-import chronica.model.business.event.EventDirectory;
+import chronica.model.user.User;
+import chronica.model.user.UserDirectory;
+import chronica.model.event.Event;
+import chronica.model.event.EventDirectory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;

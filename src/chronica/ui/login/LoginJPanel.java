@@ -4,11 +4,11 @@
  */
 package chronica.ui.login;
 
-import chronica.model.business.Task.TaskDirectory;
-import chronica.model.business.User.User;
-import chronica.model.business.User.UserDirectory;
-import chronica.model.business.event.EventDirectory;
-import chronica.model.business.role.RoleDirectory;
+import chronica.model.task.TaskDirectory;
+import chronica.model.user.User;
+import chronica.model.user.UserDirectory;
+import chronica.model.event.EventDirectory;
+import chronica.model.role.RoleDirectory;
 import chronica.model.config.ReadProp;
 import chronica.ui.admin.AdminMainPage;
 import chronica.ui.attendee.AttendeeMainPage;

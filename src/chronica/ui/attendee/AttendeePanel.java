@@ -4,10 +4,10 @@
  */
 package chronica.ui.attendee;
 
-import chronica.model.business.User.User;
-import chronica.model.business.event.Event;
-import chronica.model.business.event.EventDirectory;
-import chronica.model.business.role.RoleDirectory;
+import chronica.model.user.User;
+import chronica.model.event.Event;
+import chronica.model.event.EventDirectory;
+import chronica.model.role.RoleDirectory;
 import chronica.ui.customer.TaskPanel;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
