@@ -188,7 +188,8 @@ public class LogisticsPanel extends javax.swing.JPanel {
         if (selectedrow >= 0) {
             Task selectedTask = (Task) tblTaskPrev.getValueAt(selectedrow, 0);
 
-            taskDirectory.removeTask(selectedTask.getTaskId());
+           selectedTask.setStatus(false);
+           selectedTask.setAssignedto(null);
             JOptionPane.showMessageDialog(this, "Task Deleted.", "Information", JOptionPane.INFORMATION_MESSAGE);
             populateTable();
 
