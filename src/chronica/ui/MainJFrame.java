@@ -4,15 +4,11 @@
  */
 package chronica.ui;
 
-import chronica.model.user.UserDirectory;
-import chronica.model.event.EventDirectory;
-import chronica.model.role.Role;
-import chronica.model.role.RoleDirectory;
+import chronica.model.business.User.UserDirectory;
+import chronica.model.business.event.EventDirectory;
+import chronica.model.business.role.Role;
+import chronica.model.business.role.RoleDirectory;
 import chronica.model.config.ReadProp;
-import chronica.model.event.EventDirectory;
-import chronica.model.role.Role;
-import chronica.model.role.RoleDirectory;
-import chronica.model.user.UserDirectory;
 import chronica.ui.login.StartPanel;
 import java.awt.CardLayout;
 import java.io.IOException;

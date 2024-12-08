@@ -4,10 +4,10 @@
  */
 package chronica.ui.login;
 
-import chronica.model.user.User;
-import chronica.model.user.UserDirectory;
-import chronica.model.role.Role;
-import chronica.model.role.RoleDirectory;
+import chronica.model.business.User.User;
+import chronica.model.business.User.UserDirectory;
+import chronica.model.business.role.Role;
+import chronica.model.business.role.RoleDirectory;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
