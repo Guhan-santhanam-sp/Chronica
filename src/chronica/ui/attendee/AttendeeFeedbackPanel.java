@@ -4,11 +4,11 @@
  */
 package chronica.ui.attendee;
 
-import chronica.model.business.User.User;
-import chronica.model.business.event.Event;
-import chronica.model.business.event.EventDirectory;
-import chronica.model.business.role.Role;
-import chronica.model.business.role.RoleDirectory;
+import chronica.model.event.Event;
+import chronica.model.event.EventDirectory;
+import chronica.model.role.Role;
+import chronica.model.role.RoleDirectory;
+import chronica.model.user.User;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,7 +18,7 @@ import javax.swing.JPanel;
  * @author Gooqe
  */
 public class AttendeeFeedbackPanel extends javax.swing.JPanel {
-
+    
     JPanel attendeePanel;
     User attendee;
     RoleDirectory roleDirectory;
@@ -36,7 +36,7 @@ public class AttendeeFeedbackPanel extends javax.swing.JPanel {
         this.eventDirectory = eventDirectory;
         this.selectedEvent = e;
         populateComboBox(selectedEvent);
-
+        
     }
 
     /**
@@ -97,8 +97,9 @@ public class AttendeeFeedbackPanel extends javax.swing.JPanel {
                                 .addGap(168, 168, 168)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(cmbRoles, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(485, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -110,13 +111,13 @@ public class AttendeeFeedbackPanel extends javax.swing.JPanel {
                     .addComponent(btnback))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(34, 34, 34)
                 .addComponent(cmbRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSubmitFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addContainerGap(255, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -131,16 +132,19 @@ public class AttendeeFeedbackPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String feedback = txtAreafeedback.getText().trim();
         String rolename = (String) cmbRoles.getSelectedItem();
-
+        
         if (feedback.isBlank()) {
             JOptionPane.showMessageDialog(this, "Please Write a feedback to submit it !", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
-
+            
         } else {
-
+            
             selectedEvent.giveFeedback(attendee, rolename, feedback);
+            
             JOptionPane.showMessageDialog(this, "Feedback Submitted . Thank you for your time !", "Information", JOptionPane.INFORMATION_MESSAGE);
-            System.out.println(selectedEvent.getFeedbackByAttendee(attendee));
+            txtAreafeedback.setText("");
+          
+            
         }
     }//GEN-LAST:event_btnSubmitFeedbackActionPerformed
 
@@ -156,12 +160,12 @@ public class AttendeeFeedbackPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateComboBox(Event selectedEvent) {
-        cmbRoles.removeAll();
+        cmbRoles.removeAll();        
         User eventCreator = selectedEvent.getCreatedBy();
         System.out.println(selectedEvent.getTaskDirectory().getTasksByUser(eventCreator) + selectedEvent.getName());
         for (Role r : selectedEvent.getRolesInEvent()) {
             cmbRoles.addItem(r.getName());
         }
-
+        
     }
 }

@@ -4,15 +4,14 @@
  */
 package chronica.ui.login;
 
-import chronica.model.business.Task.TaskDirectory;
-import chronica.model.business.User.User;
-import chronica.model.business.User.UserDirectory;
-import chronica.model.business.event.EventDirectory;
-import chronica.model.business.role.RoleDirectory;
-import chronica.model.config.ReadProp;
+import chronica.model.event.EventDirectory;
+import chronica.model.role.RoleDirectory;
+import chronica.model.user.User;
+import chronica.model.user.UserDirectory;
 import chronica.ui.admin.AdminMainPage;
 import chronica.ui.attendee.AttendeeMainPage;
 import chronica.ui.customer.CustomerMainPage;
+import chronica.ui.logistics.LogisticsMainPage;
 import chronica.ui.vendormanagement.VendorMainPage;
 import chronica.ui.venuemanagement.VenueMainPage;
 import java.awt.CardLayout;
@@ -29,6 +28,7 @@ public class LoginJPanel extends javax.swing.JPanel {
     RoleDirectory roleDirectory;
     UserDirectory userDirectory;
     EventDirectory eventDirectory;
+    JPanel panelContainer1 = panelContainer;
 
     /**
      * Creates new form LoginJPanel
@@ -36,7 +36,7 @@ public class LoginJPanel extends javax.swing.JPanel {
      * @param panelContainer
      * @param roleDirectory
      * @param userDirectory
-     * @param taskDirectory
+     * @param eventDirectory
      */
     public LoginJPanel(JPanel panelContainer, RoleDirectory roleDirectory, UserDirectory userDirectory, EventDirectory eventDirectory) {
         initComponents();
@@ -64,7 +64,6 @@ public class LoginJPanel extends javax.swing.JPanel {
         btnLogin = new javax.swing.JButton();
         lblPassword = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
-        btnback = new javax.swing.JButton();
         Background = new javax.swing.JLabel();
 
         setLayout(null);
@@ -119,15 +118,6 @@ public class LoginJPanel extends javax.swing.JPanel {
         add(txtPassword);
         txtPassword.setBounds(470, 500, 240, 30);
 
-        btnback.setText("<");
-        btnback.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbackActionPerformed(evt);
-            }
-        });
-        add(btnback);
-        btnback.setBounds(370, 370, 40, 23);
-
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chronica/resources/gradient.jpeg"))); // NOI18N
         add(Background);
         Background.setBounds(0, -10, 1190, 960);
@@ -144,13 +134,6 @@ public class LoginJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) panelContainer.getLayout();
         layout.next(panelContainer);
     }//GEN-LAST:event_btnSignupActionPerformed
-
-    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
-        // TODO add your handling code here:
-        panelContainer.remove(this);
-        CardLayout layout = (CardLayout) panelContainer.getLayout();
-        layout.previous(panelContainer);
-    }//GEN-LAST:event_btnbackActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
@@ -171,7 +154,7 @@ public class LoginJPanel extends javax.swing.JPanel {
                 layout.next(panelContainer);
 
             } else if (authUser.getRole().getName().equalsIgnoreCase("admin")) {
-               JOptionPane.showMessageDialog(this, "Login Successful - Welcome " + authUser.getUsername() + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Login Successful - Welcome " + authUser.getUsername() + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
                 AdminMainPage panel = new AdminMainPage(panelContainer, authUser, roleDirectory, userDirectory, eventDirectory);
                 panelContainer.add("AdminMainPage", panel);
                 CardLayout layout = (CardLayout) panelContainer.getLayout();
@@ -191,6 +174,13 @@ public class LoginJPanel extends javax.swing.JPanel {
                 CardLayout layout = (CardLayout) panelContainer.getLayout();
                 layout.next(panelContainer);
 
+            } else if (authUser.getRole().getName().equalsIgnoreCase("logistics")) {
+                JOptionPane.showMessageDialog(this, "Login Successful - Welcome " + authUser.getUsername() + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
+                LogisticsMainPage panel = new LogisticsMainPage(panelContainer, authUser, roleDirectory, userDirectory, eventDirectory);
+                panelContainer.add("VendorMainPage", panel);
+                CardLayout layout = (CardLayout) panelContainer.getLayout();
+                layout.next(panelContainer);
+
             } else {
                 JOptionPane.showMessageDialog(this, "Dev Busy", "Warning", JOptionPane.WARNING_MESSAGE);
             }
@@ -205,7 +195,6 @@ public class LoginJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel Background;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnSignup;
-    private javax.swing.JButton btnback;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblNewuser;
     private javax.swing.JLabel lblPassword;

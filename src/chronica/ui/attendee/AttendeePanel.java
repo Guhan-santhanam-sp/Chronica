@@ -4,11 +4,10 @@
  */
 package chronica.ui.attendee;
 
-import chronica.model.business.User.User;
-import chronica.model.business.event.Event;
-import chronica.model.business.event.EventDirectory;
-import chronica.model.business.role.RoleDirectory;
-import chronica.ui.customer.TaskPanel;
+import chronica.model.event.Event;
+import chronica.model.event.EventDirectory;
+import chronica.model.role.RoleDirectory;
+import chronica.model.user.User;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -176,7 +175,7 @@ public class AttendeePanel extends javax.swing.JPanel {
 
             return;
         }
-        Event e = (Event) tblEvents.getValueAt(selectedRowIndex, 0);
+        Event e = (Event) tblOrderHistory.getValueAt(selectedRowIndex, 0);
         AttendeeFeedbackPanel panel = new AttendeeFeedbackPanel(attendeePanel, attendee, roleDirectory, eventDirectory, e);
         attendeePanel.add("AttendeeFeedbackPanel", panel);
         CardLayout layout = (CardLayout) attendeePanel.getLayout();
@@ -223,7 +222,7 @@ public class AttendeePanel extends javax.swing.JPanel {
             row[2] = e.getLocation();
             row[3] = e.getDate();
             row[4] = e.getAvailableTicket();
-            row[5] = e.getTicketPrice();
+            row[5] = e.getTicketPrice()+100;
             model.addRow(row);
 
         }

@@ -4,12 +4,11 @@
  */
 package chronica.ui.logistics;
 
-import chronica.model.business.Task.TaskDirectory;
-import chronica.model.business.User.User;
-import chronica.model.business.User.UserDirectory;
-import chronica.model.business.event.EventDirectory;
-import chronica.model.business.role.RoleDirectory;
-import chronica.ui.customer.CustomerPanel;
+import chronica.model.event.EventDirectory;
+import chronica.model.role.RoleDirectory;
+import chronica.model.task.TaskDirectory;
+import chronica.model.user.User;
+import chronica.model.user.UserDirectory;
 import chronica.ui.nav.NavBar;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -52,13 +51,15 @@ public class LogisticsMainPage extends javax.swing.JPanel {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         navBar = new javax.swing.JPanel();
-        LogisticsPanel = new javax.swing.JPanel();
+        logisticsPanel = new javax.swing.JPanel();
+
+        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         navBar.setLayout(new java.awt.CardLayout());
         jSplitPane1.setLeftComponent(navBar);
 
-        LogisticsPanel.setLayout(new java.awt.CardLayout());
-        jSplitPane1.setRightComponent(LogisticsPanel);
+        logisticsPanel.setLayout(new java.awt.CardLayout());
+        jSplitPane1.setRightComponent(logisticsPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -79,20 +80,21 @@ public class LogisticsMainPage extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel LogisticsPanel;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JPanel logisticsPanel;
     private javax.swing.JPanel navBar;
     // End of variables declaration//GEN-END:variables
 private void render() {
         NavBar panel = new NavBar(PanelContainer, navBar, logistics, roleDirectory, userDirectory,eventDirectory);
         navBar.add("NavBar", panel);
-        CardLayout layout = (CardLayout) PanelContainer.getLayout();
-        layout.next(PanelContainer);
+        CardLayout layout = (CardLayout) navBar.getLayout();
+        layout.next(navBar);
 
-        LogisticsPanel panel1 = new LogisticsPanel(LogisticsPanel, logistics, roleDirectory, taskDirectory, eventDirectory);
-        LogisticsPanel.add("LogisticsPanel", panel1);
+        LogisticsPanel panel1 = new LogisticsPanel(logisticsPanel, logistics, roleDirectory, taskDirectory, eventDirectory);
+        logisticsPanel.add("LogisticsPanel", panel1);
+        CardLayout layout1 = (CardLayout) logisticsPanel.getLayout();
         
-        layout.next(PanelContainer);
+        layout1.next(logisticsPanel);
 
     }
 }

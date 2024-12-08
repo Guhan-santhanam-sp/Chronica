@@ -4,11 +4,10 @@
  */
 package chronica.ui.attendee;
 
-import chronica.model.business.User.User;
-import chronica.model.business.User.UserDirectory;
-import chronica.model.business.event.EventDirectory;
-import chronica.model.business.role.RoleDirectory;
-import chronica.ui.customer.CustomerPanel;
+import chronica.model.event.EventDirectory;
+import chronica.model.role.RoleDirectory;
+import chronica.model.user.User;
+import chronica.model.user.UserDirectory;
 import chronica.ui.nav.NavBar;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -27,6 +26,11 @@ public class AttendeeMainPage extends javax.swing.JPanel {
 
     /**
      * Creates new form AttendeeMainPanel
+     * @param panelContainer
+     * @param authUser
+     * @param roleDirectory
+     * @param userDirectory
+     * @param eventDirectory
      */
     public AttendeeMainPage(JPanel panelContainer, User authUser, RoleDirectory roleDirectory, UserDirectory userDirectory, EventDirectory eventDirectory) {
         initComponents();
@@ -83,12 +87,13 @@ public class AttendeeMainPage extends javax.swing.JPanel {
 
         NavBar panel = new NavBar(panelContainer, navBar, attendee, roleDirectory, userDirectory, eventDirectory);
         navBar.add("NavBar", panel);
-        CardLayout layout = (CardLayout) panelContainer.getLayout();
-        layout.next(panelContainer);
+        CardLayout layout = (CardLayout) navBar.getLayout();
+        layout.next(navBar);
 
         AttendeePanel panel1 = new AttendeePanel(attendeePanel, attendee, roleDirectory, eventDirectory);
         attendeePanel.add("customerPanel", panel1);
-        layout.next(panelContainer);
+        CardLayout layout1 = (CardLayout) attendeePanel.getLayout();
+        layout1.next(attendeePanel);
 
     }
 }

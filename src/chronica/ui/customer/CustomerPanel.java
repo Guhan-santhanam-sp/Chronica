@@ -4,12 +4,12 @@
  */
 package chronica.ui.customer;
 
-import chronica.model.business.Task.Task;
-import chronica.model.business.Task.TaskDirectory;
-import chronica.model.business.User.User;
-import chronica.model.business.event.Event;
-import chronica.model.business.event.EventDirectory;
-import chronica.model.business.role.RoleDirectory;
+import chronica.model.event.Event;
+import chronica.model.event.EventDirectory;
+import chronica.model.role.RoleDirectory;
+import chronica.model.task.Task;
+import chronica.model.task.TaskDirectory;
+import chronica.model.user.User;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -106,17 +106,17 @@ public class CustomerPanel extends javax.swing.JPanel {
 
         tblTask.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "TaskID", "Description", "Status", "Cost"
+                "TaskID", "Description", "Role", "Status", "Cost"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -289,13 +289,7 @@ public class CustomerPanel extends javax.swing.JPanel {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        txtBudget.setText("");
-        txtDate.setText("");
-        txtEventName.setText("");
-        txtLocation.setText("");
-        txtNumberOfAttendee.setText("");
-        taskDirectory = new TaskDirectory();
-        populateTable();
+        reset();
         JOptionPane.showMessageDialog(this, "All Fields Resetted ", "Information", JOptionPane.INFORMATION_MESSAGE);
 
 
@@ -350,8 +344,9 @@ public class CustomerPanel extends javax.swing.JPanel {
                     Event createdEvent = eventDirectory.newEvent(eventName, Date, location, eventBudget, attendee, customer, 100);
                     createdEvent.setTaskDirectory(taskDirectory);
                     System.out.println(createdEvent);
-                    
+
                     JOptionPane.showMessageDialog(this, "Event Created ! Thank you for choosing Chronica ", "Information", JOptionPane.INFORMATION_MESSAGE);
+                    reset();
                 }
 
             }
@@ -401,20 +396,29 @@ public class CustomerPanel extends javax.swing.JPanel {
 
         for (Task task : taskDirectory.getAllTasks()) {
             System.out.println("task - > " + task.toString());
-            Object row[] = new Object[5];
+            Object row[] = new Object[6];
             if (!task.isStatus()) {
                 status = "Pending";
             } else {
                 status = "Completed";
             }
 
-            row[0] = task;
+            row[0] = task.getTaskId();
             row[1] = task.getDescription();
-            row[2] = task.getRole();
-            row[2] = status;
-            row[3] = task.getCost();
-            row[4] = task.getRole().getName();
+            row[2] = task.getRole().getName();
+            row[3] = status;
+            row[4] = task.getCost();            
             model.addRow(row);
         }
+    }
+
+    private void reset() {
+        txtBudget.setText("");
+        txtDate.setText("");
+        txtEventName.setText("");
+        txtLocation.setText("");
+        txtNumberOfAttendee.setText("");
+        taskDirectory = new TaskDirectory();
+        populateTable();
     }
 }

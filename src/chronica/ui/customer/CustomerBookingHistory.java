@@ -4,11 +4,10 @@
  */
 package chronica.ui.customer;
 
-import chronica.model.business.Task.Task;
-import chronica.model.business.Task.TaskDirectory;
-import chronica.model.business.User.User;
-import chronica.model.business.event.Event;
-import chronica.model.business.event.EventDirectory;
+import chronica.model.event.Event;
+import chronica.model.event.EventDirectory;
+import chronica.model.task.Task;
+import chronica.model.user.User;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;

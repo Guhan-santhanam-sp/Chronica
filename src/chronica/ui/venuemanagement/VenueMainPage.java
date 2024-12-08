@@ -4,11 +4,10 @@
  */
 package chronica.ui.venuemanagement;
 
-import chronica.model.business.User.User;
-import chronica.model.business.User.UserDirectory;
-import chronica.model.business.event.EventDirectory;
-import chronica.model.business.role.RoleDirectory;
-import chronica.ui.attendee.AttendeePanel;
+import chronica.model.event.EventDirectory;
+import chronica.model.role.RoleDirectory;
+import chronica.model.user.User;
+import chronica.model.user.UserDirectory;
 import chronica.ui.nav.NavBar;
 import javax.swing.JPanel;
 
