@@ -28,6 +28,8 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
+import org.apache.commons.codec.DecoderException;
+import org.apache.commons.codec.binary.Hex;
 
 /**
  *
@@ -52,7 +54,7 @@ public class ReadProp {
             prop.load(configFileReader);
 
             String[] rolesArray = null;
-            String suppliers = prop.getProperty("roles");
+            String suppliers = prop.getProperty("Organizations");
 
             if (suppliers != null) {
                 rolesArray = suppliers.split(",");
@@ -69,14 +71,16 @@ public class ReadProp {
         }
     }
 
-    public void readAdmin(UserDirectory userDirectory, Role adminRole) throws FileNotFoundException, IOException {
+    public void readAdmin(UserDirectory userDirectory, Role adminRole) throws FileNotFoundException, IOException, DecoderException {
 
         FileInputStream configFileReader = new FileInputStream(file);
         prop.load(configFileReader);
         String userName = prop.getProperty("usernameAdmin");
-        String password = prop.getProperty("passwordAdmin");
+        String passkey = prop.getProperty("passwordAdmin").trim();
+        byte[] passwordBytes = Hex.decodeHex(passkey);
+        String decodedPassword = new String(passwordBytes);
         String email = prop.getProperty("emailAdmin");
-        userDirectory.newUser(userName, password, email, adminRole);
+        userDirectory.newUser(userName, decodedPassword, email, adminRole);
 
     }
 
