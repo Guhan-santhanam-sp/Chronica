@@ -8,6 +8,7 @@ import chronica.model.event.Event;
 import chronica.model.event.EventDirectory;
 import chronica.model.role.RoleDirectory;
 import chronica.model.task.Task;
+import chronica.model.task.TaskDirectory;
 import chronica.model.user.User;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,20 +20,22 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VenuePanel extends javax.swing.JPanel {
 
-    JPanel customerPanel;
+    JPanel VenuePanel;
     RoleDirectory roleDirectory;
+    TaskDirectory taskDirectory;
     EventDirectory eventDirectory;
-    User authUser;
+    User venueUser;
 
     /**
      * Creates new form VenueManagementPanel
      */
-    public VenuePanel(JPanel customerPanel, User authUser, RoleDirectory roleDirectory, EventDirectory eventDirectory) {
+    public VenuePanel(JPanel VenuePanel, User venueUser, RoleDirectory roleDirectory, TaskDirectory taskDirectory, EventDirectory eventDirectory) {
         initComponents();
-        this.customerPanel = customerPanel;
+        this.VenuePanel = VenuePanel;
+        this.venueUser = venueUser;
         this.roleDirectory = roleDirectory;
+        this.taskDirectory = taskDirectory;
         this.eventDirectory = eventDirectory;
-        this.authUser = authUser;
         populateTable();
     }
 
@@ -46,186 +49,227 @@ public class VenuePanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblEvents = new javax.swing.JTable();
+        tblVenue = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblOrderHistory = new javax.swing.JTable();
+        tblVenueHistory = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        btnFeedbacck = new javax.swing.JButton();
-        btnPlaceTicket = new javax.swing.JButton();
+        btnAssign = new javax.swing.JButton();
+        btnRemoveTask = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
 
-        tblEvents.setModel(new javax.swing.table.DefaultTableModel(
+        tblVenue.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Event ID", "Location", "Date", "Budget", "Status"
+                "Event ID", "Task", "Date", "Location", "Budget", "Created By", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblEvents);
+        jScrollPane1.setViewportView(tblVenue);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Past Events");
 
-        tblOrderHistory.setModel(new javax.swing.table.DefaultTableModel(
+        tblVenueHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Event ID", "Name", "Location", "Date", "Budget", "Status"
+                "Event ID", "Task", "Date", "Location", "Budget", "Created By", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tblOrderHistory);
+        jScrollPane2.setViewportView(tblVenueHistory);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Venue Management");
+        jLabel2.setText("Venue Tasks");
 
-        btnFeedbacck.setText("Feedback");
-        btnFeedbacck.addActionListener(new java.awt.event.ActionListener() {
+        btnAssign.setText("Assign to Me");
+        btnAssign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFeedbacckActionPerformed(evt);
+                btnAssignActionPerformed(evt);
             }
         });
 
-        btnPlaceTicket.setText("Buy now");
-        btnPlaceTicket.addActionListener(new java.awt.event.ActionListener() {
+        btnRemoveTask.setText("Remove");
+        btnRemoveTask.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPlaceTicketActionPerformed(evt);
+                btnRemoveTaskActionPerformed(evt);
             }
         });
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel12.setText("Venue Dashboard");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnFeedbacck, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(199, 199, 199))
+                        .addGap(247, 247, 247)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(235, 235, 235)
+                        .addComponent(btnAssign)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(58, 58, 58)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))))
+                        .addGap(140, 140, 140)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(137, 137, 137))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(198, 198, 198)
+                        .addComponent(btnRemoveTask)
+                        .addGap(181, 181, 181)))
+                .addGap(55, 55, 55))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(284, 284, 284)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(178, 178, 178))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(309, 309, 309)
-                .addComponent(btnPlaceTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel12)
+                .addGap(432, 432, 432))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnFeedbacck, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addComponent(btnPlaceTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAssign)
+                    .addComponent(btnRemoveTask))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnFeedbacckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeedbacckActionPerformed
+    private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnFeedbacckActionPerformed
-
-    private void btnPlaceTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceTicketActionPerformed
-        // TODO add your handling code here:
-        int selectedRowIndex = tblEvents.getSelectedRow();
+        int selectedRowIndex = tblVenue.getSelectedRow();
         if (selectedRowIndex < 0) {
-            JOptionPane.showMessageDialog(this, "Please a select a Event to place tickets !", "Warning", JOptionPane.WARNING_MESSAGE);
-
+            JOptionPane.showMessageDialog(this, "Please select a task to assign.", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        Event e = (Event) tblEvents.getValueAt(selectedRowIndex, 0);
-        e.registerUser(authUser);
-        JOptionPane.showMessageDialog(this, "Ticket Booked Successfully !" + authUser.getUsername() + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
+
+        Task task = (Task) tblVenue.getValueAt(selectedRowIndex, 0);
+        task.setStatus(true);
+        task.setAssignedto(venueUser);
+        JOptionPane.showMessageDialog(this, "Task assigned to " + venueUser.getUsername() + ".", "Information", JOptionPane.INFORMATION_MESSAGE);
         populateTable();
 
-    }//GEN-LAST:event_btnPlaceTicketActionPerformed
+        System.out.println(task.getAssignedby() + "" + task.getAssignedto());
+
+    }//GEN-LAST:event_btnAssignActionPerformed
+
+    private void btnRemoveTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveTaskActionPerformed
+        // TODO add your handling code here:
+        int selectedrow = tblVenueHistory.getSelectedRow();
+        if (selectedrow >= 0) {
+            Task selectedTask = (Task) tblVenueHistory.getValueAt(selectedrow, 0);
+
+            selectedTask.setStatus(false);
+            selectedTask.setAssignedto(null);
+            JOptionPane.showMessageDialog(this, "Task Deleted.", "Information", JOptionPane.INFORMATION_MESSAGE);
+            populateTable();
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Please a select a Task to delete from the list", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRemoveTaskActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFeedbacck;
-    private javax.swing.JButton btnPlaceTicket;
+    private javax.swing.JButton btnAssign;
+    private javax.swing.JButton btnRemoveTask;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tblEvents;
-    private javax.swing.JTable tblOrderHistory;
+    private javax.swing.JTable tblVenue;
+    private javax.swing.JTable tblVenueHistory;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-        DefaultTableModel model = (DefaultTableModel) tblEvents.getModel();
-        model.setRowCount(0);     
+        DefaultTableModel model = (DefaultTableModel) tblVenue.getModel();
+       model.setRowCount(0);
 
         for (Event e : eventDirectory.getEvents()) {
-            for (Task t : e.getTaskDirectory().getTasksByRole(authUser.getRole())) {
-                if (t.isStatus()) {
-                } else {
-                    Object row[] = new Object[6];
-                    row[0] = e;
-                    row[1] = e.getEventId();
-                    row[2] = e.getLocation();
-                    row[3] = e.getDate();
-                    row[4] = t.getCost();
-                    row[5] = "False";
+            TaskDirectory td = e.getTaskDirectory();
+            for (Task task : td.getAllTasks()) {
+                if (task.getRole().getName().equalsIgnoreCase("Venue") && task.isStatus() == false) {
+                    Object[] row = new Object[7];
+                    row[0] = e.getEventId();
+                    row[1] = task;
+                    row[2] = e.getDate();
+                    row[3] = e.getLocation();
+                    row[4] = task.getCost();
+                    row[5] = task.getAssignedby().getUsername();
+                    row[6] = task.isStatus() ? "Completed" : "Pending";
                     model.addRow(row);
+
                 }
             }
-        }
 
-        DefaultTableModel model1 = (DefaultTableModel) tblOrderHistory.getModel();
-        model1.setRowCount(0);
+            DefaultTableModel model1 = (DefaultTableModel) tblVenueHistory.getModel();
+            model1.setRowCount(0);
 
-        for (Event e : eventDirectory.getEventsRegisteredByUser(authUser)) {
-            Object row[] = new Object[5];
+            for (Event ev : eventDirectory.getEvents()) {
+                for (Task task : ev.getTaskDirectory().getTaskedbyAssignedto(venueUser)) {
+                    if (task == null) {
 
-            row[0] = e;
-            row[1] = e.getCreatedBy();
-            row[2] = e.getLocation();
-            row[3] = e.getDate();
-            row[4] = e.getTicketPrice();
-            model1.addRow(row);
+                    } else {
+                        if (task.getRole().getName().equalsIgnoreCase("Venue")) {
+                            Object[] row = new Object[7];
+                            row[0] = e.getEventId();
+                            row[1] = task;
+                            row[2] = e.getDate();
+                            row[3] = e.getLocation();
+                            row[4] = task.getCost();
+                            row[5] = task.getAssignedby().getUsername();
+                            row[6] = task.isStatus() ? "Completed" : "Pending";
+                            model1.addRow(row);
+                        }
 
+                    }
+                }
+            }
         }
     }
 }

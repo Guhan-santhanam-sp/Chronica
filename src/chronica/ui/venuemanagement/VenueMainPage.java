@@ -6,6 +6,7 @@ package chronica.ui.venuemanagement;
 
 import chronica.model.event.EventDirectory;
 import chronica.model.role.RoleDirectory;
+import chronica.model.task.TaskDirectory;
 import chronica.model.user.User;
 import chronica.model.user.UserDirectory;
 import chronica.ui.nav.NavBar;
@@ -16,23 +17,23 @@ import javax.swing.JPanel;
  * @author ranji
  */
 public class VenueMainPage extends javax.swing.JPanel {
-    JPanel panelContainer;
+    JPanel PanelContainer;
+    User venueUser;
     RoleDirectory roleDirectory;
     UserDirectory userDirectory;
+    TaskDirectory taskDirectory;
     EventDirectory eventDirectory;
-    User authUser;
 
     /**
      * Creates new form VenueMainPage
      */
-    public VenueMainPage(JPanel panelContainer, User authUser, RoleDirectory roleDirectory, UserDirectory userDirectory, EventDirectory eventDirectory) {
+    public VenueMainPage(JPanel PanelContainer, User venueUser, RoleDirectory roleDirectory, UserDirectory userDirectory, EventDirectory eventDirectory) {
         initComponents();
-        this.panelContainer = panelContainer;
-        this.authUser = authUser;
+        this.PanelContainer = PanelContainer;
+        this.venueUser = venueUser;
         this.roleDirectory = roleDirectory;
         this.userDirectory = userDirectory;
         this.eventDirectory = eventDirectory;
-
         render();
     }
 
@@ -77,13 +78,15 @@ public class VenueMainPage extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void render() {
-        NavBar panel = new NavBar(panelContainer, navBar, authUser, roleDirectory, userDirectory, eventDirectory);
+        NavBar panel = new NavBar(PanelContainer, navBar, venueUser, roleDirectory, userDirectory,eventDirectory);
         navBar.add("NavBar", panel);
-        java.awt.CardLayout layout = (java.awt.CardLayout) panelContainer.getLayout();
-        layout.next(panelContainer);
+        java.awt.CardLayout layout = (java.awt.CardLayout) navBar.getLayout();
+        layout.next(navBar);
 
-        VenuePanel panel1 = new VenuePanel(VenuePanel, authUser, roleDirectory, eventDirectory);
+        VenuePanel panel1 = new VenuePanel(VenuePanel, venueUser, roleDirectory, taskDirectory, eventDirectory);
         VenuePanel.add("VenuePanel", panel1);
-        layout.next(panelContainer);
+        java.awt.CardLayout layout1 = (java.awt.CardLayout) VenuePanel.getLayout();
+        
+        layout1.next(VenuePanel);
     }
 }
