@@ -121,19 +121,18 @@ public class TaskDirectory {
     public ArrayList<Task> getAllTasks() {
         return tasks;
     }
-    
-    public ArrayList<Task> getTaskedbyAssignedto (User assignedto) {
+
+    public ArrayList<Task> getTaskedbyAssignedto(User assignedto) {
         ArrayList<Task> userTasks = new ArrayList<>();
-        
-       for(Task t : getAllTasks())
-       {
-          if(t.getAssignedto().getUsername().equalsIgnoreCase(assignedto.getUsername()))
-          {
-             userTasks.add(t);
-          }
-           
-       }
-       return userTasks;
+
+        for (Task t : getAllTasks()) {
+            // Check if the assigned user is not null before comparing
+            if (t.getAssignedto() != null
+                    && t.getAssignedto().getUsername().equalsIgnoreCase(assignedto.getUsername())) {
+                userTasks.add(t);
+            }
+        }
+        return userTasks;
     }
 
     @Override

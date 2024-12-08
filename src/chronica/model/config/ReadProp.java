@@ -19,10 +19,13 @@ import chronica.model.role.RoleDirectory;
 import chronica.model.task.TaskDirectory;
 import chronica.model.user.User;
 import chronica.model.user.UserDirectory;
+import com.github.javafaker.DateAndTime;
+import com.github.javafaker.Faker;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
 
@@ -80,15 +83,16 @@ public class ReadProp {
     public void createDummy(UserDirectory userDirectory, RoleDirectory roleDirectory, EventDirectory eventDirectory) {
 
         Random random = new Random();
+        Faker faker = new Faker();
         for (int i = 1; i <= 5; i++) {
 
-            String userName = "customer" + i;
-            String pwd = "pwd" + i;
-            String email = "customer@" + i;
-            String desc = "dummyDesc - " + userName;
-            String eventName = "Event - " + i + " - " + userName;
+            String userName = faker.name().username();
+            String pwd = "pwd";
+            String email = userName + "@" + "northeastern.dup";
+            String desc = faker.commerce().productName();
+            String eventName = faker.options().option("Conference", "Expo", "Summit", "Workshop", "Festival");;
             Role customerRole = null;
-            int budget = 50000;
+            int budget = faker.number().numberBetween(1000, 10000);
 
             for (Role r : roleDirectory.getRolelist()) {
                 if (r.getName().equalsIgnoreCase("customer")) {
@@ -101,8 +105,9 @@ public class ReadProp {
             int randomInt = random.nextInt(roleLength);
             Role randRole = roleDirectory.getVendorRoles().get(randomInt);
             td.addTask(desc, randRole, 5000, dummyUser);
+            Date date = faker.date().future(365, java.util.concurrent.TimeUnit.DAYS);
 
-            Event dummyEvent = eventDirectory.newEvent(eventName, "12/07/2024", "Boston", budget, 500, dummyUser, 100); //String eventName, String eventDate, String eventLocation, double budget, int attendees, User currentUser, double ticketPrice
+            Event dummyEvent = eventDirectory.newEvent(eventName, date, faker.address().city(), budget, faker.number().numberBetween(10, 50) * 10, dummyUser, faker.number().numberBetween(10, 50) * 10); //String eventName, String eventDate, String eventLocation, double budget, int attendees, User currentUser, double ticketPrice
             dummyEvent.setTaskDirectory(td);
 
         }

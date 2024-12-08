@@ -100,6 +100,11 @@ public class CreateAccJPanel extends javax.swing.JPanel {
         txtEmail.setBounds(450, 510, 240, 30);
 
         cmbRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        cmbRoles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRolesActionPerformed(evt);
+            }
+        });
         add(cmbRoles);
         cmbRoles.setBounds(450, 560, 240, 30);
 
@@ -173,6 +178,10 @@ public class CreateAccJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnSignup1ActionPerformed
 
+    private void cmbRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRolesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbRolesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Title;
@@ -193,6 +202,7 @@ public class CreateAccJPanel extends javax.swing.JPanel {
         cmbRoles.removeAllItems();
 
         for (Role r : roleDirectory.getRolelist()) {
+            if(!r.getName().equalsIgnoreCase("admin"))
             cmbRoles.addItem(r.getName());
         }
 

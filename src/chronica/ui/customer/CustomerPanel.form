@@ -35,18 +35,18 @@
                           <Component id="jLabel6" alignment="1" min="-2" pref="166" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtEventName" min="-2" pref="377" max="-2" attributes="0"/>
-                          <Component id="txtNumberOfAttendee" min="-2" pref="377" max="-2" attributes="0"/>
-                          <Component id="txtBudget" min="-2" pref="377" max="-2" attributes="0"/>
-                          <Component id="txtDate" min="-2" pref="377" max="-2" attributes="0"/>
-                          <Component id="txtLocation" min="-2" pref="377" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtEventName" max="32767" attributes="0"/>
+                          <Component id="txtNumberOfAttendee" max="32767" attributes="0"/>
+                          <Component id="txtBudget" max="32767" attributes="0"/>
+                          <Component id="txtLocation" linkSize="2" pref="377" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                               <Component id="btnReset" linkSize="1" min="-2" pref="103" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                               <Component id="btnCreateEvent" linkSize="1" min="-2" pref="123" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="txtDate" linkSize="2" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -92,12 +92,12 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="txtLocation" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="txtLocation" linkSize="3" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="txtDate" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="txtDate" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -183,8 +183,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="No. of Attendees"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtDate">
     </Component>
     <Component class="javax.swing.JTextField" name="txtLocation">
     </Component>
@@ -285,6 +283,13 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateEventActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txtDate">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format subtype="4" type="1"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

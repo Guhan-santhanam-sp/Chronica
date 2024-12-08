@@ -3,8 +3,10 @@ package chronica.model.event;
 import chronica.model.role.Role;
 import chronica.model.task.Task;
 import chronica.model.user.User;
+import com.github.javafaker.DateAndTime;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +18,7 @@ public class EventDirectory {
         event = new ArrayList<>();
     }
 
-    public Event newEvent(String eventName, String eventDate, String eventLocation, double budget, int attendees, User currentUser, double ticketPrice) {
+    public Event newEvent(String eventName, Date eventDate, String eventLocation, double budget, int attendees, User currentUser, double ticketPrice) {
         Event newEvent = new Event(eventName, eventDate, eventLocation, budget, attendees, currentUser, ticketPrice);
         this.event.add(newEvent);
         return newEvent;
@@ -87,7 +89,7 @@ public class EventDirectory {
      * @param newAttendees The new number of attendees.
      * @return True if the event was updated, false otherwise.
      */
-    public boolean editEvent(int eventId, String newName, String newDate, String newLocation, double newBudget, int newAttendees) {
+    public boolean editEvent(int eventId, String newName, Date newDate, String newLocation, double newBudget, int newAttendees) {
         for (Event e : event) {
             if (e.getEventId() == eventId) {
                 e.setName(newName);

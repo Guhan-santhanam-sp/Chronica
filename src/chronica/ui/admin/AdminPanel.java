@@ -9,6 +9,7 @@ import chronica.model.event.EventDirectory;
 import chronica.model.role.RoleDirectory;
 import chronica.model.user.User;
 import chronica.model.user.UserDirectory;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -18,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Gooqe
  */
 public class AdminPanel extends javax.swing.JPanel {
-    
+
     JPanel adminPanel;
     User admin;
     EventDirectory eventDirectory;
@@ -35,10 +36,10 @@ public class AdminPanel extends javax.swing.JPanel {
         this.eventDirectory = eventDirectory;
         this.userDirectory = userDirectory;
         this.roleDirectory = roleDirectory;
-        
+
         populateTable();
         renderTFields();
-        
+
     }
 
     /**
@@ -65,7 +66,7 @@ public class AdminPanel extends javax.swing.JPanel {
         txtNumberofVendors = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtNumberofTask = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnDeleteEvent = new javax.swing.JButton();
         txtRevenueEvents = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         btnFeedback = new javax.swing.JButton();
@@ -77,20 +78,21 @@ public class AdminPanel extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        btnProcessEvent = new javax.swing.JButton();
 
         tblEvents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Host", "Location", "Date", "Availability", "Ticket Fare"
+                "Name", "Host", "Location", "Date", "Availability", "Ticket Fare", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -120,17 +122,17 @@ public class AdminPanel extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Total Number of Task");
 
-        jButton1.setText("Delete Event");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnDeleteEvent.setText("Delete Event");
+        btnDeleteEvent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnDeleteEventActionPerformed(evt);
             }
         });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Total Revenue made from Events");
 
-        btnFeedback.setText("Feedback");
+        btnFeedback.setText("View Feedback");
         btnFeedback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFeedbackActionPerformed(evt);
@@ -153,6 +155,13 @@ public class AdminPanel extends javax.swing.JPanel {
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel13.setText("Performance");
 
+        btnProcessEvent.setText("Process Event");
+        btnProcessEvent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProcessEventActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -161,47 +170,40 @@ public class AdminPanel extends javax.swing.JPanel {
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(184, 184, 184)
-                                .addComponent(jButton1)
-                                .addGap(85, 85, 85)
-                                .addComponent(btnFeedback))
+                                .addGap(46, 46, 46)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(35, 35, 35)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(46, 46, 46)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel10)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtRevenueTickets, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(35, 35, 35)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel10)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(txtRevenueTickets, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txtNumberofEvents, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtNumberofTicketSold, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtNumberOfAttendees, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtNumberofCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtNumberofVendors, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtNumberofTask, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtRevenueEvents, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel11)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(txtTotalRevenue, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtNumberofEvents, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtNumberofTicketSold, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtNumberOfAttendees, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtNumberofCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtNumberofVendors, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtNumberofTask, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtRevenueEvents, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtTotalRevenue, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addContainerGap(107, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(261, 261, 261)
@@ -210,12 +212,21 @@ public class AdminPanel extends javax.swing.JPanel {
                         .addComponent(jLabel13)
                         .addGap(193, 193, 193))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(459, 459, 459)
-                .addComponent(jLabel12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(459, 459, 459)
+                        .addComponent(jLabel12))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(159, 159, 159)
+                        .addComponent(btnProcessEvent)
+                        .addGap(102, 102, 102)
+                        .addComponent(btnDeleteEvent)
+                        .addGap(85, 85, 85)
+                        .addComponent(btnFeedback)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnFeedback, jButton1});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDeleteEvent, btnFeedback});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,19 +277,20 @@ public class AdminPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtTotalRevenue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(btnFeedback)))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnDeleteEvent)
+                    .addComponent(btnFeedback)
+                    .addComponent(btnProcessEvent))
                 .addContainerGap(177, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnDeleteEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteEventActionPerformed
         // TODO add your handling code here:
         int selectedrow = tblEvents.getSelectedRow();
         if (selectedrow >= 0) {
@@ -287,31 +299,56 @@ public class AdminPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Event Deleted.", "Information", JOptionPane.INFORMATION_MESSAGE);
             populateTable();
             renderTFields();
-            
+
         } else {
             JOptionPane.showMessageDialog(this, "Please a select a Task to delete from the list", "Warning", JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnDeleteEventActionPerformed
 
     private void btnFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeedbackActionPerformed
         // TODO add your handling code here:
         int selectedRowIndex = tblEvents.getSelectedRow();
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please a select a Event to Check Feedback !", "Warning", JOptionPane.WARNING_MESSAGE);
-            
+
             return;
         }
         Event e = (Event) tblEvents.getValueAt(selectedRowIndex, 0);
-        String feedbacks = e.getAllFeedback();
-        txtAreaFeedback.setText(feedbacks);
-        
+        System.out.println(e.getStatus());
+        if (e.getStatus()) {
+            String feedbacks = e.getAllFeedback();
+            txtAreaFeedback.setText(feedbacks);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "The Event is not Live yet ! ", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+
 
     }//GEN-LAST:event_btnFeedbackActionPerformed
 
+    private void btnProcessEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessEventActionPerformed
+        // TODO add your handling code here:
+
+        int selectedrow = tblEvents.getSelectedRow();
+        if (selectedrow >= 0) {
+            Event selectedEvent = (Event) tblEvents.getValueAt(selectedrow, 0);
+            AdminProcessEventPanel panel1 = new AdminProcessEventPanel(adminPanel, admin, eventDirectory, userDirectory, roleDirectory, selectedEvent);
+            adminPanel.add("customerPanel", panel1);
+            CardLayout layout1 = (CardLayout) adminPanel.getLayout();
+            layout1.next(adminPanel);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Please a select a Task to Process it !", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_btnProcessEventActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDeleteEvent;
     private javax.swing.JButton btnFeedback;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnProcessEvent;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -340,26 +377,33 @@ public class AdminPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-        
+
         DefaultTableModel model = (DefaultTableModel) tblEvents.getModel();
         model.setRowCount(0);
+        String status = null;
         for (Event e : eventDirectory.getEvents()) {
-            Object row[] = new Object[6];
-            
+            Object row[] = new Object[7];
+            if (e.isAllTaskReady() == false) {
+                status = "Pending";
+            } else if (e.isAllTaskReady()) {
+                status = "Completed";
+            }
+
             row[0] = e;
             row[1] = e.getCreatedBy();
             row[2] = e.getLocation();
             row[3] = e.getDate();
             row[4] = e.getAvailableTicket();
             row[5] = e.getTicketPrice();
+            row[6] = status;
             model.addRow(row);
-            
+
         }
-        
+
     }
-    
+
     private void renderTFields() {
-        
+
         txtNumberOfAttendees.setText(String.valueOf(eventDirectory.getTotalNumberOfAttendees()));
         txtNumberOfAttendees.setEditable(false);
         txtNumberofCustomers.setText(String.valueOf(userDirectory.getTotalCustomers()));
@@ -380,6 +424,6 @@ public class AdminPanel extends javax.swing.JPanel {
         txtTotalRevenue.setEditable(false);
         txtAreaFeedback.setText("");
         txtAreaFeedback.setEditable(false);
-        
+
     }
 }
