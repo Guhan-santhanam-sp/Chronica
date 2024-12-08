@@ -53,9 +53,9 @@ public class SecurityPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblSecurityHistory = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        btnRemove = new javax.swing.JButton();
-        Approve = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
+        btnAssign = new javax.swing.JButton();
+        btnRemoveTask = new javax.swing.JButton();
 
         tblSecurityMgmt.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,89 +105,72 @@ public class SecurityPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Available Tasks");
 
-        btnRemove.setText("Remove");
-        btnRemove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoveActionPerformed(evt);
-            }
-        });
-
-        Approve.setText("Approve");
-        Approve.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ApproveActionPerformed(evt);
-            }
-        });
-
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel12.setText("Security Dashboard");
+
+        btnAssign.setText("Assign to Me");
+        btnAssign.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAssignActionPerformed(evt);
+            }
+        });
+
+        btnRemoveTask.setText("Remove");
+        btnRemoveTask.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveTaskActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(247, 247, 247)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(183, 183, 183)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(126, 126, 126))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(186, 186, 186)
-                        .addComponent(Approve, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(147, 147, 147)))
-                .addGap(56, 56, 56))
+                        .addGap(323, 323, 323)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel12)
-                .addGap(418, 418, 418))
+                .addGap(334, 334, 334))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(207, 207, 207)
+                .addComponent(btnAssign)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRemoveTask)
+                .addGap(188, 188, 188))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Approve, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52))
+                    .addComponent(btnAssign)
+                    .addComponent(btnRemoveTask))
+                .addGap(45, 45, 45))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-        // TODO add your handling code here:
-        int selectedrow = tblSecurityMgmt.getSelectedRow();
-        if (selectedrow >= 0) {
-            Task selectedTask = (Task) tblSecurityMgmt.getValueAt(selectedrow, 0);
-
-            taskDirectory.removeTask(selectedTask.getTaskId());
-            JOptionPane.showMessageDialog(this, "Task Deleted.", "Information", JOptionPane.INFORMATION_MESSAGE);
-            populateTable();
-
-        } else {
-            JOptionPane.showMessageDialog(this, "Please a select a Task to delete from the list", "Warning", JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_btnRemoveActionPerformed
-
-    private void ApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApproveActionPerformed
+    private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
         // TODO add your handling code here:
         int selectedRowIndex = tblSecurityMgmt.getSelectedRow();
         if (selectedRowIndex < 0) {
@@ -202,12 +185,29 @@ public class SecurityPanel extends javax.swing.JPanel {
         populateTable();
 
         System.out.println(task.getAssignedby() + "" + task.getAssignedto());
-    }//GEN-LAST:event_ApproveActionPerformed
+
+    }//GEN-LAST:event_btnAssignActionPerformed
+
+    private void btnRemoveTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveTaskActionPerformed
+        // TODO add your handling code here:
+        int selectedrow = tblSecurityMgmt.getSelectedRow();
+        if (selectedrow >= 0) {
+            Task selectedTask = (Task) tblSecurityMgmt.getValueAt(selectedrow, 0);
+
+            selectedTask.setStatus(false);
+            selectedTask.setAssignedto(null);
+            JOptionPane.showMessageDialog(this, "Task Deleted.", "Information", JOptionPane.INFORMATION_MESSAGE);
+            populateTable();
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Please a select a Task to delete from the list", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRemoveTaskActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Approve;
-    private javax.swing.JButton btnRemove;
+    private javax.swing.JButton btnAssign;
+    private javax.swing.JButton btnRemoveTask;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -219,12 +219,12 @@ public class SecurityPanel extends javax.swing.JPanel {
 
     private void populateTable() {
        DefaultTableModel model = (DefaultTableModel) tblSecurityMgmt.getModel();
-        model.setRowCount(0);
+       model.setRowCount(0);
 
         for (Event e : eventDirectory.getEvents()) {
             TaskDirectory td = e.getTaskDirectory();
             for (Task task : td.getAllTasks()) {
-                if (task.getRole().getName().equalsIgnoreCase("Security") || task.isStatus() == false) {
+                if (task.getRole().getName().equalsIgnoreCase("Security") && task.isStatus() == false) {
                     Object[] row = new Object[7];
                     row[0] = e.getEventId();
                     row[1] = task;
@@ -241,19 +241,25 @@ public class SecurityPanel extends javax.swing.JPanel {
             DefaultTableModel model1 = (DefaultTableModel) tblSecurityHistory.getModel();
             model1.setRowCount(0);
 
-            for (Task task : taskDirectory.getTaskedbyAssignedto(securityUser)) {
-                if (task.getRole().getName().equalsIgnoreCase("Security")) {
-                    Object[] row = new Object[7];
-                    row[0] = e.getEventId();
-                    row[1] = task;
-                    row[2] = e.getDate();
-                    row[3] = e.getLocation();
-                    row[4] = task.getCost();
-                    row[5] = task.getAssignedby().getUsername();
-                    row[6] = task.isStatus() ? "Completed" : "Pending";
-                    model1.addRow(row);
-                }
+            for (Event ev : eventDirectory.getEvents()) {
+                for (Task task : ev.getTaskDirectory().getTaskedbyAssignedto(securityUser)) {
+                    if (task == null) {
 
+                    } else {
+                        if (task.getRole().getName().equalsIgnoreCase("Security")) {
+                            Object[] row = new Object[7];
+                            row[0] = e.getEventId();
+                            row[1] = task;
+                            row[2] = e.getDate();
+                            row[3] = e.getLocation();
+                            row[4] = task.getCost();
+                            row[5] = task.getAssignedby().getUsername();
+                            row[6] = task.isStatus() ? "Completed" : "Pending";
+                            model1.addRow(row);
+                        }
+
+                    }
+                }
             }
         }
     }
