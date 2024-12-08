@@ -4,7 +4,9 @@ import chronica.model.role.Role;
 import chronica.model.task.Task;
 import chronica.model.task.TaskDirectory;
 import chronica.model.user.User;
+import com.github.javafaker.DateAndTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,7 +16,7 @@ public class Event {
 
     private int eventId;
     private String name;
-    private String date;
+    private Date date;
     private String location;
     private TaskDirectory taskDirectory; // Connect Event with TaskDirectory
     private int totalattendees;
@@ -24,19 +26,20 @@ public class Event {
     private int availableTicket;
     private List<User> registeredUsers; // List to hold users registered for the event
     private Map<User, Map<String, String>> feedback;
-    private Boolean Status;// Feedback system: User -> Role -> Feedback
+    private Boolean Status;
+    private Boolean live;// Feedback system: User -> Role -> Feedback
 
-    public Boolean getStatus() {
-        return Status;
+    public Boolean getLive() {
+        return live;
     }
 
-    public void setStatus(Boolean Status) {
-        this.Status = Status;
+    public void setLive(Boolean live) {
+        this.live = live;
     }
 
     private static int count = 0;
 
-    public Event(String name, String date, String location, double budget, int totalattendees, User createdBy, double ticketPrice) {
+    public Event(String name, Date date, String location, double budget, int totalattendees, User createdBy, double ticketPrice) {
         count++;
         this.eventId = count;
         this.name = name;
@@ -50,20 +53,17 @@ public class Event {
         this.availableTicket = totalattendees; // Initialize available tickets
         this.registeredUsers = new ArrayList<>(); // Initialize registered users list
         this.feedback = new HashMap<>();
-        this.Status = isAllTaskReady();// Initialize feedback map
+        this.Status = isAllTaskReady();
+        this.live = false;// Initialize feedback map
     }
 
     public boolean isAllTaskReady() {
-        boolean status = true;
         for (Task t : taskDirectory.getTasksByUser(createdBy)) {
-            if (t.isStatus() == false) {
-                status = false;
-                return status;
-
+            if (!t.isStatus()) {
+                return false;
             }
-
         }
-        return status;
+        return true; // All tasks are ready
     }
 
     // Getter for ticket price
@@ -102,16 +102,15 @@ public class Event {
         this.availableTicket = availableTicket;
     }
 
-    // Getter for date
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    // Setter for date
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
+   
     // Getter for location
     public String getLocation() {
         return location;
@@ -170,6 +169,14 @@ public class Event {
     // Setter for budget
     public void setBudget(double budget) {
         this.budget = budget;
+    }
+
+    public Boolean getStatus() {
+        return isAllTaskReady(); // Dynamically check task readiness
+    }
+
+    public void setStatus(Boolean Status) {
+        this.Status = Status; // Optional if you need manual overrides
     }
 
     /**

@@ -46,7 +46,7 @@ public class MainJFrame extends javax.swing.JFrame {
         }
         try {
             rp.readAdmin(userDirectory, adminRole);
-            rp.createDummy(userDirectory,roleDirectory,eventDirectory);
+            rp.createDummy(userDirectory, roleDirectory, eventDirectory);
         } catch (IOException ex) {
             Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }

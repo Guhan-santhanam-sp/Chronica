@@ -83,10 +83,10 @@ public class AdminMainPage extends javax.swing.JPanel {
         navBar.add("NavBar", panel);
         CardLayout layout = (CardLayout) navBar.getLayout();
         layout.next(navBar);
+        
         AdminPanel panel1 = new AdminPanel(adminPanel, admin, eventDirectory, userDirectory, roleDirectory);
         adminPanel.add("customerPanel", panel1);
         CardLayout layout1 = (CardLayout) adminPanel.getLayout();
-
         layout1.next(adminPanel);
 
     }

@@ -236,7 +236,7 @@ public class LogisticsPanel extends javax.swing.JPanel {
         for (Event e : eventDirectory.getEvents()) {
             TaskDirectory td = e.getTaskDirectory();
             for (Task task : td.getAllTasks()) {
-                if (task.getRole().getName().equalsIgnoreCase("Logistics") || task.isStatus() == false) {
+                if (task.getRole().getName().equalsIgnoreCase("Logistics") && task.isStatus() == false) {
                     Object[] row = new Object[5];
                     row[0] = task;
                     row[1] = task.getDescription();
@@ -251,17 +251,23 @@ public class LogisticsPanel extends javax.swing.JPanel {
             DefaultTableModel model1 = (DefaultTableModel) tblTaskPrev.getModel();
             model1.setRowCount(0);
 
-            for (Task task : taskDirectory.getTaskedbyAssignedto(logisticsUser)) {
-                if (task.getRole().getName().equalsIgnoreCase("Logistics")) {
-                    Object[] row = new Object[5];
-                    row[0] = task;
-                    row[1] = task.getDescription();
-                    row[2] = task.getCost();
-                    row[3] = task.getAssignedby().getUsername();
-                    row[4] = task.isStatus() ? "Completed" : "Pending";
-                    model1.addRow(row);
-                }
+            for (Event ev : eventDirectory.getEvents()) {
+                for (Task task : ev.getTaskDirectory().getTaskedbyAssignedto(logisticsUser)) {
+                    if (task == null) {
 
+                    } else {
+                        if (task.getRole().getName().equalsIgnoreCase("Logistics")) {
+                            Object[] row = new Object[5];
+                            row[0] = task;
+                            row[1] = task.getDescription();
+                            row[2] = task.getCost();
+                            row[3] = task.getAssignedby().getUsername();
+                            row[4] = task.isStatus() ? "Completed" : "Pending";
+                            model1.addRow(row);
+                        }
+
+                    }
+                }
             }
         }
     }

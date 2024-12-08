@@ -10,7 +10,9 @@ import chronica.model.role.RoleDirectory;
 import chronica.model.task.Task;
 import chronica.model.task.TaskDirectory;
 import chronica.model.user.User;
+import com.github.javafaker.DateAndTime;
 import java.awt.CardLayout;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -65,7 +67,6 @@ public class CustomerPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtDate = new javax.swing.JTextField();
         txtLocation = new javax.swing.JTextField();
         txtNumberOfAttendee = new javax.swing.JTextField();
         txtBudget = new javax.swing.JTextField();
@@ -76,6 +77,7 @@ public class CustomerPanel extends javax.swing.JPanel {
         btnEditTask = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
         btnCreateEvent = new javax.swing.JButton();
+        txtDate = new javax.swing.JFormattedTextField();
 
         setBorder(new javax.swing.border.MatteBorder(null));
 
@@ -160,6 +162,8 @@ public class CustomerPanel extends javax.swing.JPanel {
             }
         });
 
+        txtDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.FULL))));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,17 +179,17 @@ public class CustomerPanel extends javax.swing.JPanel {
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtEventName, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNumberOfAttendee, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtBudget, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtEventName)
+                            .addComponent(txtNumberOfAttendee)
+                            .addComponent(txtBudget)
+                            .addComponent(txtLocation, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(38, 38, 38)
                                 .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(79, 79, 79)
-                                .addComponent(btnCreateEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnCreateEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDate)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(266, 266, 266)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -208,6 +212,8 @@ public class CustomerPanel extends javax.swing.JPanel {
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCreateEvent, btnReset});
 
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtDate, txtLocation});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -228,7 +234,7 @@ public class CustomerPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,6 +253,9 @@ public class CustomerPanel extends javax.swing.JPanel {
                     .addComponent(btnEditTask))
                 .addContainerGap(280, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtDate, txtLocation});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTaskActionPerformed
@@ -303,7 +312,7 @@ public class CustomerPanel extends javax.swing.JPanel {
         int attendee = 0;
         String eventName = txtEventName.getText();
         String location = txtLocation.getText();
-        String Date = txtDate.getText();
+        Date date = (Date) txtDate.getValue();
 
         try {
             eventBudget = Double.valueOf(txtBudget.getText());
@@ -322,7 +331,7 @@ public class CustomerPanel extends javax.swing.JPanel {
             return;
         }
 
-        if (eventName.isEmpty() || location.isEmpty() || Date.isEmpty() || attendee == 0) {
+        if (eventName.isEmpty() || location.isEmpty() || date.toString().isEmpty() || attendee == 0) {
             JOptionPane.showMessageDialog(this, "One of the fields is incorrect", "Warning", JOptionPane.WARNING_MESSAGE);
 
         } else {
@@ -341,7 +350,7 @@ public class CustomerPanel extends javax.swing.JPanel {
                     return;
 
                 } else {
-                    Event createdEvent = eventDirectory.newEvent(eventName, Date, location, eventBudget, attendee, customer, 100);
+                    Event createdEvent = eventDirectory.newEvent(eventName, date, location, eventBudget, attendee, customer, 100);
                     createdEvent.setTaskDirectory(taskDirectory);
                     System.out.println(createdEvent);
 
@@ -381,7 +390,7 @@ public class CustomerPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblTask;
     private javax.swing.JTextField txtBudget;
-    private javax.swing.JTextField txtDate;
+    private javax.swing.JFormattedTextField txtDate;
     private javax.swing.JTextField txtEventName;
     private javax.swing.JTextField txtLocation;
     private javax.swing.JTextField txtNumberOfAttendee;
@@ -395,7 +404,7 @@ public class CustomerPanel extends javax.swing.JPanel {
         String status = null;
 
         for (Task task : taskDirectory.getAllTasks()) {
-            System.out.println("task - > " + task.toString());
+            
             Object row[] = new Object[6];
             if (!task.isStatus()) {
                 status = "Pending";
