@@ -12,6 +12,7 @@ import chronica.ui.admin.AdminMainPage;
 import chronica.ui.attendee.AttendeeMainPage;
 import chronica.ui.customer.CustomerMainPage;
 import chronica.ui.logistics.LogisticsMainPage;
+import chronica.ui.marketingmanagement.MarketingMainPage;
 import chronica.ui.vendormanagement.VendorMainPage;
 import chronica.ui.venuemanagement.VenueMainPage;
 import java.awt.CardLayout;
@@ -177,6 +178,13 @@ public class LoginJPanel extends javax.swing.JPanel {
             } else if (authUser.getRole().getName().equalsIgnoreCase("logistics")) {
                 JOptionPane.showMessageDialog(this, "Login Successful - Welcome " + authUser.getUsername() + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
                 LogisticsMainPage panel = new LogisticsMainPage(panelContainer, authUser, roleDirectory, userDirectory, eventDirectory);
+                panelContainer.add("VendorMainPage", panel);
+                CardLayout layout = (CardLayout) panelContainer.getLayout();
+                layout.next(panelContainer);
+
+            } else if (authUser.getRole().getName().equalsIgnoreCase("Marketing")) {
+                JOptionPane.showMessageDialog(this, "Login Successful - Welcome " + authUser.getUsername() + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
+                MarketingMainPage panel = new MarketingMainPage(panelContainer, authUser, roleDirectory, userDirectory, eventDirectory);
                 panelContainer.add("VendorMainPage", panel);
                 CardLayout layout = (CardLayout) panelContainer.getLayout();
                 layout.next(panelContainer);

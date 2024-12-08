@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
  * @author kaavy
  */
 public class MarketingPanel extends javax.swing.JPanel {
+
     JPanel MarketingPanel;
     RoleDirectory roleDirectory;
     TaskDirectory taskDirectory;
@@ -68,7 +69,7 @@ public class MarketingPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Event ID", "Task", "Date", "Budget", "Created By", "Status"
+                "Task", "Date", "Budget", "Location", "Created By", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -92,7 +93,7 @@ public class MarketingPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Event ID", "Task", "Date", "Budget", "Created By", "Status"
+                "Task", "Date", "Budget", "Location", "Created By", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -127,40 +128,41 @@ public class MarketingPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(188, 188, 188)
-                .addComponent(lblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(28, 28, 28)
+                .addComponent(ScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel12)
+                .addGap(408, 408, 408))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(201, 201, 201)
+                .addComponent(lblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(108, 108, 108))
+                .addGap(181, 181, 181))
             .addGroup(layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(ScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(ScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(217, 217, 217)
+                .addGap(219, 219, 219)
                 .addComponent(btnAssign)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRemoveTask)
-                .addGap(166, 166, 166))
+                .addGap(233, 233, 233))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAssign, btnRemoveTask});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(58, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(ScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
                     .addComponent(ScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -168,7 +170,7 @@ public class MarketingPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRemoveTask)
                     .addComponent(btnAssign))
-                .addGap(67, 67, 67))
+                .addContainerGap(199, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -196,8 +198,8 @@ public class MarketingPanel extends javax.swing.JPanel {
         if (selectedrow >= 0) {
             Task selectedTask = (Task) tblMarketHistory.getValueAt(selectedrow, 0);
 
-           selectedTask.setStatus(false);
-           selectedTask.setAssignedto(null);
+            selectedTask.setStatus(false);
+            selectedTask.setAssignedto(null);
             JOptionPane.showMessageDialog(this, "Task Deleted.", "Information", JOptionPane.INFORMATION_MESSAGE);
             populateTable();
 
@@ -228,10 +230,10 @@ public class MarketingPanel extends javax.swing.JPanel {
             for (Task task : td.getAllTasks()) {
                 if (task.getRole().getName().equalsIgnoreCase("Marketing") && task.isStatus() == false) {
                     Object[] row = new Object[6];
-                    row[0] = e.getEventId();
-                    row[1] = task;
-                    row[2] = e.getDate();
-                    row[3] = task.getCost();
+                    row[0] = task;
+                    row[1] = e.getDate().toString();
+                    row[2] = task.getCost();
+                    row[3] = e.getLocation();
                     row[4] = task.getAssignedby().getUsername();
                     row[5] = task.isStatus() ? "Completed" : "Pending";
                     model.addRow(row);
@@ -247,15 +249,15 @@ public class MarketingPanel extends javax.swing.JPanel {
                     if (task == null) {
 
                     } else {
-                        if (task.getRole().getName().equalsIgnoreCase("Maketing")) {
+                        if (task.getRole().getName().equalsIgnoreCase("Marketing")) {
                             Object[] row = new Object[6];
-                        row[0] = e.getEventId();
-                        row[1] = task;
-                        row[2] = e.getDate();
-                        row[3] = task.getCost();
-                        row[4] = task.getAssignedby().getUsername();
-                        row[5] = task.isStatus() ? "Completed" : "Pending";
-                        model.addRow(row);
+                            row[0] = task;
+                            row[1] = e.getDate().toString();
+                            row[2] = task.getCost();
+                            row[3] = e.getLocation();
+                            row[4] = task.getAssignedby().getUsername();
+                            row[5] = task.isStatus() ? "Completed" : "Pending";
+                            model1.addRow(row);
                         }
 
                     }
