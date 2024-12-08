@@ -62,7 +62,7 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTask = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btnApprove = new javax.swing.JButton();
         btnback = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -70,17 +70,17 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
 
         tblTask.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Vendor Name", "Description", "Role", "Cost", "Status"
+                "Vendor Name", "Description", "Role", "Cost", "Status", "Live"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -89,10 +89,10 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblTask);
 
-        jButton1.setText("Approve Event");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnApprove.setText("Approve Event");
+        btnApprove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnApproveActionPerformed(evt);
             }
         });
 
@@ -111,7 +111,7 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(425, 425, 425)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnApprove, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,7 +132,7 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
                 .addGap(38, 38, 38)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnApprove, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(276, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -144,46 +144,62 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
         layout.previous(adminPanel);
     }//GEN-LAST:event_btnbackActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApproveActionPerformed
         // TODO add your handling code here:
-        if (selectedEvent.isAllTaskReady()) {
-            selectedEvent.setLive(true);
-            JOptionPane.showMessageDialog(this, "Event is now Live !", "Information", JOptionPane.INFORMATION_MESSAGE);
+        if (selectedEvent.getLive() == false) {
+            if (selectedEvent.isAllTaskReady()) {
+                selectedEvent.setLive(true);
 
+                JOptionPane.showMessageDialog(this, "Event is now Live !", "Information", JOptionPane.INFORMATION_MESSAGE);
+                populateTable();
+
+            } else {
+                JOptionPane.showMessageDialog(this, "All Tasks Should be Processed before Pushing it to Live !", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "The Event is Already Live ! !", "Warning", JOptionPane.WARNING_MESSAGE);
         }
-        else
-        {
-            JOptionPane.showMessageDialog(this, "All Tasks Should be Processed before Pushing it to Live !", "Warning", JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_btnApproveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnApprove;
     private javax.swing.JButton btnback;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblTask;
     // End of variables declaration//GEN-END:variables
 
-    private void populateTable() {
+    public void populateTable() {
+
+        System.out.println("pop");
         for (Task task : selectedEvent.getTaskDirectory().getAllTasks()) {
             DefaultTableModel model = (DefaultTableModel) tblTask.getModel();
             model.setRowCount(0);
-            String status = null;
+            String tstatus = null;
+            String estatus = null;
 
             Object row[] = new Object[7];
             if (task.isStatus() == false) {
-                status = "Pending";
+                tstatus = "Pending";
             } else if (task.isStatus()) {
-                status = "Completed";
+                tstatus = "Completed";
+            }
+
+            if (selectedEvent.getLive() == false) {
+                estatus = "Pending";
+            } else if (task.isStatus()) {
+                estatus = "Completed";
             }
 
             row[0] = task.getAssignedby().getUsername();
             row[1] = task.getDescription();
             row[2] = task.getRole().getName();
             row[3] = task.getCost();
-            row[4] = status;
+            row[4] = tstatus;
+            row[5] = estatus;
             model.addRow(row);
 
         }

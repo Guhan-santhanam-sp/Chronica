@@ -314,7 +314,7 @@ public class AdminPanel extends javax.swing.JPanel {
             return;
         }
         Event e = (Event) tblEvents.getValueAt(selectedRowIndex, 0);
-        System.out.println(e.getStatus());
+        
         if (e.getStatus()) {
             String feedbacks = e.getAllFeedback();
             txtAreaFeedback.setText(feedbacks);

@@ -215,15 +215,18 @@ public class AttendeePanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (Event e : eventDirectory.getEvents()) {
-            Object row[] = new Object[6];
+            if (e.getLive()== true) {
+                Object row[] = new Object[6];
 
-            row[0] = e;
-            row[1] = e.getCreatedBy();
-            row[2] = e.getLocation();
-            row[3] = e.getDate();
-            row[4] = e.getAvailableTicket();
-            row[5] = e.getTicketPrice()+100;
-            model.addRow(row);
+                row[0] = e;
+                row[1] = e.getCreatedBy();
+                row[2] = e.getLocation();
+                row[3] = e.getDate();
+                row[4] = e.getAvailableTicket();
+                row[5] = e.getTicketPrice() + 100;
+                model.addRow(row);
+
+            }
 
         }
 
