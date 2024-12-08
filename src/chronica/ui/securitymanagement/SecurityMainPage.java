@@ -85,7 +85,7 @@ public class SecurityMainPage extends javax.swing.JPanel {
         layout.next(navBar);
 
         SecurityPanel panel1 = new SecurityPanel(SecurityPanel, securityUser, roleDirectory, taskDirectory, eventDirectory);
-        SecurityPanel.add("LogisticsPanel", panel1);
+        SecurityPanel.add("SecurityPanel", panel1);
         CardLayout layout1 = (CardLayout) SecurityPanel.getLayout();
         
         layout1.next(SecurityPanel);
