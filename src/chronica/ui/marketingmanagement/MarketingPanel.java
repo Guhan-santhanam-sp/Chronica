@@ -48,18 +48,15 @@ public class MarketingPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblTitle2 = new javax.swing.JLabel();
         ScrollPane2 = new javax.swing.JScrollPane();
         tblMarketHistory = new javax.swing.JTable();
-        lblTitle1 = new javax.swing.JLabel();
         ScrollPane1 = new javax.swing.JScrollPane();
         tblMarket = new javax.swing.JTable();
         btnAssign = new javax.swing.JButton();
         btnRemoveTask = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
-
-        lblTitle2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblTitle2.setText("Marketing History");
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         tblMarketHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -81,9 +78,6 @@ public class MarketingPanel extends javax.swing.JPanel {
             }
         });
         ScrollPane2.setViewportView(tblMarketHistory);
-
-        lblTitle1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblTitle1.setText("Marketing Details");
 
         tblMarket.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -123,32 +117,38 @@ public class MarketingPanel extends javax.swing.JPanel {
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel12.setText("Marketing Dashboard");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Tasks History");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("Available Tasks");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(16, 16, 16)
                 .addComponent(ScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(ScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
+                .addComponent(ScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel12)
                 .addGap(408, 408, 408))
             .addGroup(layout.createSequentialGroup()
-                .addGap(201, 201, 201)
-                .addComponent(lblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(181, 181, 181))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(219, 219, 219)
+                .addGap(192, 192, 192)
                 .addComponent(btnAssign)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRemoveTask)
-                .addGap(233, 233, 233))
+                .addGap(222, 222, 222))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(190, 190, 190)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(168, 168, 168))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAssign, btnRemoveTask});
@@ -158,15 +158,15 @@ public class MarketingPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
+                .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
-                    .addComponent(ScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRemoveTask)
                     .addComponent(btnAssign))
@@ -214,9 +214,9 @@ public class MarketingPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane ScrollPane2;
     private javax.swing.JButton btnAssign;
     private javax.swing.JButton btnRemoveTask;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel lblTitle1;
-    private javax.swing.JLabel lblTitle2;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JTable tblMarket;
     private javax.swing.JTable tblMarketHistory;
     // End of variables declaration//GEN-END:variables

@@ -47,66 +47,15 @@ public class SecurityPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblSecurityMgmt = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblSecurityHistory = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         btnAssign = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         btnRemoveTask = new javax.swing.JButton();
-
-        tblSecurityMgmt.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Event ID", "Task", "Date", "Location", "Budget", "Created By", "Status"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tblSecurityMgmt);
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Previous Tasks");
-
-        tblSecurityHistory.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Event ID", "Task", "Date", "Location", "Budget", "Created By", "Status"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(tblSecurityHistory);
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Available Tasks");
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel12.setText("Security Dashboard");
+        jLabel1 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        ScrollPane2 = new javax.swing.JScrollPane();
+        tblSecurityHistory = new javax.swing.JTable();
+        ScrollPane1 = new javax.swing.JScrollPane();
+        tblSecurityMgmt = new javax.swing.JTable();
 
         btnAssign.setText("Assign to Me");
         btnAssign.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +64,9 @@ public class SecurityPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Tasks History");
+
         btnRemoveTask.setText("Remove");
         btnRemoveTask.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,52 +74,106 @@ public class SecurityPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("Available Tasks");
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel12.setText("Security Dashboard");
+
+        tblSecurityHistory.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Task", "Date", "Budget", "Location", "Created By", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        ScrollPane2.setViewportView(tblSecurityHistory);
+
+        tblSecurityMgmt.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Task", "Date", "Budget", "Location", "Created By", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        ScrollPane1.setViewportView(tblSecurityMgmt);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(183, 183, 183)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(323, 323, 323)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addComponent(ScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(ScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel12)
-                .addGap(334, 334, 334))
+                .addGap(189, 189, 189)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(181, 181, 181))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(207, 207, 207)
+                .addGap(197, 197, 197)
                 .addComponent(btnAssign)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRemoveTask)
-                .addGap(188, 188, 188))
+                .addGap(247, 247, 247))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(418, 418, 418)
+                .addComponent(jLabel12)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAssign, btnRemoveTask});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAssign)
-                    .addComponent(btnRemoveTask))
-                .addGap(45, 45, 45))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRemoveTask)
+                    .addComponent(btnAssign))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAssign, btnRemoveTask});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
@@ -185,7 +191,6 @@ public class SecurityPanel extends javax.swing.JPanel {
         populateTable();
 
         System.out.println(task.getAssignedby() + "" + task.getAssignedto());
-
     }//GEN-LAST:event_btnAssignActionPerformed
 
     private void btnRemoveTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveTaskActionPerformed
@@ -206,33 +211,32 @@ public class SecurityPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane ScrollPane1;
+    private javax.swing.JScrollPane ScrollPane2;
     private javax.swing.JButton btnAssign;
     private javax.swing.JButton btnRemoveTask;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblSecurityHistory;
     private javax.swing.JTable tblSecurityMgmt;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-       DefaultTableModel model = (DefaultTableModel) tblSecurityMgmt.getModel();
-       model.setRowCount(0);
+         DefaultTableModel model = (DefaultTableModel) tblSecurityMgmt.getModel();
+        model.setRowCount(0);
 
         for (Event e : eventDirectory.getEvents()) {
             TaskDirectory td = e.getTaskDirectory();
             for (Task task : td.getAllTasks()) {
                 if (task.getRole().getName().equalsIgnoreCase("Security") && task.isStatus() == false) {
-                    Object[] row = new Object[7];
-                    row[0] = e.getEventId();
-                    row[1] = task;
-                    row[2] = e.getDate();
+                    Object[] row = new Object[6];
+                    row[0] = task;
+                    row[1] = e.getDate().toString();
+                    row[2] = task.getCost();
                     row[3] = e.getLocation();
-                    row[4] = task.getCost();
-                    row[5] = task.getAssignedby().getUsername();
-                    row[6] = task.isStatus() ? "Completed" : "Pending";
+                    row[4] = task.getAssignedby().getUsername();
+                    row[5] = task.isStatus() ? "Completed" : "Pending";
                     model.addRow(row);
 
                 }
@@ -247,14 +251,13 @@ public class SecurityPanel extends javax.swing.JPanel {
 
                     } else {
                         if (task.getRole().getName().equalsIgnoreCase("Security")) {
-                            Object[] row = new Object[7];
-                            row[0] = e.getEventId();
-                            row[1] = task;
-                            row[2] = e.getDate();
+                            Object[] row = new Object[6];
+                            row[0] = task;
+                            row[1] = e.getDate().toString();
+                            row[2] = task.getCost();
                             row[3] = e.getLocation();
-                            row[4] = task.getCost();
-                            row[5] = task.getAssignedby().getUsername();
-                            row[6] = task.isStatus() ? "Completed" : "Pending";
+                            row[4] = task.getAssignedby().getUsername();
+                            row[5] = task.isStatus() ? "Completed" : "Pending";
                             model1.addRow(row);
                         }
 
