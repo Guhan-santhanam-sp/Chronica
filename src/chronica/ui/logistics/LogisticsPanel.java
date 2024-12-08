@@ -4,14 +4,12 @@
  */
 package chronica.ui.logistics;
 
-import chronica.model.business.Task.Task;
-import chronica.model.business.Task.TaskDirectory;
-import chronica.model.business.User.User;
-import chronica.model.business.event.Event;
-import chronica.model.business.event.EventDirectory;
-import chronica.model.business.role.RoleDirectory;
-import java.awt.CardLayout;
-import java.util.ArrayList;
+import chronica.model.event.Event;
+import chronica.model.event.EventDirectory;
+import chronica.model.role.RoleDirectory;
+import chronica.model.task.Task;
+import chronica.model.task.TaskDirectory;
+import chronica.model.user.User;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -21,13 +19,12 @@ import javax.swing.table.DefaultTableModel;
  * @author arvindranganathraghuraman
  */
 public class LogisticsPanel extends javax.swing.JPanel {
+
     JPanel LogisticsPanel;
     RoleDirectory roleDirectory;
     TaskDirectory taskDirectory;
     EventDirectory eventDirectory;
     User logisticsUser;
-    Double totalCost = 0.0;
-    Double eventCost = 0.0;
 
     /**
      * Creates new form LogisticsPanel
@@ -40,8 +37,7 @@ public class LogisticsPanel extends javax.swing.JPanel {
         this.taskDirectory = taskDirectory;
         this.eventDirectory = eventDirectory;
         populateTable();
-        
-        
+
     }
 
     /**
@@ -53,21 +49,17 @@ public class LogisticsPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnBookingHistory = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblTask = new javax.swing.JTable();
-        btnEditTask = new javax.swing.JButton();
+        tblTaskPrev = new javax.swing.JTable();
         btnRemoveTask = new javax.swing.JButton();
-        jAssigntome = new javax.swing.JButton();
+        btnAssign = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblTaskAvl = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
-        btnBookingHistory.setText("Booking History");
-        btnBookingHistory.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBookingHistoryActionPerformed(evt);
-            }
-        });
-
-        tblTask.setModel(new javax.swing.table.DefaultTableModel(
+        tblTaskPrev.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -86,14 +78,7 @@ public class LogisticsPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblTask);
-
-        btnEditTask.setText("Edit");
-        btnEditTask.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditTaskActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(tblTaskPrev);
 
         btnRemoveTask.setText("Remove");
         btnRemoveTask.addActionListener(new java.awt.event.ActionListener() {
@@ -102,84 +87,107 @@ public class LogisticsPanel extends javax.swing.JPanel {
             }
         });
 
-        jAssigntome.setText("Assign to Me");
-        jAssigntome.addActionListener(new java.awt.event.ActionListener() {
+        btnAssign.setText("Assign to Me");
+        btnAssign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jAssigntomeActionPerformed(evt);
+                btnAssignActionPerformed(evt);
             }
         });
+
+        tblTaskAvl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Task", "Description", "Budget", "Created By", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblTaskAvl);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("Available Tasks");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Previous Tasks");
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel12.setText("Logistics Dashboard");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(411, 411, 411)
+                .addComponent(jLabel12)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(225, 225, 225)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAssign)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRemoveTask)
+                        .addGap(240, 240, 240))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 327, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(180, 180, 180))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnEditTask)
-                        .addGap(90, 90, 90)
-                        .addComponent(btnRemoveTask)
-                        .addGap(33, 33, 33))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnBookingHistory)
-                        .addGap(171, 171, 171))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(334, 334, 334)
-                        .addComponent(jAssigntome)))
-                .addContainerGap(469, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(65, 65, 65)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(541, Short.MAX_VALUE)))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAssign, btnRemoveTask});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(btnBookingHistory)
+                .addGap(47, 47, 47)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jAssigntome)
-                .addGap(107, 107, 107)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRemoveTask)
-                    .addComponent(btnEditTask))
-                .addContainerGap(65, Short.MAX_VALUE))
+                    .addComponent(btnAssign)
+                    .addComponent(btnRemoveTask))
+                .addContainerGap(195, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(183, 183, 183)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(235, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBookingHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookingHistoryActionPerformed
-        // TODO add your handling code here:
-        LogisticsHistory panel = new LogisticsHistory(LogisticsPanel, eventDirectory,logisticsUser);
-        panel.add("LogisticsBookingHistory", panel);
-        CardLayout layout = (CardLayout) panel.getLayout();
-        layout.next(panel);
-    }//GEN-LAST:event_btnBookingHistoryActionPerformed
-
-    private void btnEditTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditTaskActionPerformed
-        // TODO add your handling code here:
-
-        int selectedRowIndex = tblTask.getSelectedRow();
-        if (selectedRowIndex < 0) {
-            JOptionPane.showMessageDialog(this, "Please a select a Task to edit from the list", "Warning", JOptionPane.WARNING_MESSAGE);
-
-            return;
-        }
-        Task t = (Task) tblTask.getValueAt(selectedRowIndex, 0);
-        TaskPanel panel = new TaskPanel(LogisticsPanel, taskDirectory, roleDirectory, t);
-        panel.add("ViewProductDetailJPanel", panel);
-        CardLayout layout = (CardLayout) panel.getLayout();
-        layout.next(panel);
-    }//GEN-LAST:event_btnEditTaskActionPerformed
-
     private void btnRemoveTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveTaskActionPerformed
         // TODO add your handling code here:
-        int selectedrow = tblTask.getSelectedRow();
+        int selectedrow = tblTaskPrev.getSelectedRow();
         if (selectedrow >= 0) {
-            Task selectedTask = (Task) tblTask.getValueAt(selectedrow, 0);
+            Task selectedTask = (Task) tblTaskPrev.getValueAt(selectedrow, 0);
+
             taskDirectory.removeTask(selectedTask.getTaskId());
             JOptionPane.showMessageDialog(this, "Task Deleted.", "Information", JOptionPane.INFORMATION_MESSAGE);
             populateTable();
@@ -189,32 +197,72 @@ public class LogisticsPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnRemoveTaskActionPerformed
 
-    private void jAssigntomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAssigntomeActionPerformed
+    private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
         // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_jAssigntomeActionPerformed
+        int selectedRowIndex = tblTaskAvl.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a task to assign.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        Task task = (Task) tblTaskAvl.getValueAt(selectedRowIndex, 0);
+        task.setStatus(true);
+        task.setAssignedto(logisticsUser);
+        JOptionPane.showMessageDialog(this, "Task assigned to " + logisticsUser.getUsername() + ".", "Information", JOptionPane.INFORMATION_MESSAGE);
+        populateTable();
+
+        System.out.println(task.getAssignedby() + "" + task.getAssignedto());
+
+
+    }//GEN-LAST:event_btnAssignActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBookingHistory;
-    private javax.swing.JButton btnEditTask;
+    private javax.swing.JButton btnAssign;
     private javax.swing.JButton btnRemoveTask;
-    private javax.swing.JButton jAssigntome;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblTask;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tblTaskAvl;
+    private javax.swing.JTable tblTaskPrev;
     // End of variables declaration//GEN-END:variables
 
-
-
     public void populateTable() {
-        
-        
-        
+        DefaultTableModel model = (DefaultTableModel) tblTaskAvl.getModel();
+        model.setRowCount(0);
+
+        for (Event e : eventDirectory.getEvents()) {
+            TaskDirectory td = e.getTaskDirectory();
+            for (Task task : td.getAllTasks()) {
+                if (task.getRole().getName().equalsIgnoreCase("Logistics") || task.isStatus() == false) {
+                    Object[] row = new Object[5];
+                    row[0] = task;
+                    row[1] = task.getDescription();
+                    row[2] = task.getCost();
+                    row[3] = task.getAssignedby().getUsername();
+                    row[4] = task.isStatus() ? "Completed" : "Pending";
+                    model.addRow(row);
+
+                }
+            }
+
+            DefaultTableModel model1 = (DefaultTableModel) tblTaskPrev.getModel();
+            model1.setRowCount(0);
+
+            for (Task task : taskDirectory.getTaskedbyAssignedto(logisticsUser)) {
+                if (task.getRole().getName().equalsIgnoreCase("Logistics")) {
+                    Object[] row = new Object[5];
+                    row[0] = task;
+                    row[1] = task.getDescription();
+                    row[2] = task.getCost();
+                    row[3] = task.getAssignedby().getUsername();
+                    row[4] = task.isStatus() ? "Completed" : "Pending";
+                    model1.addRow(row);
+                }
+
+            }
         }
     }
-
-    
-
-
-
+}

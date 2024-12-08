@@ -4,10 +4,10 @@
  */
 package chronica.ui.nav;
 
-import chronica.model.business.User.User;
-import chronica.model.business.User.UserDirectory;
-import chronica.model.business.event.EventDirectory;
-import chronica.model.business.role.RoleDirectory;
+import chronica.model.event.EventDirectory;
+import chronica.model.role.RoleDirectory;
+import chronica.model.user.User;
+import chronica.model.user.UserDirectory;
 import chronica.ui.login.LoginJPanel;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -95,7 +95,12 @@ public class NavBar extends javax.swing.JPanel {
 
     private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Log out - Successful ", "Warning", JOptionPane.WARNING_MESSAGE);
+//        panelContainer.remove(this);
+//        CardLayout layout = (CardLayout) panelContainer.getLayout();
+//
+//        layout.next(panelContainer);
+
+        JOptionPane.showMessageDialog(this, "Log out - Successful ", "Information", JOptionPane.INFORMATION_MESSAGE);
         LoginJPanel panel = new LoginJPanel(panelContainer, roleDirectory, userDirectory, eventDirectory);
         panelContainer.add("Login JPanel", panel);
         CardLayout layout = (CardLayout) panelContainer.getLayout();

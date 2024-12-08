@@ -4,11 +4,11 @@
  */
 package chronica.ui.customer;
 
-import chronica.model.business.Task.TaskDirectory;
-import chronica.model.business.User.User;
-import chronica.model.business.User.UserDirectory;
-import chronica.model.business.event.EventDirectory;
-import chronica.model.business.role.RoleDirectory;
+import chronica.model.event.EventDirectory;
+import chronica.model.role.RoleDirectory;
+import chronica.model.task.TaskDirectory;
+import chronica.model.user.User;
+import chronica.model.user.UserDirectory;
 import chronica.ui.nav.NavBar;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -87,12 +87,13 @@ public class CustomerMainPage extends javax.swing.JPanel {
     private void render() {
         NavBar panel = new NavBar(PanelContainer, navBar, customer, roleDirectory, userDirectory, eventDirectory);
         navBar.add("NavBar", panel);
-        CardLayout layout = (CardLayout) PanelContainer.getLayout();
-        layout.next(PanelContainer);
+        CardLayout layout = (CardLayout) navBar.getLayout();
+        layout.next(navBar);
 
         CustomerPanel panel1 = new CustomerPanel(customerPanel, customer, roleDirectory, taskDirectory, eventDirectory);
-        customerPanel.add("customerPanel", panel1);       
-        layout.next(PanelContainer);
+        customerPanel.add("customerPanel", panel1);   
+         CardLayout layout1 = (CardLayout) customerPanel.getLayout();
+        layout1.next(customerPanel);
 
     }
 }
