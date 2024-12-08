@@ -82,17 +82,17 @@ public class AdminPanel extends javax.swing.JPanel {
 
         tblEvents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Host", "Location", "Date", "Availability", "Ticket Fare", "Status"
+                "Name", "Host", "Location", "Date", "Availability", "Ticket Fare", "Task Status", "Live"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -380,13 +380,20 @@ public class AdminPanel extends javax.swing.JPanel {
 
         DefaultTableModel model = (DefaultTableModel) tblEvents.getModel();
         model.setRowCount(0);
-        String status = null;
+        String tstatus = null;
+        String estatus = null;
+                
         for (Event e : eventDirectory.getEvents()) {
-            Object row[] = new Object[7];
+            Object row[] = new Object[8];
             if (e.isAllTaskReady() == false) {
-                status = "Pending";
+                tstatus = "Pending";
             } else if (e.isAllTaskReady()) {
-                status = "Completed";
+                tstatus = "Completed";
+            }
+              if (e.getLive() == false) {
+                estatus = "Pending";
+            } else if (e.getLive()) {
+                estatus = "Completed";
             }
 
             row[0] = e;
@@ -395,7 +402,8 @@ public class AdminPanel extends javax.swing.JPanel {
             row[3] = e.getDate();
             row[4] = e.getAvailableTicket();
             row[5] = e.getTicketPrice();
-            row[6] = status;
+            row[6] = tstatus;
+            row[7] = estatus;
             model.addRow(row);
 
         }

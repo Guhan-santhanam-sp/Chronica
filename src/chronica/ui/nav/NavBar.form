@@ -18,8 +18,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-              <Component id="lblUser" min="-2" pref="215" max="-2" attributes="0"/>
-              <EmptySpace pref="772" max="32767" attributes="0"/>
+              <Component id="lblUser" min="-2" pref="597" max="-2" attributes="0"/>
+              <EmptySpace pref="390" max="32767" attributes="0"/>
               <Component id="btnlogout" min="-2" pref="91" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
           </Group>

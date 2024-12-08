@@ -67,7 +67,7 @@ public class LogisticsPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Task", "Description", "Budget", "Created By", "Status"
+                "Task", "Date", "Budget", "Created By", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -102,7 +102,7 @@ public class LogisticsPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Task", "Description", "Budget", "Created By", "Status"
+                "Task", "Date", "Budget", "Created By", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -240,7 +240,7 @@ public class LogisticsPanel extends javax.swing.JPanel {
                 if (task.getRole().getName().equalsIgnoreCase("Logistics") && task.isStatus() == false) {
                     Object[] row = new Object[5];
                     row[0] = task;
-                    row[1] = task.getDescription();
+                    row[1] = e.getDate().toString();
                     row[2] = task.getCost();
                     row[3] = task.getAssignedby().getUsername();
                     row[4] = task.isStatus() ? "Completed" : "Pending";
@@ -260,7 +260,7 @@ public class LogisticsPanel extends javax.swing.JPanel {
                         if (task.getRole().getName().equalsIgnoreCase("Logistics")) {
                             Object[] row = new Object[5];
                             row[0] = task;
-                            row[1] = task.getDescription();
+                            row[1] = e.getDate().toString();
                             row[2] = task.getCost();
                             row[3] = task.getAssignedby().getUsername();
                             row[4] = task.isStatus() ? "Completed" : "Pending";

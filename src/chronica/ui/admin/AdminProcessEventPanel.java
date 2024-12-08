@@ -76,7 +76,7 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Vendor Name", "Description", "Role", "Cost", "Status", "Live"
+                "Organization Name", "Description", "Role", "Cost", "Task Status", "Live"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -174,9 +174,20 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
 
     public void populateTable() {
 
-        System.out.println("pop");
+        
         for (Task task : selectedEvent.getTaskDirectory().getAllTasks()) {
             DefaultTableModel model = (DefaultTableModel) tblTask.getModel();
+            String assignedToval= "";
+            User assignedTo = task.getAssignedto();
+            if(assignedTo == null)
+            {
+                assignedToval="-";
+            }
+            else
+            {
+                assignedToval=assignedTo.getUsername();
+            }
+            
             model.setRowCount(0);
             String tstatus = null;
             String estatus = null;
@@ -190,11 +201,11 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
 
             if (selectedEvent.getLive() == false) {
                 estatus = "Pending";
-            } else if (task.isStatus()) {
+            } else if (selectedEvent.getLive()) {
                 estatus = "Completed";
             }
 
-            row[0] = task.getAssignedby().getUsername();
+            row[0] = assignedToval;
             row[1] = task.getDescription();
             row[2] = task.getRole().getName();
             row[3] = task.getCost();
