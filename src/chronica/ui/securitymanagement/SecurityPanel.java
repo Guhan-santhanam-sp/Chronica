@@ -225,12 +225,14 @@ public class SecurityPanel extends javax.swing.JPanel {
             TaskDirectory td = e.getTaskDirectory();
             for (Task task : td.getAllTasks()) {
                 if (task.getRole().getName().equalsIgnoreCase("Security") || task.isStatus() == false) {
-                    Object[] row = new Object[5];
-                    row[0] = task;
-                    row[1] = task.getDescription();
-                    row[2] = task.getCost();
-                    row[3] = task.getAssignedby().getUsername();
-                    row[4] = task.isStatus() ? "Completed" : "Pending";
+                    Object[] row = new Object[7];
+                    row[0] = e.getEventId();
+                    row[1] = task;
+                    row[2] = e.getDate();
+                    row[3] = e.getLocation();
+                    row[4] = task.getCost();
+                    row[5] = task.getAssignedby().getUsername();
+                    row[6] = task.isStatus() ? "Completed" : "Pending";
                     model.addRow(row);
 
                 }
@@ -241,12 +243,14 @@ public class SecurityPanel extends javax.swing.JPanel {
 
             for (Task task : taskDirectory.getTaskedbyAssignedto(securityUser)) {
                 if (task.getRole().getName().equalsIgnoreCase("Security")) {
-                    Object[] row = new Object[5];
-                    row[0] = task;
-                    row[1] = task.getDescription();
-                    row[2] = task.getCost();
-                    row[3] = task.getAssignedby().getUsername();
-                    row[4] = task.isStatus() ? "Completed" : "Pending";
+                    Object[] row = new Object[7];
+                    row[0] = e.getEventId();
+                    row[1] = task;
+                    row[2] = e.getDate();
+                    row[3] = e.getLocation();
+                    row[4] = task.getCost();
+                    row[5] = task.getAssignedby().getUsername();
+                    row[6] = task.isStatus() ? "Completed" : "Pending";
                     model1.addRow(row);
                 }
 
