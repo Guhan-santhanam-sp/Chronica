@@ -119,7 +119,7 @@ public class LogisticsPanel extends javax.swing.JPanel {
         jLabel1.setText("Available Tasks");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Previous Tasks");
+        jLabel2.setText("Tasks History");
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel12.setText("Logistics Dashboard");
