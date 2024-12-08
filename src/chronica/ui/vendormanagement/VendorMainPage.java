@@ -18,7 +18,7 @@ import javax.swing.JPanel;
  * @author kaavy
  */
 public class VendorMainPage extends javax.swing.JPanel {
-    JPanel panelContainer;
+    JPanel PanelContainer;
     RoleDirectory roleDirectory;
     UserDirectory userDirectory;
     EventDirectory eventDirectory;
@@ -30,7 +30,7 @@ public class VendorMainPage extends javax.swing.JPanel {
      */
     public VendorMainPage(JPanel panelContainer, User vendor, RoleDirectory roleDirectory, UserDirectory userDirectory, EventDirectory eventDirectory) {
         initComponents();
-        this.panelContainer = panelContainer;
+        this.PanelContainer = PanelContainer;
         this.vendor = vendor;
         this.roleDirectory = roleDirectory;
         this.userDirectory = userDirectory;
@@ -80,13 +80,15 @@ public class VendorMainPage extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void render() {
-        NavBar panel = new NavBar(panelContainer, navBar, vendor, roleDirectory, userDirectory, eventDirectory);
+        NavBar panel = new NavBar(PanelContainer, navBar, vendor, roleDirectory, userDirectory,eventDirectory);
         navBar.add("NavBar", panel);
-        CardLayout layout = (CardLayout) panelContainer.getLayout();
-        layout.next(panelContainer);
+        CardLayout layout = (CardLayout) navBar.getLayout();
+        layout.next(navBar);
 
-        VendorPanel panel1 = new VendorPanel(VendorPanel, vendor, roleDirectory, eventDirectory, taskDirectory);
+        VendorPanel panel1 = new VendorPanel(VendorPanel, vendor, roleDirectory, taskDirectory, eventDirectory);
         VendorPanel.add("VendorPanel", panel1);
-        layout.next(panelContainer);
+        CardLayout layout1 = (CardLayout) VendorPanel.getLayout();
+        
+        layout1.next(VendorPanel);
     }
 }
