@@ -190,9 +190,9 @@ public class SecurityPanel extends javax.swing.JPanel {
 
     private void btnRemoveTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveTaskActionPerformed
         // TODO add your handling code here:
-        int selectedrow = tblSecurityMgmt.getSelectedRow();
+        int selectedrow = tblSecurityHistory.getSelectedRow();
         if (selectedrow >= 0) {
-            Task selectedTask = (Task) tblSecurityMgmt.getValueAt(selectedrow, 0);
+            Task selectedTask = (Task) tblSecurityHistory.getValueAt(selectedrow, 0);
 
             selectedTask.setStatus(false);
             selectedTask.setAssignedto(null);
