@@ -77,7 +77,7 @@ public class TaskPanel extends javax.swing.JPanel {
         checkbox1.setLabel("checkbox1");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setText("Role");
+        jLabel5.setText("Enterprise");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Cost");

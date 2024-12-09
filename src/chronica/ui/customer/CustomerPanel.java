@@ -339,13 +339,13 @@ public class CustomerPanel extends javax.swing.JPanel {
         try {
             eventBudget = Double.valueOf(txtBudget.getText());
             if (eventBudget <= 0) {
-                JOptionPane.showMessageDialog(this, "Incorect Budget input. Please Enter Number !", "Warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Incorrect Budget input. Please Enter Number !", "Warning", JOptionPane.WARNING_MESSAGE);
                 return;
 
             }
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Incorect Budget input. Please Enter Number !", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Incorrect Budget input. Please Enter Number !", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -353,12 +353,12 @@ public class CustomerPanel extends javax.swing.JPanel {
 
             attendee = Integer.parseInt(txtNumberOfAttendee.getText());
             if (attendee <= 0) {
-                JOptionPane.showMessageDialog(this, "Incorect Attendee input. Please Enter Number !", "Warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Incorrect Attendee input. Please Enter Number !", "Warning", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Incorect Attendee input. Please Enter Number !", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Incorrect Attendee input. Please Enter Number !", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -371,7 +371,7 @@ public class CustomerPanel extends javax.swing.JPanel {
 
             }
 
-            if (eventBudget <= totalBudget) {
+            if (eventBudget < totalBudget) {
                 JOptionPane.showMessageDialog(this, "Task Budgets exceeds Event Budget.", "Warning", JOptionPane.WARNING_MESSAGE);
                 return;
 
