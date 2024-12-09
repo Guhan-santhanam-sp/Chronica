@@ -197,6 +197,13 @@ public class LoginJPanel extends javax.swing.JPanel {
                 CardLayout layout = (CardLayout) panelContainer.getLayout();
                 layout.next(panelContainer);
 
+            } else if (authUser.getRole().getName().equalsIgnoreCase("Venue")) {
+                JOptionPane.showMessageDialog(this, "Login Successful - Welcome " + authUser.getUsername() + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
+                VenueMainPage panel = new VenueMainPage(panelContainer, authUser, roleDirectory, userDirectory, eventDirectory);
+                panelContainer.add("VenueMainPage", panel);
+                CardLayout layout = (CardLayout) panelContainer.getLayout();
+                layout.next(panelContainer);
+
             } else {
                 JOptionPane.showMessageDialog(this, "Dev Busy", "Warning", JOptionPane.WARNING_MESSAGE);
             }
