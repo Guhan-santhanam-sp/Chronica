@@ -17,6 +17,7 @@ import javax.swing.JPanel;
  * @author ranji
  */
 public class VenueMainPage extends javax.swing.JPanel {
+
     JPanel PanelContainer;
     User venueUser;
     RoleDirectory roleDirectory;
@@ -78,7 +79,7 @@ public class VenueMainPage extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void render() {
-        NavBar panel = new NavBar(PanelContainer, navBar, venueUser, roleDirectory, userDirectory,eventDirectory);
+        NavBar panel = new NavBar(PanelContainer, navBar, venueUser, roleDirectory, userDirectory, eventDirectory);
         navBar.add("NavBar", panel);
         java.awt.CardLayout layout = (java.awt.CardLayout) navBar.getLayout();
         layout.next(navBar);
@@ -86,7 +87,7 @@ public class VenueMainPage extends javax.swing.JPanel {
         VenuePanel panel1 = new VenuePanel(VenuePanel, venueUser, roleDirectory, taskDirectory, eventDirectory);
         VenuePanel.add("VenuePanel", panel1);
         java.awt.CardLayout layout1 = (java.awt.CardLayout) VenuePanel.getLayout();
-        
+
         layout1.next(VenuePanel);
     }
 }
