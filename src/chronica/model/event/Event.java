@@ -257,7 +257,7 @@ public class Event {
             for (Map.Entry<String, String> roleFeedback : roleFeedbackMap.entrySet()) {
                 String role = roleFeedback.getKey();
                 String feedbackText = roleFeedback.getValue();
-                allFeedback.append("  Role: ").append(role).append(" - ").append(feedbackText).append("\n");
+                allFeedback.append("  Enterprise : ").append(role).append(" - ").append(feedbackText).append("\n");
             }
             allFeedback.append("\n");
         }
