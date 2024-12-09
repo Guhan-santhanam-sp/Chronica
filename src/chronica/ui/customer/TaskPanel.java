@@ -19,7 +19,7 @@ import javax.swing.JPanel;
  * @author Gooqe
  */
 public class TaskPanel extends javax.swing.JPanel {
-    
+
     TaskDirectory taskDirectory;
     JPanel customerPanel;
     RoleDirectory roleDirectory;
@@ -35,10 +35,10 @@ public class TaskPanel extends javax.swing.JPanel {
         this.customerPanel = customerPanel;
         this.roleDirectory = roleDirectory;
         this.customer = customer;
-        
+
         populateRoles(roleDirectory);
     }
-    
+
     TaskPanel(JPanel customerPanel, TaskDirectory taskDirectory, RoleDirectory roleDirectory, Task t) {
         initComponents();
         this.taskDirectory = taskDirectory;
@@ -50,7 +50,7 @@ public class TaskPanel extends javax.swing.JPanel {
         txtDesc.setText(String.valueOf(editTask.getDescription()));
         cmbRoles.setSelectedItem(editTask.getRole());
         toggleDisabled(false);
-        
+
     }
 
     /**
@@ -174,24 +174,29 @@ public class TaskPanel extends javax.swing.JPanel {
             Double cost = null;
             try {
                 cost = Double.valueOf(txtCost.getText());
+                if (cost <= 0) {
+                    JOptionPane.showMessageDialog(this, "Invalid Cost Input. Please Enter Number !", "Warning", JOptionPane.WARNING_MESSAGE);
+                    return;
+
+                }
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Invalid Cost Input. Please Enter Number !", "Warning", JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            
+
             String rolename = (String) cmbRoles.getSelectedItem();
             Role role = roleDirectory.findRole(rolename);
             if (desc.isBlank() || cost == null) {
                 JOptionPane.showMessageDialog(this, "One of the fields is Missing", "Warning", JOptionPane.WARNING_MESSAGE);
             } else {
-                
+
                 taskDirectory.addTask(desc, role, cost, customer);
                 JOptionPane.showMessageDialog(this, "Task has been added", "Information", JOptionPane.INFORMATION_MESSAGE);
                 txtDesc.setText("");
                 txtCost.setText("");
-                
+
             }
-            
+
         } else {
             String desc = txtDesc.getText();
             Double cost = null;
@@ -201,23 +206,23 @@ public class TaskPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "One of the fields is incorrect", "Warning", JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            
+
             String rolename = (String) cmbRoles.getSelectedItem();
             Role role = roleDirectory.findRole(rolename);
             if (desc.isBlank() || cost == null) {
                 JOptionPane.showMessageDialog(this, "One of the fields is incorrect", "Warning", JOptionPane.WARNING_MESSAGE);
             } else {
-                
+
                 editTask.setCost(cost);
                 editTask.setDescription(desc);
                 editTask.setRole(role);
                 JOptionPane.showMessageDialog(this, "Task has been Updated", "Information", JOptionPane.INFORMATION_MESSAGE);
                 btnSave.setEnabled(false);
-                
+
             }
-            
+
         }
-        
+
 
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -254,16 +259,16 @@ public class TaskPanel extends javax.swing.JPanel {
 
     private void populateRoles(RoleDirectory roleDirectory) {
         cmbRoles.removeAllItems();
-        
+
         for (Role r : roleDirectory.getRolelist()) {
             if (r.getName().equalsIgnoreCase("customer") || r.getName().equalsIgnoreCase("admin") || r.getName().equalsIgnoreCase("Attendee")) {
-                
+
             } else {
                 cmbRoles.addItem(r.getName());
             }
         }
     }
-    
+
     private void toggleDisabled(boolean bool) {
         txtCost.setEnabled(bool);
         txtDesc.setEnabled(bool);

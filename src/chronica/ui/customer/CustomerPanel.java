@@ -338,6 +338,11 @@ public class CustomerPanel extends javax.swing.JPanel {
 
         try {
             eventBudget = Double.valueOf(txtBudget.getText());
+            if (eventBudget <= 0) {
+                JOptionPane.showMessageDialog(this, "Incorect Budget input. Please Enter Number !", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+
+            }
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Incorect Budget input. Please Enter Number !", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -347,6 +352,10 @@ public class CustomerPanel extends javax.swing.JPanel {
         try {
 
             attendee = Integer.parseInt(txtNumberOfAttendee.getText());
+            if (attendee <= 0) {
+                JOptionPane.showMessageDialog(this, "Incorect Attendee input. Please Enter Number !", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Incorect Attendee input. Please Enter Number !", "Warning", JOptionPane.WARNING_MESSAGE);
