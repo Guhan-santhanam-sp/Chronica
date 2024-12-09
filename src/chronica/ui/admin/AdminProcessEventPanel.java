@@ -8,6 +8,7 @@ import chronica.model.event.Event;
 import chronica.model.event.EventDirectory;
 import chronica.model.role.RoleDirectory;
 import chronica.model.task.Task;
+import chronica.model.task.TaskDirectory;
 import chronica.model.user.User;
 import chronica.model.user.UserDirectory;
 import java.awt.CardLayout;
@@ -27,6 +28,7 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
     RoleDirectory roleDirectory;
     UserDirectory userDirectory;
     Event selectedEvent;
+    TaskDirectory taskDirectory;
 
     /**
      * Creates new form AdminProcessEventPanel
@@ -46,6 +48,7 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
         this.userDirectory = userDirectory;
         this.roleDirectory = roleDirectory;
         this.selectedEvent = selectedEvent;
+        this.taskDirectory = selectedEvent.getTaskDirectory();
         populateTable();
 
     }
@@ -173,22 +176,22 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     public void populateTable() {
-
+        System.out.println(taskDirectory.getAllTasks());
+        DefaultTableModel model = (DefaultTableModel) tblTask.getModel();
+         model.setRowCount(0);
         
-        for (Task task : selectedEvent.getTaskDirectory().getAllTasks()) {
-            DefaultTableModel model = (DefaultTableModel) tblTask.getModel();
-            String assignedToval= "";
+
+        for (Task task : taskDirectory.getAllTasks()) {
+
+            String assignedToval = "";
             User assignedTo = task.getAssignedto();
-            if(assignedTo == null)
-            {
-                assignedToval="-";
+            if (assignedTo == null) {
+                assignedToval = "-";
+            } else {
+                assignedToval = assignedTo.getUsername();
             }
-            else
-            {
-                assignedToval=assignedTo.getUsername();
-            }
-            
-            model.setRowCount(0);
+
+           
             String tstatus = null;
             String estatus = null;
 
