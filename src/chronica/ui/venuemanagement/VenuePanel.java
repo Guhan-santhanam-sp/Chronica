@@ -52,11 +52,11 @@ public class VenuePanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         btnRemoveTask = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         ScrollPane2 = new javax.swing.JScrollPane();
         tblSecurityHistory = new javax.swing.JTable();
         ScrollPane1 = new javax.swing.JScrollPane();
         tblSecurityMgmt = new javax.swing.JTable();
+        jLabel12 = new javax.swing.JLabel();
 
         btnAssign.setText("Assign to Me");
         btnAssign.addActionListener(new java.awt.event.ActionListener() {
@@ -77,9 +77,6 @@ public class VenuePanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Available Tasks");
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel12.setText("Venue Organization Dashboard");
 
         tblSecurityHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -123,6 +120,9 @@ public class VenuePanel extends javax.swing.JPanel {
         });
         ScrollPane1.setViewportView(tblSecurityMgmt);
 
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel12.setText("Venue Dashboard");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,8 +148,8 @@ public class VenuePanel extends javax.swing.JPanel {
                         .addComponent(ScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(378, 378, 378))))
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(342, 342, 342))))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAssign, btnRemoveTask});
