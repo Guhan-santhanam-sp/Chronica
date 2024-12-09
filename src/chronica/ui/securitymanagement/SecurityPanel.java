@@ -51,11 +51,11 @@ public class SecurityPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         btnRemoveTask = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         ScrollPane2 = new javax.swing.JScrollPane();
         tblSecurityHistory = new javax.swing.JTable();
         ScrollPane1 = new javax.swing.JScrollPane();
         tblSecurityMgmt = new javax.swing.JTable();
+        jLabel12 = new javax.swing.JLabel();
 
         btnAssign.setText("Assign to Me");
         btnAssign.addActionListener(new java.awt.event.ActionListener() {
@@ -76,9 +76,6 @@ public class SecurityPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Available Tasks");
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel12.setText("Security Dashboard");
 
         tblSecurityHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -122,6 +119,9 @@ public class SecurityPanel extends javax.swing.JPanel {
         });
         ScrollPane1.setViewportView(tblSecurityMgmt);
 
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel12.setText("Security Dashboard");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -144,10 +144,10 @@ public class SecurityPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRemoveTask)
                 .addGap(247, 247, 247))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(418, 418, 418)
-                .addComponent(jLabel12)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(307, 307, 307))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAssign, btnRemoveTask});
@@ -155,9 +155,9 @@ public class SecurityPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(60, 60, 60)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))

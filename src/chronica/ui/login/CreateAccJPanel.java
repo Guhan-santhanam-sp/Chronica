@@ -67,7 +67,7 @@ public class CreateAccJPanel extends javax.swing.JPanel {
 
         lblRoles.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
         lblRoles.setForeground(new java.awt.Color(255, 255, 255));
-        lblRoles.setText("Role");
+        lblRoles.setText("Enterprise");
         add(lblRoles);
         lblRoles.setBounds(350, 560, 90, 20);
 
@@ -149,11 +149,17 @@ public class CreateAccJPanel extends javax.swing.JPanel {
         String userName = txtUsername.getText();
         String pwd = txtPassword.getText();
         String email = txtEmail.getText();
+        
+        if(!email.contains("@") || !email.contains("."))
+        {
+            JOptionPane.showMessageDialog(this, "Incorrect Email Format", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         String rolename = (String) cmbRoles.getSelectedItem();
         Role role = null;
         User existUser = null;
         if (userName.isEmpty() || pwd.isEmpty() || email.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "One of the fields is incorrect", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "One of the fields is Empty", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
 
         } else {
@@ -168,6 +174,9 @@ public class CreateAccJPanel extends javax.swing.JPanel {
             if (existUser == null) {
                 userDirectory.newUser(userName, pwd, email, role);
                 JOptionPane.showMessageDialog(this, "User has been added", "Information", JOptionPane.INFORMATION_MESSAGE);
+                txtEmail.setText("");
+                txtUsername.setText("");
+                txtPassword.setText("");
 
             } else {
                 JOptionPane.showMessageDialog(this, "User Already Exists", "Warning", JOptionPane.WARNING_MESSAGE);

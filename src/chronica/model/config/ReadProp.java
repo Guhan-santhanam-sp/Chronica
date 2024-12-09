@@ -54,7 +54,7 @@ public class ReadProp {
             prop.load(configFileReader);
 
             String[] rolesArray = null;
-            String suppliers = prop.getProperty("Organizations");
+            String suppliers = prop.getProperty("Enterprise");
 
             if (suppliers != null) {
                 rolesArray = suppliers.split(",");
