@@ -39,7 +39,7 @@ public class VendorPanel extends javax.swing.JPanel {
         this.taskDirectory = taskDirectory;
         this.eventDirectory = eventDirectory;
         this.roleDirectory = roleDirectory;
-        this.vendor = vendor;
+        this.vendor = VendorUser;
         populateTable();
     }
 
@@ -52,71 +52,21 @@ public class VendorPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnback = new javax.swing.JButton();
         lblTitle2 = new javax.swing.JLabel();
         lblTitle1 = new javax.swing.JLabel();
-        ScrollPane3 = new javax.swing.JScrollPane();
-        tblVendor = new javax.swing.JTable();
-        ScrollPane4 = new javax.swing.JScrollPane();
-        tblVendorHistory = new javax.swing.JTable();
         btnAssign = new javax.swing.JButton();
         btnRemoveTask = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
-
-        btnback.setText("<");
-        btnback.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbackActionPerformed(evt);
-            }
-        });
+        ScrollPane2 = new javax.swing.JScrollPane();
+        tblSecurityHistory = new javax.swing.JTable();
+        ScrollPane1 = new javax.swing.JScrollPane();
+        tblSecurityMgmt = new javax.swing.JTable();
 
         lblTitle2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblTitle2.setText("Vendor History");
 
         lblTitle1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblTitle1.setText("Vendor Details");
-
-        tblVendor.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Event ID", "Task", "Date", "Budget", "Created By", "Status"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        ScrollPane3.setViewportView(tblVendor);
-
-        tblVendorHistory.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Event ID", "Task", "Date", "Budget", "Created By", "Status"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        ScrollPane4.setViewportView(tblVendorHistory);
 
         btnAssign.setText("Assign to Me");
         btnAssign.addActionListener(new java.awt.event.ActionListener() {
@@ -135,85 +85,105 @@ public class VendorPanel extends javax.swing.JPanel {
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel12.setText("Vendor Dashboard");
 
+        tblSecurityHistory.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Task", "Date", "Budget", "Location", "Created By", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        ScrollPane2.setViewportView(tblSecurityHistory);
+
+        tblSecurityMgmt.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Task", "Date", "Budget", "Location", "Created By", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        ScrollPane1.setViewportView(tblSecurityMgmt);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(341, 341, 341)
-                                .addComponent(jLabel12))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(ScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(74, 74, 74)
-                                .addComponent(ScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(44, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
-                        .addComponent(lblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(132, 132, 132))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(210, 210, 210)
+                .addGap(23, 23, 23)
+                .addComponent(ScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(ScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 72, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(228, 228, 228)
                 .addComponent(btnAssign)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRemoveTask)
-                .addGap(194, 194, 194))
+                .addGap(294, 294, 294))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(209, 209, 209)
+                .addComponent(lblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(220, 220, 220))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(448, 448, 448)
+                .addComponent(jLabel12)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(btnback)
-                        .addGap(29, 29, 29))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGap(64, 64, 64)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRemoveTask)
-                    .addComponent(btnAssign))
-                .addContainerGap(52, Short.MAX_VALUE))
+                    .addComponent(ScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAssign)
+                    .addComponent(btnRemoveTask))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
-        // TODO add your handling code here:
-        VendorPanel.remove(this);
-        Component[] componentArray = VendorPanel.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        VendorPanel VendorManagementPaneljpanel = (VendorPanel) component;
-        VendorManagementPaneljpanel.populateTable();
-        CardLayout layout = (CardLayout) VendorPanel.getLayout();
-        layout.previous(VendorPanel);
-    }//GEN-LAST:event_btnbackActionPerformed
-
     private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
         // TODO add your handling code here:
-        int selectedRowIndex = tblVendor.getSelectedRow();
+        int selectedRowIndex = tblSecurityMgmt.getSelectedRow();
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a task to assign.", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        Task task = (Task) tblVendor.getValueAt(selectedRowIndex, 0);
+        Task task = (Task) tblSecurityMgmt.getValueAt(selectedRowIndex, 0);
         task.setStatus(true);
         task.setAssignedto(vendor);
         JOptionPane.showMessageDialog(this, "Task assigned to " + vendor.getUsername() + ".", "Information", JOptionPane.INFORMATION_MESSAGE);
@@ -224,9 +194,9 @@ public class VendorPanel extends javax.swing.JPanel {
 
     private void btnRemoveTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveTaskActionPerformed
         // TODO add your handling code here:
-        int selectedrow = tblVendorHistory.getSelectedRow();
+        int selectedrow = tblSecurityHistory.getSelectedRow();
         if (selectedrow >= 0) {
-            Task selectedTask = (Task) tblVendorHistory.getValueAt(selectedrow, 0);
+            Task selectedTask = (Task) tblSecurityHistory.getValueAt(selectedrow, 0);
 
            selectedTask.setStatus(false);
            selectedTask.setAssignedto(null);
@@ -240,20 +210,19 @@ public class VendorPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane ScrollPane3;
-    private javax.swing.JScrollPane ScrollPane4;
+    private javax.swing.JScrollPane ScrollPane1;
+    private javax.swing.JScrollPane ScrollPane2;
     private javax.swing.JButton btnAssign;
     private javax.swing.JButton btnRemoveTask;
-    private javax.swing.JButton btnback;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel lblTitle1;
     private javax.swing.JLabel lblTitle2;
-    private javax.swing.JTable tblVendor;
-    private javax.swing.JTable tblVendorHistory;
+    private javax.swing.JTable tblSecurityHistory;
+    private javax.swing.JTable tblSecurityMgmt;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-        DefaultTableModel model = (DefaultTableModel) tblVendor.getModel();
+             DefaultTableModel model = (DefaultTableModel) tblSecurityMgmt.getModel();
         model.setRowCount(0);
 
         for (Event e : eventDirectory.getEvents()) {
@@ -261,10 +230,10 @@ public class VendorPanel extends javax.swing.JPanel {
             for (Task task : td.getAllTasks()) {
                 if (task.getRole().getName().equalsIgnoreCase("Vendor") && task.isStatus() == false) {
                     Object[] row = new Object[6];
-                    row[0] = e.getEventId();
-                    row[1] = task;
-                    row[2] = e.getDate();
-                    row[3] = task.getCost();
+                    row[0] = task;
+                    row[1] = e.getDate().toString();
+                    row[2] = task.getCost();
+                    row[3] = e.getLocation();
                     row[4] = task.getAssignedby().getUsername();
                     row[5] = task.isStatus() ? "Completed" : "Pending";
                     model.addRow(row);
@@ -272,7 +241,7 @@ public class VendorPanel extends javax.swing.JPanel {
                 }
             }
 
-            DefaultTableModel model1 = (DefaultTableModel) tblVendorHistory.getModel();
+            DefaultTableModel model1 = (DefaultTableModel) tblSecurityHistory.getModel();
             model1.setRowCount(0);
 
             for (Event ev : eventDirectory.getEvents()) {
@@ -282,13 +251,13 @@ public class VendorPanel extends javax.swing.JPanel {
                     } else {
                         if (task.getRole().getName().equalsIgnoreCase("Vendor")) {
                             Object[] row = new Object[6];
-                        row[0] = e.getEventId();
-                        row[1] = task;
-                        row[2] = e.getDate();
-                        row[3] = task.getCost();
-                        row[4] = task.getAssignedby().getUsername();
-                        row[5] = task.isStatus() ? "Completed" : "Pending";
-                        model.addRow(row);
+                            row[0] = task;
+                            row[1] = e.getDate().toString();
+                            row[2] = task.getCost();
+                            row[3] = e.getLocation();
+                            row[4] = task.getAssignedby().getUsername();
+                            row[5] = task.isStatus() ? "Completed" : "Pending";
+                            model1.addRow(row);
                         }
 
                     }
