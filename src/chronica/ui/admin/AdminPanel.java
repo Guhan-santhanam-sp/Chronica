@@ -375,7 +375,7 @@ public class AdminPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtTotalRevenue;
     // End of variables declaration//GEN-END:variables
 
-    private void populateTable() {
+    public void populateTable() {
 
         DefaultTableModel model = (DefaultTableModel) tblEvents.getModel();
         model.setRowCount(0);

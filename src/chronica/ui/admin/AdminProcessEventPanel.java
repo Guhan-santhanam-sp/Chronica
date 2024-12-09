@@ -11,7 +11,10 @@ import chronica.model.task.Task;
 import chronica.model.task.TaskDirectory;
 import chronica.model.user.User;
 import chronica.model.user.UserDirectory;
+import chronica.ui.customer.CustomerPanel;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -49,6 +52,7 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
         this.roleDirectory = roleDirectory;
         this.selectedEvent = selectedEvent;
         this.taskDirectory = selectedEvent.getTaskDirectory();
+        liveStatus();
         populateTable();
 
     }
@@ -67,23 +71,25 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
         tblTask = new javax.swing.JTable();
         btnApprove = new javax.swing.JButton();
         btnback = new javax.swing.JButton();
+        txtnot = new javax.swing.JLabel();
+        txtLive = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Process Event");
 
         tblTask.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Organization Name", "Description", "Role", "Cost", "Task Status", "Live"
+                "Organization Name", "Description", "Role", "Cost", "Task Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -106,6 +112,11 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
             }
         });
 
+        txtnot.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtnot.setText("Live Status : ");
+
+        txtLive.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,21 +129,33 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 819, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(400, 400, 400)
-                                .addComponent(jLabel1))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 819, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(296, Short.MAX_VALUE))
+                                .addComponent(jLabel1)
+                                .addGap(218, 218, 218)
+                                .addComponent(txtnot)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtLive, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(btnback))
-                .addGap(38, 38, 38)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(btnback))
+                        .addGap(38, 38, 38))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtnot)
+                            .addComponent(txtLive))
+                        .addGap(46, 46, 46)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnApprove, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -143,8 +166,12 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
         // TODO add your handling code here:
         adminPanel.remove(this);
-        CardLayout layout = (CardLayout) adminPanel.getLayout();
-        layout.previous(adminPanel);
+        Component[] componentArray = adminPanel.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        AdminPanel adminPanel1 = (AdminPanel) component;
+        adminPanel1.populateTable();
+        CardLayout layout = (CardLayout) adminPanel1.getLayout();
+        layout.previous(adminPanel1);
     }//GEN-LAST:event_btnbackActionPerformed
 
     private void btnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApproveActionPerformed
@@ -155,6 +182,7 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
 
                 JOptionPane.showMessageDialog(this, "Event is now Live !", "Information", JOptionPane.INFORMATION_MESSAGE);
                 populateTable();
+                liveStatus();
 
             } else {
                 JOptionPane.showMessageDialog(this, "All Tasks Should be Processed before Pushing it to Live !", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -173,13 +201,14 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblTask;
+    private javax.swing.JLabel txtLive;
+    private javax.swing.JLabel txtnot;
     // End of variables declaration//GEN-END:variables
 
     public void populateTable() {
         System.out.println(taskDirectory.getAllTasks());
         DefaultTableModel model = (DefaultTableModel) tblTask.getModel();
-         model.setRowCount(0);
-        
+        model.setRowCount(0);
 
         for (Task task : taskDirectory.getAllTasks()) {
 
@@ -191,7 +220,6 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
                 assignedToval = assignedTo.getUsername();
             }
 
-           
             String tstatus = null;
             String estatus = null;
 
@@ -213,10 +241,20 @@ public class AdminProcessEventPanel extends javax.swing.JPanel {
             row[2] = task.getRole().getName();
             row[3] = task.getCost();
             row[4] = tstatus;
-            row[5] = estatus;
             model.addRow(row);
 
         }
 
+    }
+
+    private void liveStatus() {
+        if (selectedEvent.getLive()) {
+            txtLive.setText("Approved");
+            txtLive.setForeground(Color.green);
+
+        } else {
+            txtLive.setText("Pending");
+            txtLive.setForeground(Color.red);
+        }
     }
 }
